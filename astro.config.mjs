@@ -23,6 +23,12 @@ export default defineConfig({
       theme: 'monokai',
     },
   },
+  // plugins: [
+  //   Icons({
+  //     compiler: 'jsx',
+  //     jsx: 'react',
+  //   }),
+  // ],
   integrations: [
     react(),
     tailwind({}),

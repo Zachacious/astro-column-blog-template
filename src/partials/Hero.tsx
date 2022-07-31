@@ -1,69 +1,28 @@
-import {
-  GradientText,
-  HeroAvatar,
-  HeroSocial,
-  Section,
-} from 'astro-boilerplate-components';
+import 'src/css/hero.scss';
+import 'src/css/icon.scss';
+
+import IconSearch from '@/icons/search';
 
 const Hero = () => (
-  <Section>
-    <HeroAvatar
-      title={
-        <>
-          Hi there, I'm <GradientText>Ixartz</GradientText> 👋
-        </>
-      }
-      description={
-        <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus{' '}
-          <a className="text-cyan-400 hover:underline" href="/">
-            malesuada
-          </a>{' '}
-          nisi tellus, non imperdiet nisi tempor at. Lorem ipsum dolor sit amet,{' '}
-          <a className="text-cyan-400 hover:underline" href="/">
-            consectetur
-          </a>{' '}
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
-        </>
-      }
-      avatar={
-        <img
-          className="h-80 w-64"
-          src="/assets/images/avatar.svg"
-          alt="Avatar image"
-          loading="lazy"
-        />
-      }
-      socialButtons={
-        <>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/twitter-icon.png"
-              alt="Twitter icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/facebook-icon.png"
-              alt="Facebook icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/linkedin-icon.png"
-              alt="Linkedin icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/youtube-icon.png"
-              alt="Youtube icon"
-            />
-          </a>
-        </>
-      }
-    />
-  </Section>
+  <section>
+    <div className="hero flex justify-center">
+      <div className="mx-4 flex h-full w-full max-w-6xl flex-col">
+        <div className="w-full">
+          <div className="navbar my-5 flex w-full items-center justify-between">
+            <div className="navbar-brand text-2xl font-bold">Zach Moore</div>
+            <div className="navbar-nav">
+              {/* <IconGithub className="icon-sm" /> */}
+              <IconSearch className="icon-sm" />
+            </div>
+          </div>
+        </div>
+        <div className="hero-content grow"></div>
+        <div className="hero-footer break-word mb-12 text-4xl font-bold md:text-6xl lg:text-8xl">
+          <div>Software Developer/Creative</div>
+        </div>
+      </div>
+    </div>
+  </section>
 );
 
 export { Hero };
