@@ -6,9 +6,11 @@ import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
+import BlogCard from '../partials/BlogCard.astro';
+
 const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
-const lastThreePosts = sortedPosts.slice(0, 3);
+// const lastThreePosts = sortedPosts.slice(0, 3);
 
 const { title } = AppConfig;
 const { description } = AppConfig;
@@ -19,4 +21,11 @@ const { description } = AppConfig;
   <!-- <ProjectList /> -->
   <!-- <RecentPosts postList={lastThreePosts} /> -->
   <!-- <CTA /> -->
+  <div class="flex w-full justify-center">
+    <div class="m-5 max-w-7xl">
+      <div class="flex w-full flex-wrap justify-center">
+        {sortedPosts.map((post) => <BlogCard post={post} />)}
+      </div>
+    </div>
+  </div>
 </Base>
