@@ -5,6 +5,7 @@ description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ve
 pubDate: 2020-02-01T00:00:00Z
 imgSrc: '/assets/images/image-post7.jpeg'
 imgAlt: 'Image post 7'
+category: 'Test'
 ---
 
 Full typography example at [this page](./sixth-post).

@@ -10,6 +10,7 @@ import BlogCard from '../partials/BlogCard.astro';
 
 const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
+const recentPosts = sortedPosts.slice(0, 12);
 // const lastThreePosts = sortedPosts.slice(0, 3);
 
 const { title } = AppConfig;
@@ -24,8 +25,9 @@ const { description } = AppConfig;
   <div class="flex w-full justify-center">
     <div class="m-5 max-w-7xl">
       <div class="flex w-full flex-wrap justify-center">
-        {sortedPosts.map((post) => <BlogCard post={post} />)}
+        {recentPosts.map((post) => <BlogCard post={post} />)}
       </div>
+      <div class="flex w-full justify-center mt-4"><a href="/posts">...See More Posts</a></div>
     </div>
   </div>
 </Base>

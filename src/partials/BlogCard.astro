@@ -1,19 +1,30 @@
 ---
 import '../css/blogcard.scss';
 
+import formatDate from '../utils/FormatDate';
+
 const { post } = Astro.props;
+
+const categoryEl = post.frontmatter.category ? `<small class="rounded-lg bg-gray-600 p-1 px-2 opacity-50">${post.frontmatter.category}</small> `: null;
 ---
 
 <div
-  class="blog-card m-5 flex cursor-pointer flex-col rounded-xl bg-gray-500"
+  class="blog-card m-5 p-2 flex cursor-pointer flex-col bg-gray-500 rounded-md"
   onclick={`window.location.href='${post.url}'`}
 >
-  <div
-    class="blog-card__header flex flex-col justify-center rounded-t-xl bg-black px-3"
-  >
-    <h2 class="text-xl font-bold">{post.frontmatter.title}</h2>
+  <div class="blog-card__header rounded-t-md px-3">
+    <h2 class="text-2xl font-bold">{post.frontmatter.title}</h2>
+    <div class="w-full opacity-70">
+      <small>{formatDate(post.frontmatter.pubDate)}</small>
+    </div>
   </div>
   <div class="grow p-3">
     {post.frontmatter.description}
+  </div>
+  <div class="w-full flex justify-between p-3">
+    <span>
+      <Fragment set:html="categoryEl"></Fragment>
+    </span>
+    <small class="font-bold">...Continue</small>
   </div>
 </div>
