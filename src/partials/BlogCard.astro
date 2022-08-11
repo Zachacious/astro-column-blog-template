@@ -5,26 +5,34 @@ import formatDate from '../utils/FormatDate';
 
 const { post } = Astro.props;
 
-const categoryEl = post.frontmatter.category ? `<small class="rounded-lg bg-gray-600 p-1 px-2 opacity-50">${post.frontmatter.category}</small> `: null;
+const categoryEl = post.frontmatter.category
+  ? `<small class="rounded-lg  p-1 px-2 z-0 opacity-80">${post.frontmatter.category}</small> `
+  : null;
+
+const style = post.frontmatter.imgSrc
+  ? `background: url(${post.frontmatter.imgSrc})`
+  : '';
 ---
 
 <div
-  class="blog-card m-5 p-2 flex cursor-pointer flex-col bg-gray-500 rounded-md"
+  class="blog-card relative m-5 flex cursor-pointer flex-col rounded-md bg-secondarydark bg-cover bg-center p-2 drop-shadow-lg "
+  style={style}
   onclick={`window.location.href='${post.url}'`}
 >
-  <div class="blog-card__header rounded-t-md px-3">
+  <div class="blog-card__overlay absolute bg-primarydark"></div>
+  <div class="blog-card__header z-0 rounded-t-md px-3">
     <h2 class="text-2xl font-bold">{post.frontmatter.title}</h2>
     <div class="w-full opacity-70">
       <small>{formatDate(post.frontmatter.pubDate)}</small>
     </div>
   </div>
-  <div class="grow p-3">
+  <div class="z-0 grow p-3">
     {post.frontmatter.description}
   </div>
-  <div class="w-full flex justify-between p-3">
+  <div class="z-0 flex w-full justify-start p-3">
     <span>
-      <Fragment set:html="categoryEl"></Fragment>
+      <Fragment set:html="categoryEl" />
     </span>
-    <small class="font-bold">...Continue</small>
+    <!-- <small class="font-bold">...Continue</small> -->
   </div>
 </div>

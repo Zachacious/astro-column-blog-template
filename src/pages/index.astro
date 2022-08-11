@@ -22,12 +22,15 @@ const { description } = AppConfig;
   <!-- <ProjectList /> -->
   <!-- <RecentPosts postList={lastThreePosts} /> -->
   <!-- <CTA /> -->
-  <div class="flex w-full justify-center">
+  <div class="my-8 flex w-full justify-center">
     <div class="m-5 max-w-7xl">
+      <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2>
       <div class="flex w-full flex-wrap justify-center">
         {recentPosts.map((post) => <BlogCard post={post} />)}
       </div>
-      <div class="flex w-full justify-center mt-4"><a href="/posts">...See More Posts</a></div>
+      <div class="mt-4 flex w-full justify-center">
+        <a href="/posts">...See More Posts</a>
+      </div>
     </div>
   </div>
 </Base>

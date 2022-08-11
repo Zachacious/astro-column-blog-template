@@ -17,7 +17,7 @@ const Hero = () => (
         </div>
         <div className="hero-content grow"></div>
         <div className="hero-footer break-word mb-12 text-4xl font-bold md:text-6xl lg:text-8xl">
-          <div>Software Developer/Creative</div>
+          <div>Technologist</div>
         </div>
       </div>
     </div>
