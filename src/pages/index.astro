@@ -10,11 +10,19 @@ import BlogCard from '../partials/BlogCard.astro';
 
 const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
+const totalPosts = sortedPosts.length;
 const recentPosts = sortedPosts.slice(0, 12);
 // const lastThreePosts = sortedPosts.slice(0, 3);
 
 const { title } = AppConfig;
 const { description } = AppConfig;
+
+const seeMoreButton =
+  totalPosts > 12
+    ? `<div class="mt-4 flex w-full justify-center">
+        <a href="/posts">...See More Posts</a>
+      </div>`
+    : ``;
 ---
 
 <Base head={{ title, description }}>
@@ -28,9 +36,7 @@ const { description } = AppConfig;
       <div class="flex w-full flex-wrap justify-center">
         {recentPosts.map((post) => <BlogCard post={post} />)}
       </div>
-      <div class="mt-4 flex w-full justify-center">
-        <a href="/posts">...See More Posts</a>
-      </div>
+      <Fragment set:html={seeMoreButton} />
     </div>
   </div>
 </Base>
