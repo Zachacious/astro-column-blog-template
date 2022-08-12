@@ -1,7 +1,8 @@
-$bkcolor: #212b31;
+$bkcolor: #1a2125;
 $textcolor: #bfd3be;
 $accent: #0B6E4F;
 $boomcolor: #FFC914;
+$test: #242e35;
 
 body::-webkit-scrollbar {
   width: 0.8em;
@@ -12,6 +13,6 @@ body::-webkit-scrollbar-track {
 }
  
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(61, 41, 73);
-  outline: 1px solid rgb(26, 35, 44);
+  background-color: $accent;
+  // outline: 1px solid rgb(26, 35, 44);
 }
