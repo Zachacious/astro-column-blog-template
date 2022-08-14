@@ -3,7 +3,7 @@
 const year = new Date().getFullYear();
 
 const Footer = () => (
-  <div class="my-8 flex w-full justify-center opacity-50">
+  <div className="my-8 flex w-full justify-center opacity-50">
     © Copyright {year} Zach Moore
   </div>
   // <Section>

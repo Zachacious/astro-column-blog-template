@@ -1,0 +1,97 @@
+.blogpost {
+  h1,h2,h3,h4,h5,h6 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: 0.8em;
+  }
+
+  p {
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  blockquote {
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-left: 3px solid #ccc;
+    padding-left: 1em;
+  }
+
+  ul {
+    list-style: disc;
+    margin-top: 0.5em;
+
+    li {
+      margin-left: 1em;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    margin-top: 0.5em;
+
+    li {
+      margin-left: 1em;
+    }
+  }
+
+  a {
+    color: #0B6E4F;
+    text-decoration: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    // width: 100%;
+    margin-top: 1em;
+    margin-bottom: 01em;
+  }
+
+  th {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+  }
+
+  td {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+  }
+
+  img {
+    max-width: 100%;
+    padding: 1em;
+  }
+
+  .astro-code {
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+}

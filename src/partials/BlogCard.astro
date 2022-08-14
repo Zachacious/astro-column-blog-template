@@ -10,7 +10,7 @@ const categoryEl = post.frontmatter.category
   : null;
 
 const style = post.frontmatter.imgSrc
-  ? `background: url(${post.frontmatter.imgSrc})`
+  ? `background: url(${post.frontmatter.imgSrc}) center center / cover no-repeat;`
   : '';
 ---
 
@@ -35,8 +35,8 @@ const style = post.frontmatter.imgSrc
     <span>
       <!-- <Fragment set:html="categoryEl" /> -->
       {post?.frontmatter?.tags?.map((tag) => (
-        <small class="z-0 m-1 rounded-lg border p-1 px-2 opacity-80">
-          {post.frontmatter.category}
+        <small class="z-0 m-1 rounded-lg border p-1 px-2 capitalize opacity-80">
+          {tag}
         </small>
       ))}
     </span>
