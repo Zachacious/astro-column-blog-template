@@ -1,19 +1,18 @@
 ---
+import '../../css/pagehero.scss';
+
 import type {
   FrontmatterPage,
   IFrontmatter,
 } from 'astro-boilerplate-components';
-import {
-  BlogGallery,
-  NewerOlderPagination,
-  PaginationHeader,
-  Section,
-} from 'astro-boilerplate-components';
+import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
 
-import { CTA } from '@/partials/CTA';
+import BlogCard from '@/partials/BlogCard.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
+
+import { PageHero } from '../../partials/PageHero';
 
 type GetStaticPaths = {
   paginate: any;
@@ -40,20 +39,28 @@ const description =
 ---
 
 <Base head={{ title, description }}>
-  <Section>
+  <!-- <Section>
     <PaginationHeader
-      title='Random title here'
-      description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      title="Random title here"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     />
-  </Section>
+  </Section> -->
 
-  <Section>
+  <PageHero title="Posts" />
+  <!-- {JSON.stringify(page)} -->
+  <div class="my-10 flex w-full justify-center">
+    <div class="flex max-w-7xl flex-wrap justify-center">
+      {page.data.map((post) => <BlogCard post={post} />)}
+    </div>
+  </div>
+
+  <!-- <Section>
     <BlogGallery postList={page.data} />
-  </Section>
+  </Section> -->
 
   <Section>
     <NewerOlderPagination page={page} />
   </Section>
 
-  <CTA />
+  <!-- <CTA /> -->
 </Base>

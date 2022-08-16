@@ -52,7 +52,7 @@ const BlogHero = (props: IBlogPostProps) => (
               {props.frontmatter.title}
             </div>
             <div className="mt-6 flex w-full opacity-70">
-              {props.frontmatter.tags.map((tag, index) => (
+              {props?.frontmatter?.tags?.map((tag, index) => (
                 <small
                   key={index}
                   className="tag m-2 rounded-md border p-1 px-2 capitalize"
