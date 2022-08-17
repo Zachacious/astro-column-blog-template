@@ -1,29 +1,59 @@
 ---
-import '../../css/pagehero.scss';
-
 import type {
   FrontmatterPage,
   IFrontmatter,
 } from 'astro-boilerplate-components';
 import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
 
-import BlogCard from '@/partials/BlogCard.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortByDate } from '@/utils/Posts';
 
-import { PageHero } from '../../partials/PageHero';
+import { PageHero } from '../../../partials/PageHero';
+
+interface ITagFrontmatter extends IFrontmatter {
+  tags: string[];
+}
 
 type GetStaticPaths = {
   paginate: any;
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatter>('./*.md');
-  const sortedPosts = sortByDate(allPosts);
+  const allPosts = await Astro.glob<ITagFrontmatter>('../../posts/*.md');
+  const allTags = allPosts
+    .map((post) => post.frontmatter?.tags)
+    .flat()
+    .filter((tag) => tag !== undefined);
+  // const sortedPosts = sortByDate(allPosts);
 
   // Return a paginated collection of paths for all posts
-  return paginate(sortedPosts, { pageSize: 16 });
+  // return paginate(sortedPosts, { pageSize: 16 });
+
+  console.log(
+    JSON.stringify(
+      allTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+          post.frontmatter?.tags?.includes(tag)
+        );
+
+        return paginate(filteredPosts, {
+          params: { tag },
+          pageSize: 1,
+        });
+      })
+    )
+  );
+
+  return allTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.frontmatter?.tags?.includes(tag)
+    );
+
+    return paginate(filteredPosts, {
+      params: { tag },
+      pageSize: 1,
+    });
+  });
 }
 
 interface Props {
@@ -46,11 +76,11 @@ const description =
     />
   </Section> -->
 
-  <PageHero title="Posts" />
+  <PageHero title="Tags" />
   <!-- {JSON.stringify(page)} -->
   <div class="my-10 flex w-full justify-center">
     <div class="flex max-w-7xl flex-wrap justify-center">
-      {page.data.map((post) => <BlogCard post={post} />)}
+      <!-- {page.data.map((post) => <BlogCard post={post} />)} -->
     </div>
   </div>
 
