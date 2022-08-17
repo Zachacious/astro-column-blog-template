@@ -5,6 +5,7 @@ import type {
 } from 'astro-boilerplate-components';
 import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
 
+import BlogCard from '@/partials/BlogCard.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -29,21 +30,6 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
   // Return a paginated collection of paths for all posts
   // return paginate(sortedPosts, { pageSize: 16 });
 
-  console.log(
-    JSON.stringify(
-      allTags.map((tag) => {
-        const filteredPosts = allPosts.filter((post) =>
-          post.frontmatter?.tags?.includes(tag)
-        );
-
-        return paginate(filteredPosts, {
-          params: { tag },
-          pageSize: 1,
-        });
-      })
-    )
-  );
-
   return allTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) =>
       post.frontmatter?.tags?.includes(tag)
@@ -61,6 +47,7 @@ interface Props {
 }
 
 const { page } = Astro.props as Props;
+const { tag } = Astro.params;
 const titleSuffix = ` - ${AppConfig.site_name}`;
 const titleBase = `Blog page ${page.currentPage}`;
 const title = titleBase + titleSuffix;
@@ -76,11 +63,11 @@ const description =
     />
   </Section> -->
 
-  <PageHero title="Tags" />
+  <PageHero title={tag} />
   <!-- {JSON.stringify(page)} -->
   <div class="my-10 flex w-full justify-center">
     <div class="flex max-w-7xl flex-wrap justify-center">
-      <!-- {page.data.map((post) => <BlogCard post={post} />)} -->
+      {page.data.map((post) => <BlogCard post={post} />)}
     </div>
   </div>
 
