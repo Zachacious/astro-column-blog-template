@@ -1,4 +1,4 @@
-import 'src/css/bloghero.scss';
+import 'src/css/pagehero.scss';
 import 'src/css/icon.scss';
 
 import IconSearch from '@/icons/search';
@@ -8,8 +8,16 @@ import IconSearch from '@/icons/search';
 // }
 
 type ITitle = {
-  title: string;
+  title?: string;
+  subtitle?: string;
 };
+
+const subtitle = (text?: string) =>
+  text ? (
+    <div className="capitalize0 w-full text-2xl font-bold opacity-70">
+      {text}
+    </div>
+  ) : null;
 
 const PageHero = (props: ITitle) => (
   <section>
@@ -24,10 +32,10 @@ const PageHero = (props: ITitle) => (
             </div>
           </div>
         </div>
-        {/* <div className="hero-content z-0 grow"></div> */}
         <div className="hero-footer break-word z-0 mb-12 flex grow items-center  ">
           <div>
-            <div className="w-full text-4xl font-bold capitalize md:text-6xl lg:text-8xl">
+            {subtitle(props.subtitle)}
+            <div className="pagehero-title w-full text-4xl font-bold capitalize md:text-6xl lg:text-8xl">
               {props.title}
             </div>
           </div>

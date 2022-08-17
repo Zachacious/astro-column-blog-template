@@ -37,7 +37,7 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
 
     return paginate(filteredPosts, {
       params: { tag },
-      pageSize: 1,
+      pageSize: 16,
     });
   });
 }
@@ -63,7 +63,7 @@ const description =
     />
   </Section> -->
 
-  <PageHero title={tag} />
+  <PageHero subtitle="Filed Under" title={tag} />
   <!-- {JSON.stringify(page)} -->
   <div class="my-10 flex w-full justify-center">
     <div class="flex max-w-7xl flex-wrap justify-center">
