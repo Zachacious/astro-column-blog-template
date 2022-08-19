@@ -12,8 +12,10 @@ type IBlogPostProps = {
 };
 
 const BlogPost = (props: IBlogPostProps) => (
-  <div className="blogpost flex justify-center">
-    <div className="my-10 max-w-7xl p-2">{props.children}</div>
+  <div className="blogpost flex justify-center md:justify-start">
+    <div className="my-5 w-full max-w-7xl px-10 py-2 lg:max-w-2xl lg:self-start">
+      {props.children}
+    </div>
   </div>
 
   // <Section>

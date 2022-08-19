@@ -1,4 +1,7 @@
 ---
+import '../css/layout.scss';
+import '../css/global.scss';
+
 import type { IFrontmatter } from 'astro-boilerplate-components';
 
 import { BlogHero } from '@/partials/BlogHero';
@@ -15,10 +18,16 @@ const title = `${content.title} - ${AppConfig.site_name}`;
 ---
 
 <Base head={{ title, description: content.description }}>
-  <BlogHero frontmatter={content} />
-  <BlogPost frontmatter={content}>
-    <slot />
-  </BlogPost>
+  <div class="flex w-full flex-wrap">
+    <div class="md:1/2 w-full lg:w-1/2">
+      <BlogHero frontmatter={content} />
+    </div>
+    <div class="md:1/2 h-screen w-full overflow-y-auto lg:w-1/2">
+      <BlogPost frontmatter={content}>
+        <slot />
+      </BlogPost>
+    </div>
+  </div>
 
   <!-- <CTA /> -->
 </Base>
