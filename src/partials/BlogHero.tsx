@@ -1,6 +1,10 @@
 import 'src/css/bloghero.scss';
 import 'src/css/icon.scss';
+import 'src/css/global.scss';
+import '@fontsource/bokor';
+import '@fontsource/flamenco';
 
+// import '@fontsource/pirata-one';
 import type { IFrontmatter } from 'astro-boilerplate-components';
 import type { ReactNode } from 'react';
 
@@ -34,13 +38,13 @@ const formatDate = (date: string) => {
 const BlogHero = (props: IBlogPostProps) => (
   <section className=" md:h-screen">
     <div
-      className="bloghero flex justify-center md:h-full"
+      className="bloghero flex justify-center p-8 md:h-full"
       style={style(props)}
     >
-      <div className="bloghero__overlay absolute  bg-tertiary"></div>
+      <div className="bloghero__overlay absolute  bg-primarydark"></div>
       <div className="z-0 mx-4 flex w-full max-w-7xl flex-col">
         <div className="w-full">
-          <div className="navbar my-5 flex w-full items-center justify-between">
+          <div className="navbar my-5 flex w-full items-center justify-between px-2">
             <div className="navbar-brand text-2xl font-bold">Zach Moore</div>
             <div className="navbar-nav">
               <IconSearch className="icon-sm" />
@@ -56,9 +60,9 @@ const BlogHero = (props: IBlogPostProps) => (
         </div>
         <div className="">
           <div>
-            <div className="w-full p-4 py-10 text-4xl font-bold capitalize md:text-5xl lg:text-6xl">
+            <h1 className="post-title w-full p-4 py-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
               {props.frontmatter.title}
-            </div>
+            </h1>
             {/* <div className="mt-6 flex w-full opacity-70">
               {props?.frontmatter?.tags?.map((tag, index) => (
                 <small

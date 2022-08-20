@@ -13,7 +13,7 @@ module.exports = {
         textdark: '#bfd3be',
         accent: '#0B6E4F',
         boom: '#FFC914',
-        tertiary: '#114466',
+        tertiary: '#222255',
       },
     },
   },

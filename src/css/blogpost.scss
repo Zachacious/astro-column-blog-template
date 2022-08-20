@@ -62,7 +62,7 @@
   }
 
   a {
-    color: #0B6E4F;
+    color: #FFC914;
     text-decoration: none;
   }
 
@@ -92,6 +92,16 @@
     padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
+    font-size: 0.75em;
   }
 
+}
+
+.blogpost-tags {
+  color: #bfd3be !important;
+}
+
+.scroll-to-top-btn {
+  top: 85vh;
+  right: 20px;
 }

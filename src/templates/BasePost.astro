@@ -5,7 +5,7 @@ import '../css/global.scss';
 import type { IFrontmatter } from 'astro-boilerplate-components';
 
 import { BlogHero } from '@/partials/BlogHero';
-import { BlogPost } from '@/partials/BlogPost';
+import BlogPost from '@/partials/BlogPost.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -13,16 +13,18 @@ export interface Props {
   content: IFrontmatter;
 }
 
+const allPosts = await Astro.glob<IFrontmatter>('../pages/posts/*.md');
+
 const { content } = Astro.props as Props;
 const title = `${content.title} - ${AppConfig.site_name}`;
 ---
 
 <Base head={{ title, description: content.description }}>
   <div class="flex w-full flex-wrap">
-    <div class="md:1/2 w-full lg:w-1/2">
+    <div class="md:1/2 w-full lg:w-2/5">
       <BlogHero frontmatter={content} />
     </div>
-    <div class="md:1/2 h-screen w-full overflow-y-auto lg:w-1/2">
+    <div class="md:1/2 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
       <BlogPost frontmatter={content}>
         <slot />
       </BlogPost>

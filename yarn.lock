@@ -572,6 +572,21 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/bokor@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/bokor/-/bokor-4.5.11.tgz#25f98f48079945abb10e38c76ad80402ee01899a"
+  integrity sha512-nbCUphZoaKiTt+w8rt7RUwOksm+Mmm1F4ZbwKLGjDs5N4eH+w8MYNshm+dItwYgyUo/uUBoCrjPfxwdP1EoS/w==
+
+"@fontsource/flamenco@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/flamenco/-/flamenco-4.5.9.tgz#aabdffe5483f57c6de339015260d6ef1ab697b4d"
+  integrity sha512-ncU4jDxaOFJ8hwfdEqPYZDeGLIg7viCIbq5O07sEr4pAs37fWA1uhgrH3S/17Zo2cYxb8VLrW3QQ0f+tLH/eBQ==
+
+"@fontsource/pirata-one@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/pirata-one/-/pirata-one-4.5.10.tgz#760095f1c6b6c0a0b58aed211faa6452e082abca"
+  integrity sha512-G+5j5e6df59QBRUMiB0ptdCW8Rmae/gPXHQdqeZT4D40ULrALjN82AGLlhC4CBxfO3VxVqD69JF2E0uoeQXjTg==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"
