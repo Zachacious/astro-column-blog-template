@@ -1,0 +1,59 @@
+---
+import 'src/css/bloghero.scss';
+import 'src/css/icon.scss';
+import 'src/css/global.scss';
+import '@fontsource/bokor';
+import '@fontsource/flamenco';
+
+// import '@fontsource/pirata-one';
+import type { IFrontmatter } from 'astro-boilerplate-components';
+import type { ReactNode } from 'react';
+
+import IconSearch from '@/icons/search';
+
+interface IBlogFrontmatter extends IFrontmatter {
+  tags: string[];
+}
+
+type IBlogPostProps = {
+  frontmatter: IBlogFrontmatter;
+  children: ReactNode;
+};
+
+const props:IBlogPostProps = Astro.props as IBlogPostProps;
+const style = `background: url(${props.frontmatter.imgSrc}) no-repeat center center fixed; background-size: cover;`;
+
+---
+
+  <section class=" md:h-screen border-r-2 border-accent">
+    <div
+      class="bloghero flex justify-center p-8 md:h-full"
+      style={style}
+    >
+      <div class="bloghero__overlay absolute  bg-primarydark"></div>
+      <div class="z-0 mx-4 flex w-full max-w-7xl flex-col">
+        <div class="w-full">
+          <div class="navbar my-5 flex w-full items-center justify-between px-2">
+            <div class="navbar-brand text-2xl font-bold">Zach Moore</div>
+            <div class="navbar-nav">
+              <IconSearch className="icon-sm" />
+            </div>
+          </div>
+        </div>
+        {/* <div class="hero-content z-0 grow"></div> */}
+        <div class="hero-footer break-word z-0 mb-12 flex grow items-center  ">
+
+        </div>
+        <div class="">
+          <div>
+            <h1 class="post-title w-full p-4 py-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
+              {props.frontmatter.title}
+            </h1>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+

@@ -27,3 +27,53 @@ body {
 }
 
 .text-bokor { font-family: "Bokor", serif; }
+
+/* class to fade in*/
+.fade-in {
+  opacity: 0;
+  -webkit-animation: fade-in 0.2s ease-in forwards;
+  animation: fade-in 0.2s ease-in forwards;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* class to fade out*/
+.fade-out {
+  opacity: 0.8;
+  -webkit-animation: fade-out 0.2s ease-in forwards;
+  animation: fade-out 0.2s ease-in forwards;
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}

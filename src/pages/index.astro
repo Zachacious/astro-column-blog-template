@@ -1,7 +1,12 @@
 ---
+import '@fontsource/bokor';
+import '@fontsource/flamenco';
+import 'src/css/global.scss';
+
 import type { IFrontmatter } from 'astro-boilerplate-components';
 
-import { Hero } from '@/partials/Hero';
+// import { Hero } from '@/partials/Hero';
+import MainHero from '@/partials/MainHero.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
@@ -26,11 +31,26 @@ const seeMoreButton =
 ---
 
 <Base head={{ title, description }}>
-  <Hero />
+  <div class="flex w-full flex-wrap">
+    <div class="md:2/5 w-full lg:w-2/5">
+      <MainHero />
+    </div>
+    <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
+      <!-- <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2> -->
+      <div class="p-8 my-4 w-full">
+        <div class="flex w-full flex-wrap justify-center">
+          {recentPosts.map((post) => <BlogCard post={post} />)}
+        </div>
+        <Fragment set:html={seeMoreButton} />
+      </div>
+    </div>
+  </div>
+
+  <!-- <Hero /> -->
   <!-- <ProjectList /> -->
   <!-- <RecentPosts postList={lastThreePosts} /> -->
   <!-- <CTA /> -->
-  <div class="my-8 flex w-full justify-center">
+  <!-- <div class="my-8 flex w-full justify-center">
     <div class="m-5 max-w-7xl">
       <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2>
       <div class="flex w-full flex-wrap justify-center">
@@ -38,5 +58,5 @@ const seeMoreButton =
       </div>
       <Fragment set:html={seeMoreButton} />
     </div>
-  </div>
+  </div> -->
 </Base>

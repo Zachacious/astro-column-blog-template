@@ -25,15 +25,15 @@ const style = (props: IBlogPostProps) => ({
   backgroundSize: 'cover',
 });
 
-const formatDate = (date: string) => {
-  const d = new Date(date);
-  return `${d.toLocaleDateString('en-US', {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })}`;
-};
+// const formatDate = (date: string) => {
+//   const d = new Date(date);
+//   return `${d.toLocaleDateString('en-US', {
+//     weekday: 'short',
+//     year: 'numeric',
+//     month: 'short',
+//     day: 'numeric',
+//   })}`;
+// };
 
 const BlogHero = (props: IBlogPostProps) => (
   <section className=" md:h-screen">
