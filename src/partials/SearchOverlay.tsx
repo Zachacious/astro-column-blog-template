@@ -2,7 +2,7 @@ import '@/css/search-overlay.scss';
 
 import React, { useState } from 'react';
 
-const SearchOverlay = (props) => {
+const SearchOverlay = (props: { id: string | undefined }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

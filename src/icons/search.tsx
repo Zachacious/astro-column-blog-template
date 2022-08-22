@@ -1,13 +1,5 @@
-import debounce from '@/utils/debounce';
-
-const IconSearch = (props: {
-  className: string | undefined;
-  onClick: Function;
-}) => (
-  <div
-    className={props.className}
-    onClick={debounce(() => props.onClick(), 100)}
-  >
+const IconSearch = (props: { className: string | undefined }) => (
+  <div className={props.className}>
     <svg style={{ width: '100%', height: '100%' }} viewBox="0 0 24 24">
       <path
         fill="currentColor"
