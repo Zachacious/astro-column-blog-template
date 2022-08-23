@@ -8,7 +8,9 @@ import 'src/css/hero.scss';
 
 import SearchBtn from 'src/partials/SearchBtn';
 import Search from '@/partials/SearchOverlay';
+import { IFrontmatter } from 'astro-boilerplate-components';
 
+const allPosts = await Astro.glob<IFrontmatter>('../pages/posts/*.md');
 
 
 const onClickSearch = () =>{
@@ -78,7 +80,7 @@ const onClickSearch = () =>{
         </div>
         {/* <div class="hero-content z-0 grow"></div> */}
         <div class="hero-footer w-full break-word z-0 mb-12 flex grow items-center  ">
-          <Search id="search" className="pointer-events-none"  client:load />
+          <Search id="search" className="pointer-events-none" posts={allPosts}  client:load />
         </div>
         <div id="title" class="">
           <div>
