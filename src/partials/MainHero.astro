@@ -30,6 +30,7 @@ const onClickSearch = () =>{
 
     search?.classList.add('pointer-events-none');
 
+    // sessionStorage.setItem('searchActive', 'false');
 
   } else {
     overlay?.classList.add('active');
@@ -46,13 +47,16 @@ const onClickSearch = () =>{
     title?.classList.add('fade-out');
 
     search?.classList.remove('pointer-events-none');
+
+    // sessionStorage.setItem('searchActive', 'true');
   }
   
 };
 ---
-
 <script is:inline>
-  
+(()=>{
+  sessionStorage.setItem('searchActive', 'false');
+})();
 </script>
 
   <section class=" md:h-screen border-r-2 border-accent">
