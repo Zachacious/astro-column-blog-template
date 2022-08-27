@@ -16,6 +16,27 @@ const {
 } = Astro.props as Props;
 ---
 
+<script is:inline>
+  let theme = localStorage.getItem('theme');
+
+  if (!theme) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme = 'dark'
+    } else {
+      theme = 'light'
+    }
+  }
+
+  const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.remove('theme-dark');
+      document.documentElement.classList.remove('dark');
+    } else {
+      root.classList.add('theme-dark');
+      document.documentElement.classList.add('dark');
+    }
+</script>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
