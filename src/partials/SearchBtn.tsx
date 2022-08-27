@@ -22,15 +22,15 @@ const SearchBtn = (props: {
 
   return (
     <div
-      className={`${props.className} flex items-center`}
-      onClick={debounce(() => onClick(), 100)}
+      className={`${props.className} flex cursor-pointer items-center`}
+      onClick={debounce(() => onClick(), 10)}
     >
       {model ? (
         <IconClose className="icon-sm" />
       ) : (
         <span className="flex items-center">
           <IconSearch className="icon-sm" />
-          <span className="text-lg">Search</span>
+          {/* <span className="text-lg font-bold uppercase">Search</span> */}
         </span>
       )}
     </div>

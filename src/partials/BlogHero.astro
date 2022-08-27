@@ -4,12 +4,15 @@ import 'src/css/icon.scss';
 import 'src/css/global.scss';
 import '@fontsource/bokor';
 import '@fontsource/flamenco';
+import 'src/css/hero.scss';
 
 // import '@fontsource/pirata-one';
 import type { IFrontmatter } from 'astro-boilerplate-components';
 import type { ReactNode } from 'react';
 
-import IconSearch from '@/icons/search';
+// import IconSearch from '@/icons/search';
+import SearchBtn from './SearchBtn';
+import Search from '@/partials/SearchOverlay';
 
 interface IBlogFrontmatter extends IFrontmatter {
   tags: string[];
@@ -22,8 +25,55 @@ type IBlogPostProps = {
 
 const props:IBlogPostProps = Astro.props as IBlogPostProps;
 const style = `background: url(${props.frontmatter.imgSrc}) no-repeat center center fixed; background-size: cover;`;
+const allPosts = await Astro.glob<IFrontmatter>('../pages/posts/*.md');
 
+const onClickSearch = () =>{
+  const overlay = document.getElementById('main-overlay');
+  const search = document.getElementById('search');
+  const title = document.getElementById('title');
+
+  if (search?.classList.contains('active')) {
+    overlay?.classList.remove('active');
+    overlay?.classList.remove('fade-in');
+    overlay?.classList.add('fade-out');
+    
+    search?.classList.remove('active');
+    search?.classList.remove('fade-in');
+    search?.classList.add('fade-out');
+
+    title?.classList.remove('fade-out');
+    title?.classList.add('fade-in');
+
+    search?.classList.add('pointer-events-none');
+
+    // sessionStorage.setItem('searchActive', 'false');
+
+  } else {
+    overlay?.classList.add('active');
+    overlay?.classList.add('fade-in');
+    overlay?.classList.remove('fade-out');
+    overlay?.classList.remove('opacity-0');
+
+    search?.classList.add('active');
+    search?.classList.add('fade-in');
+    search?.classList.remove('fade-out');
+    search?.classList.remove('opacity-0');
+
+    title?.classList.remove('fade-in');
+    title?.classList.add('fade-out');
+
+    search?.classList.remove('pointer-events-none');
+
+    // sessionStorage.setItem('searchActive', 'true');
+  }
+  
+};
 ---
+<script is:inline>
+  (()=>{
+    sessionStorage.setItem('searchActive', 'false');
+  })();
+  </script>
 
   <section class=" md:h-screen border-r-2 border-accent">
     <div
@@ -31,18 +81,19 @@ const style = `background: url(${props.frontmatter.imgSrc}) no-repeat center cen
       style={style}
     >
       <div class="bloghero__overlay absolute  bg-primarydark"></div>
+      <div id="main-overlay" class="bloghero__overlay absolute  bg-primarydark opacity-0"></div>
       <div class="z-0 mx-4 flex w-full max-w-7xl flex-col">
         <div class="w-full">
           <div class="navbar my-5 flex w-full items-center justify-between px-2">
             <div class="navbar-brand text-2xl font-bold">Zach Moore</div>
             <div class="navbar-nav">
-              <IconSearch className="icon-sm" />
+              <SearchBtn onClick={onClickSearch} client:load />
             </div>
           </div>
         </div>
         {/* <div class="hero-content z-0 grow"></div> */}
-        <div class="hero-footer break-word z-0 mb-12 flex grow items-center  ">
-
+        <div class="hero-footer w-full break-word z-0 mb-12 flex grow items-center  ">
+          <Search id="search" className="pointer-events-none" posts={allPosts}  client:load />
         </div>
         <div class="">
           <div>
