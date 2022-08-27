@@ -28,7 +28,9 @@ const SearchResults = (props: {
 }) => {
   const { results } = props;
 
-  const [finalResults, setFinalResults] = useState([]);
+  const [finalResults, setFinalResults] = useState(
+    [] as MarkdownInstance<IFrontmatterTags>[]
+  );
 
   let query = '';
 

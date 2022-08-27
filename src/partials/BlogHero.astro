@@ -95,12 +95,18 @@ const onClickSearch = () =>{
         <div class="hero-footer w-full break-word z-0 mb-12 flex grow items-center  ">
           <Search id="search" className="pointer-events-none" posts={allPosts}  client:load />
         </div>
-        <div class="">
-          <div>
-            <h1 class="post-title w-full p-4 py-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
+        <div class="w-full p-4 py-10 ">
+          <div id="title">
+            <h1 class="post-title text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
               {props.frontmatter.title}
             </h1>
-
+              <div class="">
+                {props.frontmatter.tags.map((tag) => (
+                  <a href={`/tag/${tag}/1`} class="inline-block font-bold px-2 py-1 capitalize text-lg opacity-60">
+                    #{tag}
+                  </a>
+                ))}
+              </div>
           </div>
         </div>
       </div>
