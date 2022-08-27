@@ -32,7 +32,7 @@ const BlogCard = (props: { post: MarkdownInstance<IFrontmatterTags> }) => {
       style={style}
       onClick={onClick}
     >
-      <div className="blog-card__overlay absolute bg-primarydark"></div>
+      <div className="blog-card__overlay absolute bg-textdark dark:bg-primarydark"></div>
       <div className="blog-card__header z-0 rounded-t-md px-3">
         <h2 className="mb-0 text-3xl font-normal">{post.frontmatter.title}</h2>
       </div>

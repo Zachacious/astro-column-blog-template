@@ -11,6 +11,7 @@ import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 import SearchResults from '@/partials/SearchResults';
+import ContentTopBar from '@/partials/ContentTopBar.astro';
 
 interface IFrontmatterTags extends IFrontmatter {
   tags: string[];
@@ -34,14 +35,18 @@ const { description } = AppConfig;
   </script>
 
 <Base head={{ title, description }}>
+  
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
       <SearchHero client:load />
     </div>
     <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
+      <ContentTopBar />
       <!-- <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2> -->
       <div class="p-8 my-4 w-full">
+       
         <div class="flex w-full flex-wrap justify-center">
+          
           <!-- {recentPosts.map((post) => <BlogCard post={post} />)} -->
           <SearchResults results={sortedPosts as MarkdownInstance<IFrontmatterTags>[]} client:load/>
         </div>

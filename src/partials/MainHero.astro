@@ -66,13 +66,13 @@ const onClickSearch = () =>{
       class="hero flex justify-center p-8 md:h-full"
      
     >
-      <div id="main-overlay" class="bloghero__overlay absolute  bg-primarydark opacity-0">
+      <div id="main-overlay" class="bloghero__overlay absolute bg-textdark dark:bg-primarydark opacity-0">
         
       </div>
       <div class="z-0 mx-4 flex w-full max-w-7xl flex-col">
         <div class="w-full">
           <div class="navbar my-5 flex w-full items-center justify-between px-2">
-            <div class="navbar-brand text-2xl font-bold">Zach Moore</div>
+            <div class="navbar-brand text-2xl font-bold text-primarydark dark:text-textdark">Zach Moore</div>
             <div class="flex items-center cursor-pointer">
               <SearchBtn onClick={onClickSearch} client:load />
             </div>
@@ -84,7 +84,7 @@ const onClickSearch = () =>{
         </div>
         <div id="title" class="">
           <div>
-            <h1 class="post-title w-full  py-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
+            <h1 class="post-title w-full text-primarydark dark:text-textdark  py-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
               Just a dude on the internet
             </h1>
 

@@ -17,7 +17,7 @@
 
 .blog-card__desc {
   max-height: 145px;
-  mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(255,255,255,1)), to(rgba(255,255,255,0)));
 }
 
 .miniblogcard-title {
@@ -36,3 +36,9 @@
 //   mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 //   // background-color: rgba(0, 0, 0, 0.5);
 // }
+
+html.theme-dark *{
+  .blog-card__desc {
+    mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  }
+}

@@ -48,13 +48,15 @@ const ThemeToggle = () => {
     const root = document.documentElement;
     if (theme === 'light') {
       root.classList.remove('theme-dark');
+      document.documentElement.classList.remove('dark');
     } else {
       root.classList.add('theme-dark');
+      document.documentElement.classList.add('dark');
     }
   }, [theme]);
 
   return (
-    <div className="theme-toggle">
+    <div className="theme-toggle flex items-center">
       {themes.map((t, i) => {
         const icon = icons[i];
         const isChecked = t === theme;

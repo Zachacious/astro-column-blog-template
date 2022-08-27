@@ -37,13 +37,15 @@ const allPosts = await Astro.glob<IFrontmatter>('../pages/posts/*.md');
       class="hero flex justify-center p-8 md:h-full"
      
     >
-      <div id="main-overlay" class="bloghero__overlay absolute  bg-primarydark ">
+    <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark"></div>
+      <div id="main-overlay" class="bloghero__overlay absolute bg-text-dark dark:bg-primarydark ">
+        
         
       </div>
       <div class="z-0 mx-4 flex w-full max-w-7xl flex-col">
         <div class="w-full">
-          <div class="navbar my-5 flex w-full items-center justify-between px-2">
-            <div class="navbar-brand text-2xl font-bold">Zach Moore</div>
+          <div class="navbar my-5 flex w-full items-center justify-between px-2 ">
+            <div class="navbar-brand text-2xl font-bold text-primarydark dark:text-textdark">Zach Moore</div>
             <div class="flex items-center cursor-pointer">
               <!-- <SearchBtn onClick={onClickSearch} client:load /> -->
             </div>
@@ -56,7 +58,7 @@ const allPosts = await Astro.glob<IFrontmatter>('../pages/posts/*.md');
         <div id="title" class="">
           <div>
             <div>Results For</div>
-            <h1 id="search-title" class="post-title w-full  pb-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
+            <h1 id="search-title" class="post-title w-full text-primarydark dark:text-textdark  pb-10 text-5xl font-bold capitalize md:text-7xl lg:text-7xl">
             </h1>
           </div>
         </div>

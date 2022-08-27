@@ -1,0 +1,18 @@
+---
+import ThemeToggle from './ThemeToggleButton';
+
+---
+
+<div class="my-5 flex w-full justify-between px-4 text-lg">
+  <div class="opacity-70">
+    <slot name="left" />
+  </div>
+  <div class="flex items-center">
+    <slot name="middle" />
+  </div>
+  <div class="">
+    <slot name="right" >
+      <ThemeToggle client:only />
+      </slot>
+  </div>
+</div>

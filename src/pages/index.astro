@@ -12,6 +12,7 @@ import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
 import BlogCard from '../partials/BlogCard.astro';
+import ContentTopBar from '@/partials/ContentTopBar.astro';
 
 const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
@@ -36,6 +37,7 @@ const seeMoreButton =
       <MainHero />
     </div>
     <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
+      <ContentTopBar />
       <!-- <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2> -->
       <div class="p-8 my-4 w-full">
         <div class="flex w-full flex-wrap justify-center">
