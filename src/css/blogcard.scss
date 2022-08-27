@@ -1,6 +1,6 @@
 .blog-card {
   width: 280px;
-  height: 310px;
+  height: 300px;
 }
 
 .blog-card__header {
@@ -16,8 +16,9 @@
 }
 
 .blog-card__desc {
-  max-height: 145px;
-  mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(255,255,255,1)), to(rgba(255,255,255,0)));
+  max-height: 120px;
+  line-height: normal;
+  mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(191, 211, 190,1)), to(rgba(191, 211, 190,0)));
 }
 
 .miniblogcard-title {

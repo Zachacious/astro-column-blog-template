@@ -5,6 +5,8 @@ import type {
   MarkdownInstance,
 } from 'astro-boilerplate-components';
 
+import formatDate from '@/utils/FormatDate';
+
 interface IFrontmatterTags extends IFrontmatter {
   tags: string[];
 }
@@ -33,8 +35,13 @@ const BlogCard = (props: { post: MarkdownInstance<IFrontmatterTags> }) => {
       onClick={onClick}
     >
       <div className="blog-card__overlay absolute bg-textdark dark:bg-primarydark"></div>
-      <div className="blog-card__header z-0 rounded-t-md px-3">
-        <h2 className="mb-0 text-3xl font-normal">{post.frontmatter.title}</h2>
+      <div className="blog-card__header z-0 mb-1 flex  flex-wrap items-center rounded-t-md px-3">
+        <h2 className="mb-0 w-full text-3xl font-normal">
+          {post.frontmatter.title}
+        </h2>
+        <div className="w-full opacity-70">
+          <small>{formatDate(post.frontmatter.pubDate)}</small>
+        </div>
       </div>
       <div className="z-0 grow overflow-hidden p-3">
         <div className="blog-card__desc ">{post.frontmatter.description}</div>
