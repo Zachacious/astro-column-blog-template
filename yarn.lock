@@ -572,25 +572,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fontsource/bokor@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/bokor/-/bokor-4.5.11.tgz#25f98f48079945abb10e38c76ad80402ee01899a"
-  integrity sha512-nbCUphZoaKiTt+w8rt7RUwOksm+Mmm1F4ZbwKLGjDs5N4eH+w8MYNshm+dItwYgyUo/uUBoCrjPfxwdP1EoS/w==
-
 "@fontsource/exo@^4.5.9":
   version "4.5.9"
   resolved "https://registry.yarnpkg.com/@fontsource/exo/-/exo-4.5.9.tgz#70c1a6e5d79f25042ec178c803efca7613d63b84"
   integrity sha512-rUKOHaD/m+EfVBCOkODs6yNSgH9aezEug5jz6WiKFGL7o7b/EYHuVUrmiKQeEcKvIq4WtXfcGRdkgiDykazjpg==
-
-"@fontsource/fjalla-one@^4.5.8":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@fontsource/fjalla-one/-/fjalla-one-4.5.8.tgz#9f8713a17f07df511b55bb0715c1d0bf5573ef02"
-  integrity sha512-sUwUfv1ebsJYptmHpXjwj5RswQueuldkUhWhM6LuFmPjSQiQ6nk0FnTrjxDibW50p7jHLiTzai3YURQy99SBUg==
-
-"@fontsource/flamenco@^4.5.9":
-  version "4.5.9"
-  resolved "https://registry.yarnpkg.com/@fontsource/flamenco/-/flamenco-4.5.9.tgz#aabdffe5483f57c6de339015260d6ef1ab697b4d"
-  integrity sha512-ncU4jDxaOFJ8hwfdEqPYZDeGLIg7viCIbq5O07sEr4pAs37fWA1uhgrH3S/17Zo2cYxb8VLrW3QQ0f+tLH/eBQ==
 
 "@fontsource/pirata-one@^4.5.10":
   version "4.5.10"

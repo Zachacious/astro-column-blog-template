@@ -1,12 +1,13 @@
 ---
-import '@fontsource/bokor';
-import '@fontsource/flamenco';
-import 'src/css/global.scss';
+// import '@fontsource/bokor';
+// import '@fontsource/flamenco';
+// import 'src/css/global.scss';
 
 import type { IFrontmatter } from 'astro-boilerplate-components';
 
 // import { Hero } from '@/partials/Hero';
-import MainHero from '@/partials/MainHero.astro';
+// import MainHero from '@/partials/MainHero.astro';
+import Hero from '@/partials/Hero.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
@@ -34,9 +35,9 @@ const seeMoreButton =
 <Base head={{ title, description }}>
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
-      <MainHero />
+      <Hero title=" " />
     </div>
-    <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
+    <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto p-8">
       <ContentTopBar />
       <!-- <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2> -->
       <div class="p-8 my-4 w-full">
