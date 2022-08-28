@@ -35,9 +35,9 @@ const style = post.frontmatter.imgSrc
     <span>
       <!-- <Fragment set:html="categoryEl" /> -->
       {post?.frontmatter?.tags?.map((tag) => (
-        <small class="z-0 m-1 text-sm capitalize opacity-80">
+        <a href={`/tag/${tag}/1`} class="z-0 m-1 text-sm capitalize opacity-80">
           #{tag}
-        </small>
+        </a>
       ))}
     </span>
     <!-- <small class="font-bold">...Continue</small> -->

@@ -17,6 +17,8 @@ interface IBlogFrontmatter extends IFrontmatter {
 
 type Props = {
   mode?: string;
+  title?: string;
+  subtitle?: string;
   frontmatter?: IBlogFrontmatter;
   children?: ReactNode;
 };
@@ -94,7 +96,7 @@ const onClickSearch = () => {
 
 <section class=" md:h-screen border-r-2 border-accent">
   <div style={style} class="hero flex justify-center p-8 md:h-full">
-    {(props.mode === "search" || props.mode === "post") && (
+    {(props.mode === "search" || props.mode === "post" || props.mode ==="page") && (
       <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
     )}
     <div
@@ -133,6 +135,7 @@ const onClickSearch = () => {
       <div id="title" class="py-10 ">
         <div>
           {props.mode === "search" && <div>Results For</div>}
+          {props?.subtitle && <div>{props?.subtitle}</div>}
           <h1
             class="post-title w-full text-primarydark dark:text-textdark  text-5xl font-bold capitalize md:text-7xl lg:text-7xl"
           >
@@ -142,7 +145,7 @@ const onClickSearch = () => {
               </div>
             ) : props.mode === "post" ? (
               props?.frontmatter?.title
-            ) : (
+            ) : props?.title ? (props?.title) : (
               "Blog"
             )}
           </h1>

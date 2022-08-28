@@ -49,9 +49,13 @@ const BlogCard = (props: { post: MarkdownInstance<IFrontmatterTags> }) => {
       <div className="z-0 flex w-full justify-start p-2">
         <span>
           {post?.frontmatter?.tags?.map((tag) => (
-            <small key={tag} className="z-0 m-1 text-sm capitalize opacity-80">
+            <a
+              key={tag}
+              href={`/tag/${tag}/1`}
+              className="z-0 m-1 text-sm capitalize opacity-80"
+            >
               #{tag}
-            </small>
+            </a>
           ))}
         </span>
       </div>
