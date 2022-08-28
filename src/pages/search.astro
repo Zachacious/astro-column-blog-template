@@ -6,7 +6,8 @@ import 'src/css/global.scss';
 import type { IFrontmatter, MarkdownInstance } from 'astro-boilerplate-components';
 
 // import { Hero } from '@/partials/Hero';
-import SearchHero from '@/partials/SearchHero.astro';
+// import SearchHero from '@/partials/SearchHero.astro';
+import Hero from '@/partials/Hero.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
@@ -38,7 +39,7 @@ const { description } = AppConfig;
   
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
-      <SearchHero client:load />
+      <Hero mode="search" client:load />
     </div>
     <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
