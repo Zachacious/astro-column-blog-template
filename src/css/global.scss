@@ -21,14 +21,15 @@ $test: #242e35;
 }
 
 
-h1,h2,h3,h4,h5,h6 { font-family: "Bokor", serif; }
+h1,h2,h3,h4,h5,h6 { font-family: "Exo", serif; }
 // h1,h2,h3,h4,h5,h6 { font-family: "Pirata One", cursive; }
 body { 
   scroll-behavior: smooth;
-  font-family: "Flamenco", sans; font-size: 1.4em; 
+  font-family: "Poppins", sans; font-size: 1.4em; 
 }
 
 .text-bokor { font-family: "Bokor", serif; }
+.text-bokor { font-family: "exo", sans-serif; }
 
 /* class to fade in*/
 .fade-in {

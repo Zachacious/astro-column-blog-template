@@ -4,6 +4,9 @@ import "src/css/icon.scss";
 import "src/css/global.scss";
 import "@fontsource/bokor";
 import "@fontsource/flamenco";
+import "@fontsource/exo"
+import "@fontsource/fjalla-one"
+import "@fontsource/poppins"
 import "src/css/hero.scss";
 
 import SearchBtn from "src/partials/SearchBtn";
@@ -34,6 +37,7 @@ const allPosts = await Astro.glob<IBlogFrontmatter>("../pages/posts/*.md");
 const onClickSearch = () => {
   const overlay = document.getElementById("main-overlay");
   const search = document.getElementById("search");
+  const searchWrapper = document.getElementById("search-wrapper");
   const title = document.getElementById("title");
 
   if (overlay?.classList.contains("active")) {
@@ -49,6 +53,7 @@ const onClickSearch = () => {
     title?.classList.add("fade-in");
 
     search?.classList.add("pointer-events-none");
+    searchWrapper?.classList.add("hidden");
 
     // sessionStorage.setItem('searchActive', 'false');
   } else {
@@ -61,6 +66,7 @@ const onClickSearch = () => {
     search?.classList.add("fade-in");
     search?.classList.remove("fade-out");
     search?.classList.remove("opacity-0");
+    searchWrapper?.classList.remove("hidden");
 
     title?.classList.remove("fade-in");
     title?.classList.add("fade-out");
@@ -94,7 +100,7 @@ const onClickSearch = () => {
   })();
 </script>
 
-<section class=" md:h-screen border-r-2 border-accent">
+<section class=" md:h-screen border-r-8 border-accent">
   <div style={style} class="hero flex justify-center p-8 md:h-full">
     {(props.mode === "search" || props.mode === "post" || props.mode ==="page") && (
       <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
@@ -125,19 +131,21 @@ const onClickSearch = () => {
       <div
         class="hero-footer w-full break-word z-0 mb-12 flex grow items-center  "
       >
-        <Search
+        <div id="search-wrapper" class="hidden">
+          <Search
           id="search"
           className="pointer-events-none"
           posts={allPosts}
           client:load
         />
+        </div>
       </div>
-      <div id="title" class="py-10 ">
-        <div>
+      <div id="title" class="py-10 flex justify-end w-full ">
+        <div class="flex justify-end flex-wrap">
           {props.mode === "search" && <div>Results For</div>}
           {props?.subtitle && <div>{props?.subtitle}</div>}
           <h1
-            class="post-title w-full text-primarydark dark:text-textdark  text-5xl font-bold capitalize md:text-7xl lg:text-7xl"
+            class="post-title text-right w-full text-primarydark dark:text-textdark  text-5xl font-bold capitalize md:text-7xl"
           >
             {props.mode === "search" ? (
               <div id="search-title" class="">
@@ -150,7 +158,7 @@ const onClickSearch = () => {
             )}
           </h1>
           {props.mode === "post" && (
-            <div class="">
+            <div class="w-full flex flex-wrap justify-end text-right">
               {props?.frontmatter?.tags?.map((tag) => (
                 <a
                   href={`/tag/${tag}/1`}
