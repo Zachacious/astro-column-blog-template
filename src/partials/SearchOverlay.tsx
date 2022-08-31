@@ -62,12 +62,12 @@ const SearchOverlay = (props: {
         </div>
         {filteredPosts.length > 4 && (
           <div
-            className="cursor-pointer text-center"
+            className="cursor-pointer text-center text-lg"
             onClick={() => {
               window.location.href = `/search?s=${searchValue}`;
             }}
           >
-            See More Results
+            ...See More Results
           </div>
         )}
       </div>

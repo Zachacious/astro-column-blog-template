@@ -45,7 +45,8 @@ const onClickSearch = () => {
     search?.classList.add("fade-out");
 
     title?.classList.remove("fade-out");
-    title?.classList.add("fade-in");
+    title?.classList.add("fade-in-full");
+    title?.classList.remove("hidden");
 
     search?.classList.add("pointer-events-none");
     searchWrapper?.classList.add("hidden");
@@ -63,8 +64,9 @@ const onClickSearch = () => {
     search?.classList.remove("opacity-0");
     searchWrapper?.classList.remove("hidden");
 
-    title?.classList.remove("fade-in");
+    title?.classList.remove("fade-in-full");
     title?.classList.add("fade-out");
+    title?.classList.add("hidden");
 
     search?.classList.remove("pointer-events-none");
 
@@ -78,6 +80,9 @@ const onClickSearch = () => {
     const page = window.location.pathname.split("/").pop();
 
     if (page?.includes("search")) {
+      const search = document.getElementById("search");
+  const searchWrapper = document.getElementById("search-wrapper");
+
       sessionStorage.setItem("searchActive", "false");
 
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -86,8 +91,9 @@ const onClickSearch = () => {
       sessionStorage.setItem("searchActive", "true");
       sessionStorage.setItem("searchTerm", params?.s ?? "");
 
-      document.getElementById("search")?.classList.remove("opacity-0");
-      document.getElementById("search")?.classList.add("fade-in");
+      search?.classList.remove("opacity-0");
+      search?.classList.add("fade-in");
+      searchWrapper?.classList.remove("hidden");
 
       const searchText = document.getElementById("search-title");
       if (searchText) searchText.innerText = params?.s || "Search";
@@ -95,9 +101,9 @@ const onClickSearch = () => {
   })();
 </script>
 
-<section class=" md:h-screen border-r-8 border-accent">
+<section class=" md:h-screen drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] border-accent">
   <div style={style} class="hero flex justify-center p-8 md:h-full">
-    {(props.mode === "search" || props.mode === "post" || props.mode ==="page") && (
+    {(props.mode === "post" || props.mode ==="page") && (
       <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
     )}
     <div
@@ -153,7 +159,7 @@ const onClickSearch = () => {
             )}
           </h1>
           {props.mode === "post" && (
-            <div class="w-full flex flex-wrap justify-end text-right">
+            <div class="w-full flex flex-wrap justify-end text-right mt-2">
               {props?.frontmatter?.tags?.map((tag) => (
                 <a
                   href={`/tag/${tag}/1`}

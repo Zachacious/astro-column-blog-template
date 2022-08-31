@@ -30,21 +30,23 @@ const BlogCard = (props: { post: MarkdownInstance<IFrontmatterTags> }) => {
 
   return (
     <div
-      className="blog-card relative mr-8 mb-8 flex cursor-pointer flex-col rounded-md bg-secondarydark bg-cover bg-center p-2 drop-shadow-lg "
+      className="blog-card relative mr-8 mb-8 flex cursor-pointer flex-col rounded-md bg-secondarydark bg-cover bg-center p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
       style={style}
       onClick={onClick}
     >
       <div className="blog-card__overlay absolute bg-textdark dark:bg-primarydark"></div>
       <div className="blog-card__header z-0 mb-1 flex  flex-wrap items-center rounded-t-md px-3">
-        <h2 className="mb-0 w-full text-3xl font-normal">
+        <h2 className="text-exo mb-0 w-full text-2xl font-bold">
           {post.frontmatter.title}
         </h2>
-        <div className="w-full opacity-70">
+        <div className="w-full text-sm opacity-70">
           <small>{formatDate(post.frontmatter.pubDate)}</small>
         </div>
       </div>
-      <div className="z-0 grow overflow-hidden p-3">
-        <div className="blog-card__desc ">{post.frontmatter.description}</div>
+      <div className="z-0 grow overflow-hidden p-3 text-lg">
+        <div className="blog-card__desc h-full">
+          {post.frontmatter.description}
+        </div>
       </div>
       <div className="z-0 flex w-full justify-start p-2">
         <span>

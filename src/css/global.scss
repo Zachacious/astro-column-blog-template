@@ -38,6 +38,12 @@ body {
   animation: fade-in 0.2s ease-in forwards;
 }
 
+.fade-in-full {
+  opacity: 0;
+  -webkit-animation: fade-in-full 0.2s ease-in forwards;
+  animation: fade-in-full 0.2s ease-in forwards;
+}
+
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0;
@@ -53,6 +59,24 @@ body {
   }
   100% {
     opacity: 0.8;
+  }
+}
+
+@-webkit-keyframes fade-in-full {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-full {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

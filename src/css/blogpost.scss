@@ -11,7 +11,7 @@
   }
 
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 
   h2 {
@@ -110,6 +110,10 @@
 .scroll-to-top-btn {
   top: 85vh;
   right: 20px;
+}
+
+.right-column {
+  max-width: 300px;
 }
 
 html.theme-dark * {

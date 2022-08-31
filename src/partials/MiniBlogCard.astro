@@ -1,25 +1,27 @@
 ---
-import '../css/blogcard.scss';
+import "../css/blogcard.scss";
 
-import formatDate from '../utils/FormatDate';
+// import formatDate from "../utils/FormatDate";
 
 const { post } = Astro.props;
 
 const style = post.frontmatter?.imgSrc
   ? `background: url(${post.frontmatter.imgSrc}) center center / cover no-repeat;`
-  : '';
+  : "";
 ---
 
 <div
-  class="relative my-4 px-4 flex cursor-pointer flex-col rounded-md bg-secondarydark  bg-cover bg-center p-2 drop-shadow-lg "
+  class="relative my-4 px-4 flex cursor-pointer flex-col rounded-md bg-secondarydark  bg-cover bg-center p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
   style={style}
   onclick={`window.location.href='${post.url}'`}
 >
-  <div class="blog-card__overlay absolute bg-textdark dark:bg-primarydark"></div>
-  <div class=" z-0 rounded-t-md px-3">
-    <h2 class="miniblogcard-title text-primarydark dark:text-textdark">{post.frontmatter.title}</h2>
-    
+  <div class="blog-card__overlay absolute bg-textdark dark:bg-primarydark">
   </div>
- 
- 
+  <div class=" z-0 rounded-t-md px-3">
+    <h2
+      class="miniblogcard-title text-exo font-bold text-primarydark dark:text-textdark"
+    >
+      {post.frontmatter.title}
+    </h2>
+  </div>
 </div>

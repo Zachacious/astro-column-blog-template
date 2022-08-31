@@ -1,10 +1,10 @@
 .blog-card {
   width: 280px;
-  height: 300px;
+  height: 330px;
 }
 
 .blog-card__header {
-  height: 100px;
+  min-height: 140px;
 }
 
 .blog-card__overlay {
@@ -16,15 +16,15 @@
 }
 
 .blog-card__desc {
-  max-height: 120px;
-  line-height: normal;
+  max-height: 130px;
+  line-height: 1.4;
   mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(191, 211, 190,1)), to(rgba(191, 211, 190,0)));
 }
 
 .miniblogcard-title {
   font-size: 1.5rem !important;
-  line-height: 1.75rem !important;
-  font-weight: normal !important;
+  // line-height: 1.75rem !important;
+  // font-weight: normal !important;
 }
 
 // .blog-card__desc::after {
