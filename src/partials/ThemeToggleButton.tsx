@@ -53,6 +53,16 @@ const ThemeToggle = () => {
       root.classList.add('theme-dark');
       document.documentElement.classList.add('dark');
     }
+
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'theme') {
+        setTheme(event.newValue);
+      }
+    });
+
+    return () => {
+      window.removeEventListener('storage', () => {});
+    };
   }, [theme]);
 
   return (
@@ -73,6 +83,12 @@ const ThemeToggle = () => {
               onChange={() => {
                 localStorage.setItem('theme', t);
                 setTheme(t);
+                window.dispatchEvent(
+                  new StorageEvent('storage', {
+                    key: 'theme',
+                    newValue: t,
+                  })
+                );
               }}
             />
           </label>

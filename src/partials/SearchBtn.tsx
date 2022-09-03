@@ -28,7 +28,7 @@ const SearchBtn = (props: {
       {model ? (
         <IconClose className="icon-sm" />
       ) : (
-        <span className="flex items-center">
+        <span className="flex items-center text-textdark">
           <IconSearch className="icon-sm" />
           {/* <span className="text-lg font-bold uppercase">Search</span> */}
         </span>

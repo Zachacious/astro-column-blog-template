@@ -1,6 +1,5 @@
 ---
 import ThemeToggle from './ThemeToggleButton';
-
 ---
 
 <div class="my-5 flex w-full justify-between px-4 text-lg">
@@ -11,8 +10,16 @@ import ThemeToggle from './ThemeToggleButton';
     <slot name="middle" />
   </div>
   <div class="">
-    <slot name="right" >
-      <ThemeToggle client:only />
-      </slot>
+    <slot name="right">
+      <h1 class="hidden lg:block">
+        <span class="text-3xl font-normal dark:text-boomdark"
+          >ZACH<span class="font-bold opacity-80">MOORE</span>
+        </span>
+        <!-- <span class="">.dev</span> -->
+      </h1>
+      <div class="block lg:hidden">
+        <ThemeToggle client:only />
+      </div>
+    </slot>
   </div>
 </div>
