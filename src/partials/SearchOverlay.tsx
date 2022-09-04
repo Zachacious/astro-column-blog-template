@@ -38,7 +38,11 @@ const SearchOverlay = (props: {
       className="search-overlay mt-8 flex h-full w-full justify-center px-2 opacity-0"
     >
       <div className="w-full">
-        <form action={`/search?s=${searchValue}`} method="post">
+        <form
+          action={`/search?s=${searchValue}`}
+          method="post"
+          className="w-full"
+        >
           <input
             id="searchbox"
             className="w-full border-b-2 border-accent bg-transparent text-2xl font-bold placeholder:text-accent focus:border-textdark focus:outline-none"
