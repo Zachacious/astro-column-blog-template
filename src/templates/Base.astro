@@ -3,6 +3,7 @@
 import "src/css/global.scss";
 import "@fontsource/exo"
 import "@fontsource/poppins"
+import { ImageSupportDetection } from 'astro-imagetools/components';
 
 // import { Footer } from '@/partials/Footer';
 import { AppConfig } from '@/utils/AppConfig';
@@ -47,6 +48,8 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={AppConfig.author} />
+
+    <ImageSupportDetection />
 
     <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />

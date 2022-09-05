@@ -21,6 +21,7 @@ export default defineConfig({
       // Choose from Shiki's built-in themes (or add your own)
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md
       theme: 'dracula-soft',
+      // theme: 'dark-plus',
     },
   },
   // plugins: [

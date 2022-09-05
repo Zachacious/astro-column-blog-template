@@ -22,7 +22,7 @@ const SearchBtn = (props: {
 
   return (
     <div
-      className={`${props.className} flex cursor-pointer items-center`}
+      className={`${props.className} flex cursor-pointer items-center text-textdark`}
       onClick={debounce(() => onClick(), 10)}
     >
       {model ? (

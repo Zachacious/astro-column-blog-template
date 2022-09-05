@@ -105,10 +105,10 @@ const allTags = allPosts.reduce((acc: any, post) => {
 <div class="p-8 ">
   <ContentTopBar>
     <div slot="left">
-      {formatDate(props.frontmatter.pubDate)}
+      <span class="text-sm md:text-base lg:text-lg">{formatDate(props.frontmatter.pubDate)}</span>
     </div>
     <div slot="middle">
-      <div class="flex items-center">
+      <div class="flex items-center text-sm md:text-base lg:text-lg">
         <IconClock className="icon-xs mr-2" />
         {getReadingTime(props.frontmatter.astro.source)} minute read
       </div>

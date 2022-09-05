@@ -10,6 +10,8 @@ import SearchBtn from 'src/partials/SearchBtn';
 import Search from '@/partials/SearchOverlay';
 import ThemeToggle from './ThemeToggleButton';
 
+import { Picture } from 'astro-imagetools/components';
+
 interface IBlogFrontmatter extends IFrontmatter {
   tags?: string[];
 }
@@ -23,6 +25,11 @@ type Props = {
 };
 
 const props = Astro.props as Props;
+
+const bkimg = 
+props.mode === 'post'
+    ? props?.frontmatter?.imgSrc
+    : '';
 
 const style =
   props.mode === 'post'
@@ -105,7 +112,11 @@ const onClickSearch = () => {
 <section
   class=" border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
 >
-  <div style={style} class="hero flex justify-center p-8 md:h-full">
+
+  <div  class="hero flex justify-center p-8 md:h-full">
+    <div class="absolute top-0 left-0 w-full h-full hero-bk-img-wrapper">
+      <Picture src={bkimg} alt="ZachMoore.dev" />
+    </div>
     {(props.mode === 'post' || props.mode === 'page') && (
       <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
     )}

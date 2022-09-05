@@ -3,22 +3,24 @@ import ThemeToggle from './ThemeToggleButton';
 ---
 
 <div class="my-5 flex w-full justify-between px-4 text-lg">
-  <div class="opacity-70">
+  <div class="opacity-70 flex items-center">
     <slot name="left" />
   </div>
   <div class="flex items-center">
     <slot name="middle" />
   </div>
-  <div class="">
+  <div class="flex items-center">
     <slot name="right">
-      <h1 class="hidden lg:block">
-        <span class="text-3xl font-normal dark:text-boomdark"
-          >ZACH<span class="font-bold opacity-80">MOORE</span>
-        </span>
-        <!-- <span class="">.dev</span> -->
-      </h1>
-      <div class="block lg:hidden">
-        <ThemeToggle client:only />
+      <div class="flex items-center">
+        <h1 class="hidden lg:block">
+          <span class="text-3xl font-normal dark:text-boomdark"
+            >ZACH<span class="font-bold opacity-80">MOORE</span>
+          </span>
+          <!-- <span class="">.dev</span> -->
+        </h1>
+        <div class="block lg:hidden">
+          <ThemeToggle client:only />
+        </div>
       </div>
     </slot>
   </div>
