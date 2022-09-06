@@ -4,13 +4,13 @@ import 'src/css/icon.scss';
 import 'src/css/hero.scss';
 
 import type { IFrontmatter } from 'astro-boilerplate-components';
+import { Picture } from 'astro-imagetools/components';
 import type { ReactNode } from 'react';
 import SearchBtn from 'src/partials/SearchBtn';
 
 import Search from '@/partials/SearchOverlay';
-import ThemeToggle from './ThemeToggleButton';
 
-import { Picture } from 'astro-imagetools/components';
+import ThemeToggle from './ThemeToggleButton';
 
 interface IBlogFrontmatter extends IFrontmatter {
   tags?: string[];
@@ -26,15 +26,12 @@ type Props = {
 
 const props = Astro.props as Props;
 
-const bkimg = 
-props.mode === 'post'
-    ? props?.frontmatter?.imgSrc
-    : '';
+const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
 
-const style =
-  props.mode === 'post'
-    ? `background: url(${props?.frontmatter?.imgSrc}) no-repeat center center fixed; background-size: cover;`
-    : '';
+// const style =
+//   props.mode === 'post'
+//     ? `background: url(${props?.frontmatter?.imgSrc}) no-repeat center center fixed; background-size: cover;`
+//     : '';
 const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
 
 const onClickSearch = () => {
@@ -81,6 +78,7 @@ const onClickSearch = () => {
     // sessionStorage.setItem('searchActive', 'true');
   }
 };
+
 ---
 
 <script>
@@ -106,15 +104,26 @@ const onClickSearch = () => {
       const searchText = document.getElementById('search-title');
       if (searchText) searchText.innerText = params?.s || 'Search';
     }
+
+    
+
+    
   })();
+  
+</script>
+
+<script is:inline>
+  const test = ()=>{
+      console.log('test')
+    }
+
 </script>
 
 <section
   class=" border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
 >
-
-  <div  class="hero flex justify-center p-8 md:h-full">
-    <div class="absolute top-0 left-0 w-full h-full hero-bk-img-wrapper">
+  <div class="hero flex justify-center p-8 md:h-full">
+    <div class="hero-bk-img-wrapper absolute top-0 left-0 h-full w-full">
       <Picture src={bkimg} alt="ZachMoore.dev" />
     </div>
     {(props.mode === 'post' || props.mode === 'page') && (
@@ -138,7 +147,7 @@ const onClickSearch = () => {
             <!-- <span class="">.dev</span> -->
           </h1>
           <div class="hidden lg:block">
-            <ThemeToggle client:only />
+            <ThemeToggle client:only="react" />
           </div>
           <!-- <div
             class="navbar-brand text-2xl font-bold text-primarydark dark:text-textdark"
@@ -156,7 +165,7 @@ const onClickSearch = () => {
       <div
         class="hero-footer break-word z-0 mb-12 flex w-full grow items-start  "
       >
-        <div id="search-wrapper" class="hidden w-full mt-8">
+        <div id="search-wrapper" class="mt-8 hidden w-full">
           <Search
             id="search"
             className="pointer-events-none"
@@ -175,7 +184,7 @@ const onClickSearch = () => {
             Zach Moore
           </h1> -->
           <h1
-            class="post-title w-full text-right text-5xl font-bold  capitalize text-primarydark dark:text-textdark md:text-7xl"
+            class="post-title  text-right text-5xl font-bold  capitalize text-primarydark dark:text-textdark md:text-7xl"
           >
             {props.mode === 'search' ? (
               <div id="search-title" class="">
@@ -210,7 +219,7 @@ const onClickSearch = () => {
     <div class="left-toolbar my-8 flex flex-col flex-wrap items-center">
       {props.mode !== 'search' && (
         <div class="left-button my-2 bg-accent p-4">
-          <SearchBtn onClick={onClickSearch} client:load />
+          <SearchBtn onclick={onClickSearch} test="test" client:load />
         </div>
       )}
     </div>

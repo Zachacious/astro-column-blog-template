@@ -3,16 +3,16 @@
 // import '@fontsource/flamenco';
 // import 'src/css/global.scss';
 
-import type { IFrontmatter, MarkdownInstance } from 'astro-boilerplate-components';
+import type { IFrontmatter } from 'astro-boilerplate-components';
 
+import ContentTopBar from '@/partials/ContentTopBar.astro';
 // import { Hero } from '@/partials/Hero';
 // import SearchHero from '@/partials/SearchHero.astro';
 import Hero from '@/partials/Hero.astro';
+import SearchResults from '@/partials/SearchResults';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
-import SearchResults from '@/partials/SearchResults';
-import ContentTopBar from '@/partials/ContentTopBar.astro';
 
 interface IFrontmatterTags extends IFrontmatter {
   tags: string[];
@@ -25,35 +25,30 @@ const sortedPosts = sortByDate(allPosts) || [];
 
 const { title } = AppConfig;
 const { description } = AppConfig;
-
 ---
 
 <script>
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
-  
+
   sessionStorage.setItem('searchTerm', params?.s ?? '');
-  </script>
+</script>
 
 <Base head={{ title, description }}>
-  
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
-      <Hero mode="search" client:load />
+      <Hero mode="search" />
     </div>
-    <div class="md:3/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto p-8">
+    <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
       <!-- <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2> -->
-      <div class="p-8 my-4 w-full">
-       
+      <div class="my-4 w-full p-8">
         <div class="flex w-full flex-wrap justify-center">
-          
           <!-- {recentPosts.map((post) => <BlogCard post={post} />)} -->
-          <SearchResults results={sortedPosts as MarkdownInstance<IFrontmatterTags>[]} client:load/>
+          <SearchResults client:load />
         </div>
         <!-- <Fragment set:html={seeMoreButton} /> -->
       </div>
     </div>
   </div>
-
 </Base>

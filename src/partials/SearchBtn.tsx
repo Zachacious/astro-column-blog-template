@@ -5,20 +5,22 @@ import IconSearch from '@/icons/search';
 import debounce from '@/utils/debounce';
 
 const SearchBtn = (props: {
-  className: string | undefined;
-  onClick: Function;
+  className?: string | undefined;
+  onclick: () => void;
   // model: boolean;
 }) => {
   const [model, setModel] = useState(false);
 
-  const onClick = () => {
-    props.onClick();
-    setModel(!model);
-  };
+  console.log(props.onclick);
 
   useEffect(() => {
     setModel(false);
   }, []);
+
+  const onClick = () => {
+    if (props.onclick) props.onclick();
+    setModel(!model);
+  };
 
   return (
     <div

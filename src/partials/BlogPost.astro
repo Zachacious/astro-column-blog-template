@@ -1,9 +1,9 @@
 ---
 import 'src/css/blogpost.scss';
+
 // import '@fontsource/flamenco';
 // import "@fontsource/exo"
 // import "@fontsource/poppins"
-
 // import '@fontsource/pirata-one';
 import type {
   IFrontmatter,
@@ -15,14 +15,14 @@ import type { ReactNode } from 'react';
 
 import IconClock from '@/icons/clock';
 
-import MiniBlogCard from './MiniBlogCard.astro';
 import BlogCard from './BlogCard.astro';
 // import ThemeToggle from './ThemeToggleButton';
 import ContentTopBar from './ContentTopBar.astro';
+import MiniBlogCard from './MiniBlogCard.astro';
 
 // import { AppConfig } from '@/utils/AppConfig';
 interface IBlogFrontmatter extends IFrontmatter {
-astro: any;
+  astro: any;
   tags: string[];
 }
 
@@ -30,6 +30,8 @@ type IBlogPostProps = {
   frontmatter: IBlogFrontmatter;
   children: ReactNode;
   posts: MarkdownInstance<IFrontmatter>[];
+  html: () => string;
+  raw: () => string;
 };
 
 // interface Props {
@@ -73,18 +75,18 @@ const getUpNext = (count: number) => {
     // const idx1 = Math.floor(Math.random() * filteredPosts.length);
     // const idx2 = Math.floor(Math.random() * filteredPosts.length);
     const idxs = [];
-     for(let i = 0; i <= count; i++) {
+    for (let i = 0; i <= count; i++) {
       idxs.push(Math.floor(Math.random() * filteredPosts.length));
     }
     return [...new Set(idxs.map((idx) => filteredPosts[idx]))];
-  };
+  }
 
   // const idx1 = Math.floor(Math.random() * taggedPosts.length);
   // const idx2 = Math.floor(Math.random() * taggedPosts.length);
   // return [...new Set([taggedPosts[idx1], taggedPosts[idx2]])];
 
   const idxs = [];
-  for(let i = 0; i <= count; i++) {
+  for (let i = 0; i <= count; i++) {
     idxs.push(Math.floor(Math.random() * taggedPosts.length));
   }
   return [...new Set(idxs.map((idx) => taggedPosts[idx]))];
@@ -99,24 +101,27 @@ const allTags = allPosts.reduce((acc: any, post) => {
   return acc;
 }, []);
 
-
+const mdHtml = props.html ? props.html() : '';
+const rawText = props.raw ? props.raw() : '';
 ---
 
 <div class="p-8 ">
   <ContentTopBar>
     <div slot="left">
-      <span class="text-sm md:text-base lg:text-lg">{formatDate(props.frontmatter.pubDate)}</span>
+      <span class="text-sm md:text-base lg:text-lg"
+        >{formatDate(props.frontmatter.pubDate)}
+      </span>
     </div>
     <div slot="middle">
       <div class="flex items-center text-sm md:text-base lg:text-lg">
         <IconClock className="icon-xs mr-2" />
-        {getReadingTime(props.frontmatter.astro.source)} minute read
+        {getReadingTime(rawText)} minute read
       </div>
     </div>
     <!-- <div slot="right">
       <ThemeToggle client:only />
     </div> -->
-    </ContentTopBar>
+  </ContentTopBar>
   <!-- <small class="my-5 flex w-full justify-between px-4 text-lg">
     <div class="opacity-70">
       {formatDate(props.frontmatter.pubDate)}
@@ -128,34 +133,35 @@ const allTags = allPosts.reduce((acc: any, post) => {
     <div class=""><ThemeToggle client:only /></div>
   </small> -->
   <div class="blogpost flex justify-center  md:justify-between  ">
-    <div class=" w-full max-w-7xl p-4 lg:max-w-2xl lg:self-start relative">
-      <Fragment set:html={props.frontmatter.astro.html} />
+    <div class=" relative w-full max-w-7xl p-4 lg:max-w-2xl lg:self-start">
+      <!-- <span class="">{mdText[0]}</span> -->
+      <Fragment set:html={mdHtml} />
       <div class="2xl:hidden">
-        <div class=" text-bokor w-full px-2 pt-4 text-4xl font-bold">Read Next</div>
-        <div class="w-full flex flex-wrap mt-8 ">
-          {getUpNext(4).map(post=>(
-            <BlogCard post={post} />
-          ))}
+        <div class=" text-bokor w-full px-2 pt-4 text-4xl font-bold">
+          Read Next
+        </div>
+        <div class="mt-8 flex w-full flex-wrap ">
+          {getUpNext(4).map((post) => <BlogCard post={post} />)}
         </div>
       </div>
-      <div class="w-full p-4 mt-8 flex justify-center text-sm opacity-50">
+      <div class="mt-8 flex w-full justify-center p-4 text-sm opacity-50">
         Copywrite © {new Date().getFullYear()} - All Rights Reserved
       </div>
     </div>
-    <div class="p-4 hidden 2xl:block">
-      <div class="flex flex-wrap justify-start sticky top-0 right-column">
-        <div class=" w-full px-2 pt-4 text-exo text-2xl font-bold text-right">Read Next</div>
-        {getUpNext(1).map(post=>(
-          <MiniBlogCard post={post} />
-        ))}
+    <div class="hidden p-4 2xl:block">
+      <div class="right-column sticky top-0 flex flex-wrap justify-start">
+        <div class=" text-exo w-full px-2 pt-4 text-right text-2xl font-bold">
+          Read Next
+        </div>
+        {getUpNext(1).map((post) => <MiniBlogCard post={post} />)}
         <!-- <div class="w-full px-2 pt-4 text-bokor text-4xl font-bold">Tags</div> -->
-        <div class="py-4  flex flex-wrap justify-end items-center ">
+        <div class="flex  flex-wrap items-center justify-end py-4 ">
           {allTags.map((tag: string) => (
             <a
               href={`/tag/${tag}/1`}
-              class={`capitalize px-2 py-1 rounded-lg text-primarydark dark:text-textdark   text-sm mr-2 mb-2 blogpost-tags opacity-80 ${props.frontmatter.tags.includes(
-                tag
-              ) && 'font-bold text-lg'}`}
+              class={`blogpost-tags mr-2 mb-2 rounded-lg px-2 py-1   text-sm capitalize text-primarydark opacity-80 dark:text-textdark ${
+                props.frontmatter.tags.includes(tag) && 'text-lg font-bold'
+              }`}
             >
               #{tag}
             </a>
@@ -165,4 +171,3 @@ const allTags = allPosts.reduce((acc: any, post) => {
     </div>
   </div>
 </div>
-

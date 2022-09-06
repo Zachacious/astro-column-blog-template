@@ -4,15 +4,15 @@ import '../css/global.scss';
 
 import type { IFrontmatter } from 'astro-boilerplate-components';
 
+import BlogPost from '@/partials/BlogPost.astro';
 // import  BlogHero  from '@/partials/BlogHero.astro';
 import Hero from '@/partials/Hero.astro';
-import BlogPost from '@/partials/BlogPost.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 
 interface IBlogFrontmatter extends IFrontmatter {
   tags?: string[];
-};
+}
 
 interface Props {
   content: IBlogFrontmatter;
@@ -21,6 +21,8 @@ interface Props {
 // const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
 
 const { content } = Astro.props as Props;
+const html = Astro.props.compiledContent;
+const rawText = Astro.props.rawContent;
 const title = `${content.title} - ${AppConfig.site_name}`;
 ---
 
@@ -31,7 +33,7 @@ const title = `${content.title} - ${AppConfig.site_name}`;
       <Hero frontmatter={content} mode="post" />
     </div>
     <div class="md:2/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
-      <BlogPost frontmatter={content}>
+      <BlogPost frontmatter={content} html={html} raw={rawText}>
         <slot />
       </BlogPost>
     </div>
