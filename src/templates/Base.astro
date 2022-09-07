@@ -4,6 +4,8 @@ import "src/css/global.scss";
 import "@fontsource/exo"
 import "@fontsource/poppins"
 import { ImageSupportDetection } from 'astro-imagetools/components';
+import TransitionOverlay from '@julian_cataldo/astro-transition/Transition.astro';
+import Prefetch from '@julian_cataldo/astro-prefetch/Prefetch.astro';
 
 // import { Footer } from '@/partials/Footer';
 import { AppConfig } from '@/utils/AppConfig';
@@ -50,11 +52,13 @@ const {
     <meta name="author" content={AppConfig.author} />
 
     <ImageSupportDetection />
+    <Prefetch max={8} />
 
     <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body class="bg-textdark text-primarydark dark:bg-primarydark dark:text-textdark ">
+    <TransitionOverlay speed={500} background='#1a2125' zIndex={9999} />
     <!-- <Navbar /> -->
 
     <slot />

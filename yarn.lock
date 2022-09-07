@@ -956,6 +956,16 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@julian_cataldo/astro-prefetch@^0.12.3":
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/@julian_cataldo/astro-prefetch/-/astro-prefetch-0.12.3.tgz#48543c152abe4d1e7c16b2d0a1ce6a4f39ee767f"
+  integrity sha512-s+mH6m8kiKPzyn4rPrnNMyCzRNWEgwKa9hZFaxoYnfIEvwDbLfPDpr1Bf6o1sIO09bZs6Gar/f66gO9jVTeC7A==
+
+"@julian_cataldo/astro-transition@^0.11.4":
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/@julian_cataldo/astro-transition/-/astro-transition-0.11.4.tgz#73cf2771f24aa57b7343f4b563f9529537293585"
+  integrity sha512-g3srHFN8lcJPXHCSJvmz2hovtelyxvPsOAZejoZkK8y3gyMTSwEE9CzS9VUXOH2X04ObpYgwlB/g0GHWUnRY5Q==
+
 "@ljharb/has-package-exports-patterns@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@ljharb/has-package-exports-patterns/-/has-package-exports-patterns-0.0.2.tgz#c1718939b65efa1f45f53686c2fcfa992b9fb68f"
