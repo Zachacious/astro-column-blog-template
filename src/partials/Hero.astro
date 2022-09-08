@@ -33,9 +33,6 @@ const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
 //     ? `background: url(${props?.frontmatter?.imgSrc}) no-repeat center center fixed; background-size: cover;`
 //     : '';
 const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
-
-
-
 ---
 
 <script>
@@ -61,31 +58,27 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
       const searchText = document.getElementById('search-title');
       if (searchText) searchText.innerText = params?.s || 'Search';
     }
-
-    
-
-    
   })();
-  
 </script>
 
 <script is:inline>
-  const test = ()=>{
-      console.log('test')
-    }
-
+  const test = () => {
+    console.log('test');
+  };
 </script>
 
 <section
-  class=" border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
+  class="border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
 >
   <div class="hero flex justify-center p-8 md:h-full">
     <div class="hero-bk-img-wrapper absolute top-0 left-0 h-full w-full">
-      <Picture src={bkimg} alt="ZachMoore.dev" />
+      {bkimg && <Picture src={bkimg} alt="ZachMoore.dev" />}
     </div>
-    {(props.mode === 'post' || props.mode === 'page') && (
-      <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
-    )}
+    {
+      (props.mode === 'post' || props.mode === 'page') && (
+        <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
+      )
+    }
     <div
       id="main-overlay"
       class={`bloghero__overlay absolute bg-textdark dark:bg-primarydark ${
@@ -120,7 +113,7 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
       </div>
       {/* <div class="hero-content z-0 grow"></div> */}
       <div
-        class="hero-footer break-word z-0 mb-12 flex w-full grow items-start  "
+        class="hero-footer break-word z-0 mb-12 flex w-full grow items-start"
       >
         <div id="search-wrapper" class="mt-8 hidden w-full">
           <Search
@@ -131,7 +124,7 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
           />
         </div>
       </div>
-      <div id="title" class="flex w-full justify-end py-10 ">
+      <div id="title" class="flex w-full justify-end py-10">
         <div class="flex flex-wrap justify-end">
           {props.mode === 'search' && <div>Results For</div>}
           {props?.subtitle && <div>{props?.subtitle}</div>}
@@ -141,32 +134,36 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
             Zach Moore
           </h1> -->
           <h1
-            class="post-title  text-right text-5xl font-bold  capitalize text-primarydark dark:text-textdark md:text-7xl"
+            class="post-title text-right text-5xl font-bold capitalize text-primarydark dark:text-textdark md:text-7xl"
           >
-            {props.mode === 'search' ? (
-              <div id="search-title" class="">
-                Search
-              </div>
-            ) : props.mode === 'post' ? (
-              props?.frontmatter?.title
-            ) : props?.title ? (
-              props?.title
-            ) : (
-              'Blog'
-            )}
+            {
+              props.mode === 'search' ? (
+                <div id="search-title" class="">
+                  Search
+                </div>
+              ) : props.mode === 'post' ? (
+                props?.frontmatter?.title
+              ) : props?.title ? (
+                props?.title
+              ) : (
+                'Blog'
+              )
+            }
           </h1>
-          {props.mode === 'post' && (
-            <div class="mt-2 flex w-full flex-wrap justify-end text-right">
-              {props?.frontmatter?.tags?.map((tag) => (
-                <a
-                  href={`/tag/${tag}/1`}
-                  class="inline-block px-2 py-1 text-lg font-bold capitalize opacity-60"
-                >
-                  #{tag}
-                </a>
-              ))}
-            </div>
-          )}
+          {
+            props.mode === 'post' && (
+              <div class="mt-2 flex w-full flex-wrap justify-end text-right">
+                {props?.frontmatter?.tags?.map((tag) => (
+                  <a
+                    href={`/tag/${tag}/1`}
+                    class="inline-block px-2 py-1 text-lg font-bold capitalize opacity-60"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+            )
+          }
         </div>
       </div>
     </div>
@@ -174,11 +171,13 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
 
   <div class="left-toolbar-wrapper">
     <div class="left-toolbar my-8 flex flex-col flex-wrap items-center">
-      {props.mode !== 'search' && (
-        <div class="left-button my-2 bg-accent p-4">
-          <SearchBtn client:load />
-        </div>
-      )}
+      {
+        props.mode !== 'search' && (
+          <div class="left-button my-2 bg-accent p-4">
+            <SearchBtn client:load />
+          </div>
+        )
+      }
     </div>
   </div>
 </section>

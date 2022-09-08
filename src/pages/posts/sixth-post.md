@@ -3,7 +3,7 @@ layout: '@/templates/BasePost.astro'
 title: Everything You Need To Know About Typography
 description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.
 pubDate: 2020-02-06T00:00:00Z
-imgSrc: '/assets/images/image-post.jpeg'
+imgSrc: '/assets/images/image-post.jpg'
 imgAlt: 'Image post'
 category: 'Typography'
 tags: ['typography', 'example']
@@ -120,7 +120,7 @@ Some text to show that the reference links can follow later.
 Images included in _\_posts_ folder are lazy loaded.
 
 Inline-style:
-![alt text](/src/images/random.jpeg 'Logo Title Text 1')
+![alt text](/src/images/random.jpg 'Logo Title Text 1')
 
 ## Table
 
