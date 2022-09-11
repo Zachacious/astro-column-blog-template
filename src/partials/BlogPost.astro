@@ -1,10 +1,7 @@
 ---
 import 'src/css/blogpost.scss';
 
-import type {
-  IFrontmatter,
-  MarkdownInstance,
-} from 'astro-boilerplate-components';
+import type { MarkdownInstance } from 'astro-boilerplate-components';
 import type { ReactNode } from 'react';
 // interface IBlogFrontmatter extends IFrontmatter {
 //   astro: any;
@@ -25,7 +22,7 @@ import MiniBlogCard from './MiniBlogCard.astro';
 type IBlogPostProps = {
   frontmatter: PostFrontmatter;
   children: ReactNode;
-  posts: MarkdownInstance<IFrontmatter>[];
+  posts: MarkdownInstance<PostFrontmatter>[];
   html: () => string;
   raw: () => string;
 };
@@ -141,7 +138,11 @@ const rawText = props.raw ? props.raw() : '';
           Read Next
         </div>
         <div class="mt-8 flex w-full flex-wrap justify-center">
-          {getUpNext(4).map((post) => <BlogCard post={post} />)}
+          {
+            getUpNext(4).map((post) => (
+              <BlogCard post={post as MarkdownInstance<PostFrontmatter>} />
+            ))
+          }
         </div>
       </div>
       <div class="mt-8 flex w-full justify-center p-4 text-sm opacity-50">
