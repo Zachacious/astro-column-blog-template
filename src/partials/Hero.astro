@@ -28,16 +28,75 @@ const props = Astro.props as Props;
 
 const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
 
-// const style =
-//   props.mode === 'post'
-//     ? `background: url(${props?.frontmatter?.imgSrc}) no-repeat center center fixed; background-size: cover;`
-//     : '';
 const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
 ---
 
+<!-- <script is:inline>
+  const shareFacebook = () => {
+    window.open(
+      `http://facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        window.location.href
+      )}`,
+      '_blank',
+      'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+
+  const shareTwitter = () => {
+    window.open(
+      'http://twitter.com/share?url=' + encodeURIComponent(window.location.href)
+      // '',
+      // 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+
+  const shareLinkedin = () => {
+    window.open(
+      'http://www.linkedin.com/shareArticle?mini=true&url=' +
+        encodeURIComponent(window.location.href)
+      // '_blank',
+      // 'left=0,top=0,width=650,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+
+  const shareEvernote = () => {
+    window.open(
+      'https://www.evernote.com/clip.action?url=' +
+        encodeURIComponent(window.location.href)
+      // '_blank',
+      // 'left=0,top=0,width=650,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+
+  const shareEmail = () => {
+    window.open(
+      'mailto:?subject=' +
+        encodeURIComponent(document.title) +
+        '&body=' +
+        encodeURIComponent(window.location.href)
+      // '',
+      // 'left=0,top=0,width=650,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+</script> -->
 <script>
   (() => {
     const page = window.location.pathname.split('/').pop();
+
+    // const facebookBtn = document.getElementById('facebook-btn');
+    // facebookBtn?.addEventListener('click', shareFacebook);
+
+    // const twitterBtn = document.getElementById('twitter-btn');
+    // twitterBtn?.addEventListener('click', shareTwitter);
+
+    // const linkedinBtn = document.getElementById('linkedin-btn');
+    // linkedinBtn?.addEventListener('click', shareLinkedin);
+
+    // const evernoteBtn = document.getElementById('evernote-btn');
+    // evernoteBtn?.addEventListener('click', shareEvernote);
+
+    // const emailBtn = document.getElementById('email-btn');
+    // emailBtn?.addEventListener('click', shareEmail);
 
     if (page?.includes('search')) {
       const search = document.getElementById('search');
@@ -59,12 +118,6 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
       if (searchText) searchText.innerText = params?.s || 'Search';
     }
   })();
-</script>
-
-<script is:inline>
-  const test = () => {
-    console.log('test');
-  };
 </script>
 
 <section
@@ -116,18 +169,15 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
         class="hero-footer break-word z-0 mb-12 flex w-full grow items-start"
       >
         <div id="search-wrapper" class="mt-8 hidden w-full">
-          <Search
-            id="search"
-            className="pointer-events-none"
-            posts={allPosts}
-            client:load
-          />
+          <Search id="search" posts={allPosts} client:load />
         </div>
       </div>
       <div id="title" class="flex w-full justify-end py-10">
         <div class="flex flex-wrap justify-end">
-          {props.mode === 'search' && <div>Results For</div>}
-          {props?.subtitle && <div>{props?.subtitle}</div>}
+          <div class="w-full text-right">
+            {props.mode === 'search' && <div>Results For</div>}
+            {props?.subtitle && <div>{props?.subtitle}</div>}
+          </div>
           <!-- <h1
             class="post-title mb-8 w-full text-right text-5xl font-bold text-primarydark dark:text-textdark md:text-7xl"
           >
@@ -173,11 +223,54 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
     <div class="left-toolbar my-8 flex flex-col flex-wrap items-center">
       {
         props.mode !== 'search' && (
-          <div class="left-button my-2 bg-accent p-4">
+          <div class="left-button my-2 rounded-r-md bg-accent p-4 drop-shadow-md">
             <SearchBtn client:load />
           </div>
         )
       }
     </div>
   </div>
+
+  <!-- {
+    props.mode === 'post' && (
+      <div class="right-toolbar-wrapper flex items-center justify-center">
+        <div class="right-toolbar">
+          <div
+            id="facebook-btn"
+            class="social-button fb-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+          >
+            <IconFacebook className="social-button " />
+          </div>
+
+          <div
+            id="twitter-btn"
+            class="social-button twitter-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+          >
+            <IconTwitter className="social-button" />
+          </div>
+
+          <div
+            id="linkedin-btn"
+            class="social-button linkedin-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+          >
+            <IconLinkedin className="social-button" />
+          </div>
+
+          <div
+            id="evernote-btn"
+            class="social-button evernote-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+          >
+            <IconEvernote className="social-button" />
+          </div>
+
+          <div
+            id="email-btn"
+            class="social-button my-3 flex cursor-pointer items-center justify-center rounded-md bg-accent p-1 drop-shadow-md"
+          >
+            <IconEmail className="social-button" />
+          </div>
+        </div>
+      </div>
+    )
+  } -->
 </section>

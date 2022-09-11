@@ -1,4 +1,4 @@
-const IconGithub = (props: { className: string | undefined }) => (
+const IconGithub = (props: { className?: string | undefined }) => (
   <div className={props.className}>
     <svg style={{ width: '100%', height: '100%' }} viewBox="0 0 24 24">
       <path
