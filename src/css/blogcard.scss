@@ -1,6 +1,10 @@
 .blog-card {
   width: 280px;
   height: 330px;
+
+  a {
+    color: #2CDA9D;
+  }
 }
 
 .blog-card__header {
@@ -23,20 +27,7 @@
 
 .miniblogcard-title {
   font-size: 1.5rem !important;
-  // line-height: 1.75rem !important;
-  // font-weight: normal !important;
 }
-
-// .blog-card__desc::after {
-//   content: "";
-//   position: absolute;
-//   bottom: 0;
-//   right: 0;
-//   width: 150px;
-//   height: 1.5rem;
-//   mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-//   // background-color: rgba(0, 0, 0, 0.5);
-// }
 
 html.theme-dark *{
   .blog-card__desc {

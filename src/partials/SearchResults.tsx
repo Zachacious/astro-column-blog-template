@@ -49,7 +49,7 @@ const SearchResults = (props: {
   }, []);
 
   return (
-    <div className="pointer-events-none flex w-full flex-wrap justify-center">
+    <div className=" flex w-full flex-wrap justify-center">
       {finalResults.length
         ? finalResults.map((result: MarkdownInstance<IFrontmatterTags>) => (
             <BlogCard key={result.file} post={result} />

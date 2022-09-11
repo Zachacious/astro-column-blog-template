@@ -101,11 +101,19 @@
     margin-bottom: 1em;
     font-size: 0.75em;
   }
-}
 
-// .blogpost-tags {
-//   color: #bfd3be !important;
-// }
+  .gopher-link {
+    max-width: 30px;
+  }
+  
+  .post-heading:hover {
+    &:hover {
+      .gopher-link {
+        opacity: 0.5 !important;
+      }
+    }
+  }
+}
 
 .scroll-to-top-btn {
   top: 85vh;
@@ -123,7 +131,7 @@ html.theme-dark * {
     }
 
     a {
-      color: #ffc914;
+      color: #2CDA9D;
     }
 
     th,
@@ -131,20 +139,5 @@ html.theme-dark * {
       border: 1px solid #ccc;
     }
   }
-
-  // .blogpost-tags {
-  //   color: #bfd3be !important;
-  // }
 }
 
-.gopher-link {
-  max-width: 30px;
-}
-
-.post-heading:hover {
-  &:hover {
-    .gopher-link {
-      opacity: 0.5 !important;
-    }
-  }
-}
