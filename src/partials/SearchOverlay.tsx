@@ -1,11 +1,11 @@
 import type { MarkdownInstance } from 'astro';
-import type { IFrontmatter } from 'astro-boilerplate-components';
 import React, { useState } from 'react';
 
 import MiniBlogCard from '@/partials/MiniBlogCard';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
 const filterPosts = (
-  posts: MarkdownInstance<IFrontmatter>[],
+  posts: MarkdownInstance<PostFrontmatter>[],
   query: string
 ) => {
   return posts.filter((post) => {
@@ -18,7 +18,7 @@ const filterPosts = (
 
 const SearchOverlay = (props: {
   id: string | undefined;
-  posts: MarkdownInstance<IFrontmatter>[];
+  posts: MarkdownInstance<PostFrontmatter>[];
 }) => {
   const [searchValue, setSearchValue] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(props.posts);

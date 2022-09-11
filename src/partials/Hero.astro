@@ -3,24 +3,24 @@
 import 'src/css/icon.scss';
 import 'src/css/hero.scss';
 
-import type { IFrontmatter } from 'astro-boilerplate-components';
 import { Picture } from 'astro-imagetools/components';
 import type { ReactNode } from 'react';
 import SearchBtn from 'src/partials/SearchBtn';
 
-import Search from '@/partials/SearchOverlay';
+import SearchOverlay from '@/partials/SearchOverlay';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
 import ThemeToggle from './ThemeToggleButton';
 
-interface IBlogFrontmatter extends IFrontmatter {
-  tags?: string[];
-}
+// interface IBlogFrontmatter extends IFrontmatter {
+//   tags?: string[];
+// }
 
 type Props = {
   mode?: string;
   title?: string;
   subtitle?: string;
-  frontmatter?: IBlogFrontmatter;
+  frontmatter?: PostFrontmatter;
   children?: ReactNode;
 };
 
@@ -28,7 +28,7 @@ const props = Astro.props as Props;
 
 const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
 
-const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
+const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
 ---
 
 <script>
@@ -94,7 +94,7 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
         class="hero-footer break-word z-0 mb-12 flex w-full grow items-start"
       >
         <div id="search-wrapper" class="mt-8 hidden w-full">
-          <Search id="search" posts={allPosts} client:load />
+          <SearchOverlay id="search" posts={allPosts} client:load />
         </div>
       </div>
       <div id="title" class="flex w-full justify-end py-10">

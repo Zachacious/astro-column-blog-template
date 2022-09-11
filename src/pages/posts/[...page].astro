@@ -1,16 +1,13 @@
 ---
 // import '../../css/pagehero.scss';
 
-import type {
-  FrontmatterPage,
-  IFrontmatter,
-} from 'astro-boilerplate-components';
-import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
-
 import BlogCard from '@/partials/BlogCard.astro';
 import ContentTopBar from '@/partials/ContentTopBar.astro';
 import Hero from '@/partials/Hero.astro';
+import Paginator from '@/partials/Paginator.astro';
 import Base from '@/templates/Base.astro';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
+import type { PostPage } from '@/types/PostPage';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
@@ -19,7 +16,7 @@ type GetStaticPaths = {
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatter>('./*.md');
+  const allPosts = await Astro.glob<PostFrontmatter>('./*.md');
   const sortedPosts = sortByDate(allPosts);
 
   // Return a paginated collection of paths for all posts
@@ -27,7 +24,8 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
 }
 
 interface Props {
-  page: FrontmatterPage;
+  // page: FrontmatterPage;
+  page: PostPage;
 }
 
 const { page } = Astro.props as Props;
@@ -50,9 +48,12 @@ const description =
           {page.data.map((post) => <BlogCard post={post} />)}
         </div>
       </div>
-      <Section>
+      <!-- <Section>
         <NewerOlderPagination page={page} />
-      </Section>
+      </Section> -->
+      <div>
+        <Paginator page={page} />
+      </div>
     </div>
   </div>
 </Base>

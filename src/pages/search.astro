@@ -1,6 +1,6 @@
 ---
 import type {
-  IFrontmatter,
+  // IFrontmatter,
   MarkdownInstance,
 } from 'astro-boilerplate-components';
 
@@ -8,16 +8,17 @@ import ContentTopBar from '@/partials/ContentTopBar.astro';
 import Hero from '@/partials/Hero.astro';
 import SearchResults from '@/partials/SearchResults';
 import Base from '@/templates/Base.astro';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
-interface IFrontmatterTags extends IFrontmatter {
-  tags: string[];
-}
+// interface IFrontmatterTags extends IFrontmatter {
+//   tags: string[];
+// }
 
-const allPosts = await Astro.glob<IFrontmatterTags>('./posts/*.md');
+const allPosts = await Astro.glob<PostFrontmatter>('./posts/*.md');
 const sortedPosts =
-  (sortByDate(allPosts) as MarkdownInstance<IFrontmatterTags>[]) || [];
+  (sortByDate(allPosts) as MarkdownInstance<PostFrontmatter>[]) || [];
 
 const { title } = AppConfig;
 const { description } = AppConfig;

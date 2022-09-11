@@ -1,0 +1,54 @@
+---
+import type { PostPage } from '@/types/PostPage';
+
+type Props = {
+  page: PostPage;
+};
+
+const props = Astro.props as Props;
+
+const pages = [];
+
+// get the relative path excluding the page number
+let path = Astro.url.pathname.slice(0, -1);
+if (!path.endsWith('/')) path += '/';
+
+for (let i = 1; i <= props.page.lastPage; i++) {
+  pages.push({
+    num: i,
+    isActive: i === props.page.currentPage,
+    link: `${path}${i}`,
+  });
+}
+---
+
+<div class="flex items-center justify-center">
+  {
+    props.page.url.prev && (
+      <a href={props.page.url.prev} class="mx-2 mt-1">
+        {'<'}
+      </a>
+    )
+  }
+  {
+    pages.map((page) => (
+      <a
+        href={page.link}
+        class={
+          page.isActive
+            ? ' pointer-events-none m-1 rounded-md border border-accent p-1 px-2 font-bold'
+            : 'm-1 p-1 text-sm'
+        }
+      >
+        {page.num}
+      </a>
+    ))
+  }
+  {
+    props.page.url.next && (
+      <a href={props.page.url.next} class="mx-2 mt-1">
+        {'>'}
+      </a>
+    )
+  }
+</div>

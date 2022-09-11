@@ -1,17 +1,15 @@
-import type {
-  IFrontmatter,
-  MarkdownInstance,
-} from 'astro-boilerplate-components';
+import type { MarkdownInstance } from 'astro-boilerplate-components';
 import { useEffect, useState } from 'react';
 
-import BlogCard from './BlogCard';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
-interface IFrontmatterTags extends IFrontmatter {
-  tags: string[];
-}
+import BlogCard from './BlogCard';
+// interface IFrontmatterTags extends IFrontmatter {
+//   tags: string[];
+// }
 
 const filterPosts = (
-  posts: MarkdownInstance<IFrontmatterTags>[],
+  posts: MarkdownInstance<PostFrontmatter>[],
   query: string
 ) => {
   if (!query) return [];
@@ -25,12 +23,12 @@ const filterPosts = (
 };
 
 const SearchResults = (props: {
-  results: MarkdownInstance<IFrontmatterTags>[];
+  results: MarkdownInstance<PostFrontmatter>[];
 }) => {
   const { results } = props;
 
   const [finalResults, setFinalResults] = useState(
-    [] as MarkdownInstance<IFrontmatterTags>[]
+    [] as MarkdownInstance<PostFrontmatter>[]
   );
 
   let query = '';
@@ -47,7 +45,7 @@ const SearchResults = (props: {
   return (
     <div className=" flex w-full flex-wrap justify-center">
       {finalResults.length
-        ? finalResults.map((result: MarkdownInstance<IFrontmatterTags>) => (
+        ? finalResults.map((result: MarkdownInstance<PostFrontmatter>) => (
             <BlogCard key={result.file} post={result} />
           ))
         : 'No Results'}

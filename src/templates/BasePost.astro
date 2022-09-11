@@ -1,20 +1,19 @@
 ---
 import '../css/global.scss';
 
-import type { IFrontmatter } from 'astro-boilerplate-components';
-
 import BlogPost from '@/partials/BlogPost.astro';
 // import  BlogHero  from '@/partials/BlogHero.astro';
 import Hero from '@/partials/Hero.astro';
 import Base from '@/templates/Base.astro';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import { AppConfig } from '@/utils/AppConfig';
 
-interface IBlogFrontmatter extends IFrontmatter {
-  tags?: string[];
-}
+// interface IBlogFrontmatter extends IFrontmatter {
+//   tags?: string[];
+// }
 
 interface Props {
-  content: IBlogFrontmatter;
+  content: PostFrontmatter;
 }
 
 const { content } = Astro.props as Props;

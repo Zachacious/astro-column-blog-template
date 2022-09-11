@@ -6,6 +6,11 @@ import type {
   MarkdownInstance,
 } from 'astro-boilerplate-components';
 import type { ReactNode } from 'react';
+// interface IBlogFrontmatter extends IFrontmatter {
+//   astro: any;
+//   tags: string[];
+// }
+import type { PostFrontmatter } from 'src/types/PostFrontmatter';
 
 import IconClock from '@/icons/clock';
 import SocialShareBar from '@/partials/SocialShareBar.astro';
@@ -17,20 +22,15 @@ import ContentTopBar from './ContentTopBar.astro';
 import { Footer } from './Footer';
 import MiniBlogCard from './MiniBlogCard.astro';
 
-interface IBlogFrontmatter extends IFrontmatter {
-  astro: any;
-  tags: string[];
-}
-
 type IBlogPostProps = {
-  frontmatter: IBlogFrontmatter;
+  frontmatter: PostFrontmatter;
   children: ReactNode;
   posts: MarkdownInstance<IFrontmatter>[];
   html: () => string;
   raw: () => string;
 };
 
-const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
+const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
 
 const props = Astro.props as IBlogPostProps;
 
@@ -47,14 +47,14 @@ const getUpNext = (count: number) => {
 
   if (!taggedPosts.length) {
     const idxs = [];
-    for (let i = 0; i <= count; i++) {
+    for (let i = 0; i <= count; ++i) {
       idxs.push(Math.floor(Math.random() * filteredPosts.length));
     }
     return [...new Set(idxs.map((idx) => filteredPosts[idx]))];
   }
 
   const idxs = [];
-  for (let i = 0; i <= count; i++) {
+  for (let i = 0; i <= count; ++i) {
     idxs.push(Math.floor(Math.random() * taggedPosts.length));
   }
   return [...new Set(idxs.map((idx) => taggedPosts[idx]))];

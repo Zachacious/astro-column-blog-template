@@ -1,11 +1,10 @@
 import '../css/blogcard.scss';
 
-import type {
-  IFrontmatter,
-  MarkdownInstance,
-} from 'astro-boilerplate-components';
+import type { MarkdownInstance } from 'astro-boilerplate-components';
 
-const MiniBlogCard = (props: { post: MarkdownInstance<IFrontmatter> }) => {
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
+
+const MiniBlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
   const style = props.post.frontmatter?.imgSrc
     ? {
         background: `url(${props.post.frontmatter.imgSrc}) no-repeat center center `,

@@ -1,27 +1,24 @@
 ---
-import type {
-  FrontmatterPage,
-  IFrontmatter,
-} from 'astro-boilerplate-components';
-import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
-
 import BlogCard from '@/partials/BlogCard.astro';
 import ContentTopBar from '@/partials/ContentTopBar.astro';
 // import { PageHero } from '../../../partials/PageHero';
 import Hero from '@/partials/Hero.astro';
+import Paginator from '@/partials/Paginator.astro';
 import Base from '@/templates/Base.astro';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
+import type { PostPage } from '@/types/PostPage';
 import { AppConfig } from '@/utils/AppConfig';
 
-interface ITagFrontmatter extends IFrontmatter {
-  tags: string[];
-}
+// interface ITagFrontmatter extends IFrontmatter {
+//   tags: string[];
+// }
 
 type GetStaticPaths = {
   paginate: any;
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<ITagFrontmatter>('../../posts/*.md');
+  const allPosts = await Astro.glob<PostFrontmatter>('../../posts/*.md');
   const allTags = allPosts
     .map((post) => post.frontmatter?.tags)
     .flat()
@@ -40,7 +37,7 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
 }
 
 interface Props {
-  page: FrontmatterPage;
+  page: PostPage;
 }
 
 const { page } = Astro.props as Props;
@@ -55,7 +52,7 @@ const description =
 <Base head={{ title, description }}>
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
-      <Hero subtitle="Filed Under" title={tag} mode="page" />
+      <Hero subtitle="Filed Under" title={tag as string} mode="page" />
     </div>
     <div class="md:2/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
@@ -64,9 +61,12 @@ const description =
           {page.data.map((post) => <BlogCard post={post} />)}
         </div>
       </div>
-      <Section>
-        <NewerOlderPagination page={page} />
-      </Section>
+      <!-- <Section> -->
+      <div>
+        <Paginator page={page} />
+      </div>
+      <!-- <NewerOlderPagination page={page} /> -->
+      <!-- </Section> -->
     </div>
   </div>
 </Base>

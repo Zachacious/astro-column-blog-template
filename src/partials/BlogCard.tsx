@@ -1,17 +1,15 @@
 import '../css/blogcard.scss';
 
-import type {
-  IFrontmatter,
-  MarkdownInstance,
-} from 'astro-boilerplate-components';
+import type { MarkdownInstance } from 'astro-boilerplate-components';
 
-import formatDate from '@/utils/FormatDate';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
+import formatDate from '@/utils/formatDate';
 
-interface IFrontmatterTags extends IFrontmatter {
-  tags: string[];
-}
+// interface IFrontmatterTags extends IFrontmatter {
+//   tags: string[];
+// }
 
-const BlogCard = (props: { post: MarkdownInstance<IFrontmatterTags> }) => {
+const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
   const { post } = props;
   const style = post.frontmatter?.imgSrc
     ? {
