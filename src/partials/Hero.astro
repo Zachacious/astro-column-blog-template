@@ -31,72 +31,9 @@ const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
 const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
 ---
 
-<!-- <script is:inline>
-  const shareFacebook = () => {
-    window.open(
-      `http://facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        window.location.href
-      )}`,
-      '_blank',
-      'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-    );
-  };
-
-  const shareTwitter = () => {
-    window.open(
-      'http://twitter.com/share?url=' + encodeURIComponent(window.location.href)
-      // '',
-      // 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-    );
-  };
-
-  const shareLinkedin = () => {
-    window.open(
-      'http://www.linkedin.com/shareArticle?mini=true&url=' +
-        encodeURIComponent(window.location.href)
-      // '_blank',
-      // 'left=0,top=0,width=650,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-    );
-  };
-
-  const shareEvernote = () => {
-    window.open(
-      'https://www.evernote.com/clip.action?url=' +
-        encodeURIComponent(window.location.href)
-      // '_blank',
-      // 'left=0,top=0,width=650,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-    );
-  };
-
-  const shareEmail = () => {
-    window.open(
-      'mailto:?subject=' +
-        encodeURIComponent(document.title) +
-        '&body=' +
-        encodeURIComponent(window.location.href)
-      // '',
-      // 'left=0,top=0,width=650,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-    );
-  };
-</script> -->
 <script>
   (() => {
     const page = window.location.pathname.split('/').pop();
-
-    // const facebookBtn = document.getElementById('facebook-btn');
-    // facebookBtn?.addEventListener('click', shareFacebook);
-
-    // const twitterBtn = document.getElementById('twitter-btn');
-    // twitterBtn?.addEventListener('click', shareTwitter);
-
-    // const linkedinBtn = document.getElementById('linkedin-btn');
-    // linkedinBtn?.addEventListener('click', shareLinkedin);
-
-    // const evernoteBtn = document.getElementById('evernote-btn');
-    // evernoteBtn?.addEventListener('click', shareEvernote);
-
-    // const emailBtn = document.getElementById('email-btn');
-    // emailBtn?.addEventListener('click', shareEmail);
 
     if (page?.includes('search')) {
       const search = document.getElementById('search');
@@ -147,24 +84,12 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
             <span class="text-3xl font-normal dark:text-boomdark"
               >ZACH<span class="font-bold opacity-80">MOORE</span>
             </span>
-            <!-- <span class="">.dev</span> -->
           </h1>
           <div class="hidden lg:block">
             <ThemeToggle client:only="react" />
           </div>
-          <!-- <div
-            class="navbar-brand text-2xl font-bold text-primarydark dark:text-textdark"
-          >
-            Zach Moore
-          </div> -->
-          <!-- <div class="flex cursor-pointer items-center">
-            {props.mode !== 'search' && (
-              <SearchBtn onClick={onClickSearch} client:load />
-            )}
-          </div> -->
         </div>
       </div>
-      {/* <div class="hero-content z-0 grow"></div> */}
       <div
         class="hero-footer break-word z-0 mb-12 flex w-full grow items-start"
       >
@@ -178,11 +103,7 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
             {props.mode === 'search' && <div>Results For</div>}
             {props?.subtitle && <div>{props?.subtitle}</div>}
           </div>
-          <!-- <h1
-            class="post-title mb-8 w-full text-right text-5xl font-bold text-primarydark dark:text-textdark md:text-7xl"
-          >
-            Zach Moore
-          </h1> -->
+
           <h1
             class="post-title text-right text-5xl font-bold capitalize text-primarydark dark:text-textdark md:text-7xl"
           >
@@ -230,47 +151,4 @@ const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
       }
     </div>
   </div>
-
-  <!-- {
-    props.mode === 'post' && (
-      <div class="right-toolbar-wrapper flex items-center justify-center">
-        <div class="right-toolbar">
-          <div
-            id="facebook-btn"
-            class="social-button fb-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
-          >
-            <IconFacebook className="social-button " />
-          </div>
-
-          <div
-            id="twitter-btn"
-            class="social-button twitter-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
-          >
-            <IconTwitter className="social-button" />
-          </div>
-
-          <div
-            id="linkedin-btn"
-            class="social-button linkedin-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
-          >
-            <IconLinkedin className="social-button" />
-          </div>
-
-          <div
-            id="evernote-btn"
-            class="social-button evernote-color my-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
-          >
-            <IconEvernote className="social-button" />
-          </div>
-
-          <div
-            id="email-btn"
-            class="social-button my-3 flex cursor-pointer items-center justify-center rounded-md bg-accent p-1 drop-shadow-md"
-          >
-            <IconEmail className="social-button" />
-          </div>
-        </div>
-      </div>
-    )
-  } -->
 </section>

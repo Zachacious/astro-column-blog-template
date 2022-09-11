@@ -10,17 +10,10 @@ $test: #242e35;
   width: 0.8em;
 }
  
-// *::-webkit-scrollbar-track {
-//   background: white;
-// }
-
-
- 
 *::-webkit-scrollbar-thumb {
   background-color: $accent;
   // outline: 1px solid rgb(26, 35, 44);
 }
-
 
 h1,h2,h3,h4,h5,h6 { font-family: "Exo", serif; }
 // h1,h2,h3,h4,h5,h6 { font-family: "Pirata One", cursive; }

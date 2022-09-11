@@ -11,10 +11,6 @@ interface IFrontmatterTags extends IFrontmatter {
   tags: string[];
 }
 
-// import formatDate from '../utils/FormatDate';
-
-// const { post } = Astro.props;
-
 const BlogCard = (props: { post: MarkdownInstance<IFrontmatterTags> }) => {
   const { post } = props;
   const style = post.frontmatter?.imgSrc

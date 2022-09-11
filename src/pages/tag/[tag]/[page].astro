@@ -6,12 +6,11 @@ import type {
 import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
 
 import BlogCard from '@/partials/BlogCard.astro';
-import Base from '@/templates/Base.astro';
-import { AppConfig } from '@/utils/AppConfig';
-
+import ContentTopBar from '@/partials/ContentTopBar.astro';
 // import { PageHero } from '../../../partials/PageHero';
 import Hero from '@/partials/Hero.astro';
-import ContentTopBar from '@/partials/ContentTopBar.astro';
+import Base from '@/templates/Base.astro';
+import { AppConfig } from '@/utils/AppConfig';
 
 interface ITagFrontmatter extends IFrontmatter {
   tags: string[];
@@ -27,10 +26,6 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
     .map((post) => post.frontmatter?.tags)
     .flat()
     .filter((tag) => tag !== undefined);
-  // const sortedPosts = sortByDate(allPosts);
-
-  // Return a paginated collection of paths for all posts
-  // return paginate(sortedPosts, { pageSize: 16 });
 
   return allTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) =>
@@ -62,7 +57,7 @@ const description =
     <div class="md:2/5 w-full lg:w-2/5">
       <Hero subtitle="Filed Under" title={tag} mode="page" />
     </div>
-    <div class="md:2/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto p-8">
+    <div class="md:2/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
       <div class="my-10 flex w-full justify-center">
         <div class="flex max-w-7xl flex-wrap justify-center">
@@ -74,6 +69,4 @@ const description =
       </Section>
     </div>
   </div>
-
-
 </Base>

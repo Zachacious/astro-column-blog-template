@@ -1,5 +1,4 @@
 ---
-import '../css/layout.scss';
 import '../css/global.scss';
 
 import type { IFrontmatter } from 'astro-boilerplate-components';
@@ -17,8 +16,6 @@ interface IBlogFrontmatter extends IFrontmatter {
 interface Props {
   content: IBlogFrontmatter;
 }
-
-// const allPosts = await Astro.glob<IBlogFrontmatter>('../pages/posts/*.md');
 
 const { content } = Astro.props as Props;
 const html = Astro.props.compiledContent;
@@ -38,6 +35,4 @@ const title = `${content.title} - ${AppConfig.site_name}`;
       </BlogPost>
     </div>
   </div>
-
-  <!-- <CTA /> -->
 </Base>

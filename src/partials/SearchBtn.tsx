@@ -25,8 +25,6 @@ const onClickSearch = () => {
 
     search?.classList.add('pointer-events-none');
     searchWrapper?.classList.add('hidden');
-
-    // sessionStorage.setItem('searchActive', 'false');
   } else {
     overlay?.classList.add('active');
     overlay?.classList.add('fade-in');
@@ -44,16 +42,10 @@ const onClickSearch = () => {
     title?.classList.add('hidden');
 
     search?.classList.remove('pointer-events-none');
-
-    // sessionStorage.setItem('searchActive', 'true');
   }
 };
 
-const SearchBtn = (props: {
-  className?: string | undefined;
-  // onclick: () => void;
-  // model: boolean;
-}) => {
+const SearchBtn = (props: { className?: string | undefined }) => {
   const [model, setModel] = useState(false);
 
   useEffect(() => {
@@ -61,7 +53,6 @@ const SearchBtn = (props: {
   }, []);
 
   const onClick = () => {
-    // if (props.onclick) props.onclick();
     onClickSearch();
     setModel(!model);
   };
@@ -76,7 +67,6 @@ const SearchBtn = (props: {
       ) : (
         <span className="flex items-center text-textdark">
           <IconSearch className="icon-sm" />
-          {/* <span className="text-lg font-bold uppercase">Search</span> */}
         </span>
       )}
     </div>

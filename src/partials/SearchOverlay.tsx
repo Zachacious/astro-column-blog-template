@@ -1,11 +1,8 @@
-import '@/css/search-overlay.scss';
-
 import type { MarkdownInstance } from 'astro';
 import type { IFrontmatter } from 'astro-boilerplate-components';
 import React, { useState } from 'react';
 
 import MiniBlogCard from '@/partials/MiniBlogCard';
-// import { CircleLoader } from 'react-spinners';
 
 const filterPosts = (
   posts: MarkdownInstance<IFrontmatter>[],
@@ -25,7 +22,6 @@ const SearchOverlay = (props: {
 }) => {
   const [searchValue, setSearchValue] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(props.posts);
-  // const [loading, setLoading] = useState(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);

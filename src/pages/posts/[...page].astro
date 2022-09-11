@@ -8,13 +8,11 @@ import type {
 import { NewerOlderPagination, Section } from 'astro-boilerplate-components';
 
 import BlogCard from '@/partials/BlogCard.astro';
+import ContentTopBar from '@/partials/ContentTopBar.astro';
+import Hero from '@/partials/Hero.astro';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
-
-// import { PageHero } from '../../partials/PageHero';
-import Hero from '@/partials/Hero.astro';
-import ContentTopBar from '@/partials/ContentTopBar.astro';
 
 type GetStaticPaths = {
   paginate: any;
@@ -45,7 +43,7 @@ const description =
     <div class="md:2/5 w-full lg:w-2/5">
       <Hero subtitle="All" title="Posts" mode="page" />
     </div>
-    <div class="md:2/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto p-8">
+    <div class="md:2/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
       <div class="my-10 flex w-full justify-center">
         <div class="flex max-w-7xl flex-wrap justify-center">
@@ -57,28 +55,4 @@ const description =
       </Section>
     </div>
   </div>
-  <!-- <Section>
-    <PaginationHeader
-      title="Random title here"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    />
-  </Section> -->
-
-  <!-- <PageHero title="Posts" />
-  <div class="my-10 flex w-full justify-center">
-    <div class="flex max-w-7xl flex-wrap justify-center">
-      {page.data.map((post) => <BlogCard post={post} />)}
-    </div>
-  </div> -->
-
-  <!-- <Section>
-    <BlogGallery postList={page.data} />
-  </Section> -->
-
-  <!-- <Section>
-    <NewerOlderPagination page={page} />
-  </Section> -->
-
-
-  <!-- <CTA /> -->
 </Base>

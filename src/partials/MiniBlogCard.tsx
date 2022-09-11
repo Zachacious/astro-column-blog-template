@@ -6,10 +6,6 @@ import type {
 } from 'astro-boilerplate-components';
 
 const MiniBlogCard = (props: { post: MarkdownInstance<IFrontmatter> }) => {
-  // const style = props.post.frontmatter?.imgSrc
-  //   ? `background: url(${props.post.frontmatter.imgSrc}) center center / cover no-repeat;`
-  //   : '';
-
   const style = props.post.frontmatter?.imgSrc
     ? {
         background: `url(${props.post.frontmatter.imgSrc}) no-repeat center center `,

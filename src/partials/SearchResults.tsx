@@ -35,8 +35,6 @@ const SearchResults = (props: {
 
   let query = '';
 
-  // let finalResults: MarkdownInstance<IFrontmatterTags>[] = [];
-
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
@@ -44,8 +42,6 @@ const SearchResults = (props: {
     query = params.s as string;
 
     setFinalResults(filterPosts(results, query));
-
-    // finalResults = filterPosts(results, query);
   }, []);
 
   return (

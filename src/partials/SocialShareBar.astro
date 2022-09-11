@@ -1,0 +1,104 @@
+---
+import IconEmail from '@/icons/email';
+import IconEvernote from '@/icons/evernote';
+import IconFacebook from '@/icons/facebook';
+import IconLinkedin from '@/icons/linkedin';
+import IconTwitter from '@/icons/twitter';
+---
+
+<script>
+  const shareFacebook = () => {
+    window.open(
+      `http://facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        window.location.href
+      )}`,
+      '_blank',
+      'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
+    );
+  };
+
+  const shareTwitter = () => {
+    window.open(
+      'http://twitter.com/share?url=' + encodeURIComponent(window.location.href)
+    );
+  };
+
+  const shareLinkedin = () => {
+    window.open(
+      'http://www.linkedin.com/shareArticle?mini=true&url=' +
+        encodeURIComponent(window.location.href)
+    );
+  };
+
+  const shareEvernote = () => {
+    window.open(
+      'https://www.evernote.com/clip.action?url=' +
+        encodeURIComponent(window.location.href)
+    );
+  };
+
+  const shareEmail = () => {
+    window.open(
+      'mailto:?subject=' +
+        encodeURIComponent(document.title) +
+        '&body=' +
+        encodeURIComponent(window.location.href)
+    );
+  };
+
+  (() => {
+    const facebookBtn = document.getElementById('facebook-btn');
+    facebookBtn?.addEventListener('click', shareFacebook);
+
+    const twitterBtn = document.getElementById('twitter-btn');
+    twitterBtn?.addEventListener('click', shareTwitter);
+
+    const linkedinBtn = document.getElementById('linkedin-btn');
+    linkedinBtn?.addEventListener('click', shareLinkedin);
+
+    const evernoteBtn = document.getElementById('evernote-btn');
+    evernoteBtn?.addEventListener('click', shareEvernote);
+
+    const emailBtn = document.getElementById('email-btn');
+    emailBtn?.addEventListener('click', shareEmail);
+  })();
+</script>
+
+<div>
+  <div class="my-10 flex w-full items-center justify-center">
+    <div
+      id="facebook-btn"
+      class="social-button fb-color mx-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+    >
+      <IconFacebook className="social-button " />
+    </div>
+
+    <div
+      id="twitter-btn"
+      class="social-button twitter-color mx-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+    >
+      <IconTwitter className="social-button" />
+    </div>
+
+    <div
+      id="linkedin-btn"
+      class="social-button linkedin-color mx-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+    >
+      <IconLinkedin className="social-button" />
+    </div>
+
+    <div
+      id="evernote-btn"
+      class="social-button evernote-color mx-3 flex cursor-pointer items-center justify-center rounded-md p-1 drop-shadow-md"
+    >
+      <IconEvernote className="social-button" />
+    </div>
+
+    <div
+      id="email-btn"
+      class="social-button mx-3 flex cursor-pointer items-center justify-center rounded-md bg-accent p-1 drop-shadow-md"
+    >
+      <IconEmail className="social-button" />
+    </div>
+  </div>
+</div>

@@ -26,7 +26,6 @@
     "@typescript-eslint/parser": "^5.28.0",
     "astro": "^1.2.1",
     "astro-eslint-parser": "^0.6.0",
-    "astro-imagetools": "^0.6.10",
     "astro-robots-txt": "^0.3.2",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -49,6 +48,7 @@
   },
   "dependencies": {
     "@astropub/webapi": "^0.10.14",
+    "astro-imagetools": "^0.6.10",
     "@fontsource/exo": "^4.5.9",
     "@fontsource/poppins": "^4.5.9",
     "@formkit/auto-animate": "^1.0.0-beta.1",

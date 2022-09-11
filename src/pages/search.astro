@@ -1,16 +1,10 @@
 ---
-// import '@fontsource/bokor';
-// import '@fontsource/flamenco';
-// import 'src/css/global.scss';
-
 import type {
   IFrontmatter,
   MarkdownInstance,
 } from 'astro-boilerplate-components';
 
 import ContentTopBar from '@/partials/ContentTopBar.astro';
-// import { Hero } from '@/partials/Hero';
-// import SearchHero from '@/partials/SearchHero.astro';
 import Hero from '@/partials/Hero.astro';
 import SearchResults from '@/partials/SearchResults';
 import Base from '@/templates/Base.astro';
@@ -20,8 +14,6 @@ import { sortByDate } from '@/utils/Posts';
 interface IFrontmatterTags extends IFrontmatter {
   tags: string[];
 }
-
-// import BlogCard from '../partials/BlogCard.astro';
 
 const allPosts = await Astro.glob<IFrontmatterTags>('./posts/*.md');
 const sortedPosts =
@@ -45,13 +37,10 @@ const { description } = AppConfig;
     </div>
     <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
-      <!-- <h2 class="m-5 text-4xl text-textaccent">Recent Post</h2> -->
       <div class="my-4 w-full p-8">
         <div class="flex w-full flex-wrap justify-center">
-          <!-- {recentPosts.map((post) => <BlogCard post={post} />)} -->
           <SearchResults results={sortedPosts} client:load />
         </div>
-        <!-- <Fragment set:html={seeMoreButton} /> -->
       </div>
     </div>
   </div>

@@ -1,6 +1,5 @@
 import '../css/ThemeToggleButton.scss';
 
-// import type { FunctionComponent } from 'react';
 import { useEffect, useState } from 'react';
 
 const themes = ['light', 'dark'];
