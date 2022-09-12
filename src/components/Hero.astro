@@ -8,6 +8,8 @@ import type { ReactNode } from 'react';
 import SearchBtn from 'src/components/SearchBtn';
 
 import SearchOverlay from '@/components/SearchOverlay';
+import IconGithub from '@/icons/github';
+import IconLinkedin from '@/icons/linkedin';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
 // interface IBlogFrontmatter extends IFrontmatter {
@@ -79,9 +81,20 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
         <div class="navbar my-5 flex w-full items-center justify-between px-2">
           <div></div>
           <h1 class="block">
-            <span class="text-4xl font-normal"
-              >ZACH<span class="font-bold">MOORE</span>
-            </span>
+            <div class="text-4xl font-normal">
+              <a href="/">ZACH<span class="font-bold">MOORE</span></a>
+            </div>
+            <div class="flex justify-end text-sm uppercase">
+              <div style="width: 18px"><IconGithub /></div>
+              <div class="">
+                <a href="https://github.com/Zachacious">Github</a>
+              </div>
+              <div class="mx-1"></div>
+              <div style="width: 18px"><IconLinkedin /></div>
+              <div class="">
+                <a href="https://linkedin.com/in/zachmoore1">LinkedIn</a>
+              </div>
+            </div>
           </h1>
           <!-- <div class="hidden lg:block">
             <ThemeToggle client:only="react" />
