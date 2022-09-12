@@ -10,8 +10,6 @@ import SearchBtn from 'src/partials/SearchBtn';
 import SearchOverlay from '@/partials/SearchOverlay';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
-import ThemeToggle from './ThemeToggleButton';
-
 // interface IBlogFrontmatter extends IFrontmatter {
 //   tags?: string[];
 // }
@@ -80,14 +78,14 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
       <div class="w-full">
         <div class="navbar my-5 flex w-full items-center justify-between px-2">
           <div></div>
-          <h1 class="block lg:hidden">
-            <span class="text-3xl font-normal dark:text-boomdark"
-              >ZACH<span class="font-bold opacity-80">MOORE</span>
+          <h1 class="block">
+            <span class="text-4xl font-normal"
+              >ZACH<span class="font-bold">MOORE</span>
             </span>
           </h1>
-          <div class="hidden lg:block">
+          <!-- <div class="hidden lg:block">
             <ThemeToggle client:only="react" />
-          </div>
+          </div> -->
         </div>
       </div>
       <div
