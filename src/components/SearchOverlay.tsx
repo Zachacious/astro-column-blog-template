@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 import React, { useState } from 'react';
 
-import MiniBlogCard from '@/partials/MiniBlogCard';
+import MiniBlogCard from '@/components/MiniBlogCard';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
 const filterPosts = (

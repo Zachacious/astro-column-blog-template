@@ -1,12 +1,12 @@
 ---
-import ContentTopBar from '@/partials/ContentTopBar.astro';
-import Hero from '@/partials/Hero.astro';
+import ContentTopBar from '@/components/ContentTopBar.astro';
+import Hero from '@/components/Hero.astro';
 import Base from '@/templates/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
-import BlogCard from '../partials/BlogCard.astro';
+import BlogCard from '../components/BlogCard.astro';
 
 const allPosts = await Astro.glob<PostFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
