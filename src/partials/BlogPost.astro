@@ -72,6 +72,17 @@ const rawText = props.raw ? props.raw() : '';
 
 <script>
   (() => {
+    // credate dropcap for first paragraph of content
+    const firstParagraph = document.querySelector('.post-content p');
+    if (firstParagraph) {
+      const firstLetter = firstParagraph.textContent?.charAt(0);
+      if (firstLetter) {
+        firstParagraph.innerHTML = `<div class="dropcap text-exo float-left text-sm leading-0 tracking-tight font-bold">${firstLetter}</div>${firstParagraph.innerHTML.slice(
+          1
+        )}`;
+      }
+    }
+
     // Create link icons for each heading and implement the ability to
     // click each heading to copy the link to the clipboard
     const headingsInPost = document.querySelectorAll(
@@ -134,7 +145,7 @@ const rawText = props.raw ? props.raw() : '';
       <SocialShareBar />
 
       <div class="2xl:hidden">
-        <div class="text-bokor w-full px-2 pt-4 text-4xl font-bold">
+        <div class="text-exo w-full px-2 pt-4 text-4xl font-bold">
           Read Next
         </div>
         <div class="mt-8 flex w-full flex-wrap justify-center">
