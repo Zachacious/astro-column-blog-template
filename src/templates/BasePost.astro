@@ -28,7 +28,10 @@ const title = `${content.title} - ${AppConfig.site_name}`;
       <!-- <BlogHero frontmatter={content} /> -->
       <Hero frontmatter={content} mode="post" />
     </div>
-    <div class="md:2/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto">
+    <div
+      id="post-column"
+      class="md:2/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto"
+    >
       <BlogPost frontmatter={content} html={html} raw={rawText}>
         <slot />
       </BlogPost>

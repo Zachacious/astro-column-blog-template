@@ -11,6 +11,7 @@ import type { PostFrontmatter } from 'src/types/PostFrontmatter';
 
 import SocialShareBar from '@/components/SocialShareBar.astro';
 import IconClock from '@/icons/clock';
+import IconUpArrow from '@/icons/upArrow.tsx';
 import formatDate from '@/utils/formatDate';
 import getReadingTime from '@/utils/getReadingTime';
 
@@ -73,14 +74,23 @@ const rawText = props.raw ? props.raw() : '';
 <script>
   (() => {
     // credate dropcap for first paragraph of content
-    const firstParagraph = document.querySelector('.post-content p');
-    if (firstParagraph) {
-      const firstLetter = firstParagraph.textContent?.charAt(0);
-      if (firstLetter) {
-        firstParagraph.innerHTML = `<div class="dropcap text-exo float-left text-sm leading-0 tracking-tight font-bold">${firstLetter}</div>${firstParagraph.innerHTML.slice(
-          1
-        )}`;
-      }
+    // const firstParagraph = document.querySelector('.post-content p');
+    // if (firstParagraph) {
+    //   const firstLetter = firstParagraph.textContent?.charAt(0);
+    //   if (firstLetter) {
+    //     firstParagraph.innerHTML = `<div class="dropcap text-exo float-left text-sm leading-0 tracking-tight font-bold">${firstLetter}</div>${firstParagraph.innerHTML.slice(
+    //       1
+    //     )}`;
+    //   }
+    // }
+
+    // setup back to top button
+    const backToTop = document.getElementById('back-to-top-btn');
+    const postColumn = document.getElementById('post-column');
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        postColumn?.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
 
     // Create link icons for each heading and implement the ability to
@@ -139,9 +149,20 @@ const rawText = props.raw ? props.raw() : '';
 
   <div class="blogpost flex justify-center md:justify-between">
     <div class="relative w-full max-w-7xl p-4 lg:max-w-2xl lg:self-start">
-      <div class="post-content">
+      <div class="post-content relative">
         <Fragment set:html={mdHtml} />
+        <div class="fixed bottom-7 right-20 flex">
+          <div
+            id="back-to-top-btn"
+            class="back-to-top-btn cursor-pointer rounded-full bg-primarydark p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
+          >
+            <div style="width: 24px;">
+              <IconUpArrow />
+            </div>
+          </div>
+        </div>
       </div>
+
       <SocialShareBar />
 
       <div class="2xl:hidden">
@@ -160,6 +181,7 @@ const rawText = props.raw ? props.raw() : '';
         <Footer />
       </div>
     </div>
+
     <div class="hidden p-4 2xl:block">
       <div class="right-column sticky top-0 flex flex-wrap justify-start">
         <div class="text-exo w-full px-2 pt-4 text-right text-2xl font-bold">
