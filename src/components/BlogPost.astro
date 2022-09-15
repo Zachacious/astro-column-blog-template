@@ -10,6 +10,7 @@ import type { ReactNode } from 'react';
 import type { PostFrontmatter } from 'src/types/PostFrontmatter';
 
 import SocialShareBar from '@/components/SocialShareBar.astro';
+import SubscribeWidget from '@/components/SubscribeWidget';
 import IconClock from '@/icons/clock';
 import IconUpArrow from '@/icons/upArrow.tsx';
 import formatDate from '@/utils/formatDate';
@@ -188,6 +189,8 @@ const rawText = props.raw ? props.raw() : '';
           Read Next
         </div>
         {getUpNext(1).map((post) => <MiniBlogCard post={post} />)}
+        <SubscribeWidget />
+
         <div class="flex flex-wrap items-center justify-end py-4">
           {
             allTags.map((tag: string) => (
