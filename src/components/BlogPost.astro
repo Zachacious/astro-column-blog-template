@@ -85,6 +85,20 @@ const rawText = props.raw ? props.raw() : '';
     //   }
     // }
 
+    // hide or display the back to top button
+    // based on the scroll position
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    const contentCol = document.getElementById('post-column');
+    if (backToTopBtn) {
+      contentCol?.addEventListener('scroll', () => {
+        if (contentCol?.scrollTop > (contentCol?.clientHeight ?? 0) * 0.2) {
+          backToTopBtn.style.opacity = '1';
+        } else {
+          backToTopBtn.style.opacity = '0';
+        }
+      });
+    }
+
     // setup back to top button
     const backToTop = document.getElementById('back-to-top-btn');
     const postColumn = document.getElementById('post-column');
@@ -150,12 +164,13 @@ const rawText = props.raw ? props.raw() : '';
 
   <div class="blogpost flex justify-center md:justify-between">
     <div class="relative w-full max-w-7xl p-4 lg:max-w-2xl lg:self-start">
-      <div class="post-content relative">
+      <div id="post-content" class="post-content relative">
         <Fragment set:html={mdHtml} />
         <div class="fixed bottom-7 right-20 flex">
           <div
             id="back-to-top-btn"
-            class="back-to-top-btn cursor-pointer rounded-full bg-primarydark p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
+            class="back-to-top-btn cursor-pointer rounded-full bg-accent p-2 text-textdark drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
+            style="transition: opacity .2s; opacity: 0;"
           >
             <div style="width: 24px;">
               <IconUpArrow />
