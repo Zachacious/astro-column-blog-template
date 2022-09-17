@@ -3,9 +3,13 @@
   height: 330px;
 
   a {
-    color: #2CDA9D;
+    color: #222255 !important;
   }
+
 }
+
+
+
 
 .blog-card__header {
   min-height: 140px;
@@ -32,5 +36,11 @@
 html.theme-dark *{
   .blog-card__desc {
     mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  }
+
+  .blog-card  {
+    a {
+      color: #2CDA9D !important;
+    }
   }
 }

@@ -9,7 +9,7 @@ const onClickSearch = () => {
   const search = document.getElementById('search');
   const searchWrapper = document.getElementById('search-wrapper');
   const title = document.getElementById('title');
-  const subscribe = document.getElementById('please-subscribe');
+  // const subscribe = document.getElementById('please-subscribe');
 
   if (overlay?.classList.contains('active')) {
     overlay?.classList.remove('active');
@@ -24,9 +24,9 @@ const onClickSearch = () => {
     title?.classList.add('fade-in-full');
     title?.classList.remove('hidden');
 
-    subscribe?.classList.remove('fade-out');
-    subscribe?.classList.add('fade-in-full');
-    subscribe?.classList.remove('hidden');
+    // subscribe?.classList.remove('fade-out');
+    // subscribe?.classList.add('fade-in-full');
+    // subscribe?.classList.remove('hidden');
 
     search?.classList.add('pointer-events-none');
     searchWrapper?.classList.add('hidden');
@@ -46,9 +46,9 @@ const onClickSearch = () => {
     title?.classList.add('fade-out');
     title?.classList.add('hidden');
 
-    subscribe?.classList.remove('fade-in-full');
-    subscribe?.classList.add('fade-out');
-    subscribe?.classList.add('hidden');
+    // subscribe?.classList.remove('fade-in-full');
+    // subscribe?.classList.add('fade-out');
+    // subscribe?.classList.add('hidden');
 
     search?.classList.remove('pointer-events-none');
   }

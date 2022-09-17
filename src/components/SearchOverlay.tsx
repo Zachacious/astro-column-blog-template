@@ -1,5 +1,6 @@
+import autoAnimate from '@formkit/auto-animate';
 import type { MarkdownInstance } from 'astro';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import MiniBlogCard from '@/components/MiniBlogCard';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
@@ -22,11 +23,17 @@ const SearchOverlay = (props: {
 }) => {
   const [searchValue, setSearchValue] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(props.posts);
+  const resultsArea = useRef(null);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
     setFilteredPosts(filterPosts(props.posts, event.target.value));
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    resultsArea.current && autoAnimate(resultsArea.current);
+  }, [resultsArea]);
 
   return (
     <div
@@ -49,7 +56,10 @@ const SearchOverlay = (props: {
           />
         </form>
 
-        <div className="my-8 flex w-full flex-wrap justify-center">
+        <div
+          ref={resultsArea}
+          className="my-8 flex w-full flex-wrap justify-center"
+        >
           {filteredPosts.length > 0 ? (
             filteredPosts.slice(0, 4).map((post) => (
               <div className="mr-4 mb-4" key={post.url}>
