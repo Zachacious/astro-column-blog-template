@@ -59,7 +59,9 @@ const description =
       </Hero>
     </div>
     <div class="md:2/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
-      <ContentTopBar />
+      <ContentTopBar>
+        <div slot="left">{page.total} Results</div>
+      </ContentTopBar>
       <div class="my-10 flex w-full justify-center">
         <div class="flex max-w-7xl flex-wrap justify-center">
           {page.data.map((post) => <BlogCard post={post} />)}
