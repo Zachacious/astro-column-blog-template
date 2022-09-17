@@ -31,18 +31,19 @@ for (let i = 1; i <= props.page.lastPage; i++) {
     )
   }
   {
-    pages.map((page) => (
-      <a
-        href={page.link}
-        class={
-          page.isActive
-            ? ' pointer-events-none m-1 rounded-md border border-accent p-1 px-2 font-bold'
-            : 'm-1 p-1 text-sm'
-        }
-      >
-        {page.num}
-      </a>
-    ))
+    pages.length > 1 &&
+      pages.map((page) => (
+        <a
+          href={page.link}
+          class={
+            page.isActive
+              ? ' pointer-events-none m-1 rounded-md border border-accent p-1 px-2 font-bold'
+              : 'm-1 p-1 text-sm'
+          }
+        >
+          {page.num}
+        </a>
+      ))
   }
   {
     props.page.url.next && (
