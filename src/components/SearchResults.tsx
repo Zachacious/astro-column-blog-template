@@ -60,17 +60,23 @@ const SearchResults = (props: {
 
   return (
     <div className=" flex w-full flex-wrap justify-center ">
-      <div className="flex w-full  justify-center">
-        <IconSearch className="icon-md pt-2" />
+      {/* <form action={`/search?s=${inputValue}`} method="post" className=""> */}
+      <form
+        action={`/search?s=${inputValue}`}
+        method="post"
+        className="mb-10 flex w-full items-center  rounded-md  bg-textdark p-2 px-4 text-xl font-bold drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] dark:bg-primarydark lg:w-1/2"
+      >
         <input
           id="searchInput"
-          className="mb-10 w-full border-b-2 border-primarydark bg-transparent text-xl font-bold text-primarydark placeholder:text-primarydark focus:outline-none dark:border-textdark dark:text-textdark dark:placeholder:text-textdark dark:focus:border-textdark lg:w-1/2"
+          className="w-full bg-transparent  text-primarydark placeholder:text-primarydark focus:outline-none dark:border-textdark dark:text-textdark dark:placeholder:text-textdark dark:focus:border-textdark "
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Search"
         />
-      </div>
+        <IconSearch className="icon-md " />
+      </form>
+      {/* </form> */}
       <div
         className="my-8 flex w-full flex-wrap justify-center overflow-hidden"
         ref={resultsArea}

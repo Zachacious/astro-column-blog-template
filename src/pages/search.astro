@@ -40,7 +40,9 @@ const { description } = AppConfig;
       </Hero>
     </div>
     <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
-      <ContentTopBar />
+      <ContentTopBar>
+        <div slot="left">results</div>
+      </ContentTopBar>
       <div class="my-4 w-full p-8">
         <div class="flex w-full flex-wrap justify-center">
           <SearchResults results={sortedPosts} client:load />
