@@ -15,14 +15,38 @@ const filterPosts = (
   posts: MarkdownInstance<PostFrontmatter>[],
   query: string
 ) => {
-  if (!query) return posts;
-  if (!posts) return [];
-  return posts.filter((post) => {
+  if (!query) {
+    window.dispatchEvent(
+      new CustomEvent('search-results-updated', {
+        detail: { numResults: posts.length },
+      })
+    );
+    return posts;
+  }
+
+  if (!posts) {
+    window.dispatchEvent(
+      new CustomEvent('search-results-updated', {
+        detail: { numResults: 0 },
+      })
+    );
+    return [];
+  }
+
+  const res = posts.filter((post) => {
     return (
       post.frontmatter.title.toLowerCase().includes(query.toLowerCase()) ||
       post.frontmatter.description.toLowerCase().includes(query.toLowerCase())
     );
   });
+
+  window.dispatchEvent(
+    new CustomEvent('search-results-updated', {
+      detail: { numResults: res.length },
+    })
+  );
+
+  return res;
 };
 
 const SearchResults = (props: {

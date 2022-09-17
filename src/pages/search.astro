@@ -30,6 +30,15 @@ const { description } = AppConfig;
   const params = Object.fromEntries(urlSearchParams.entries());
 
   sessionStorage.setItem('searchTerm', params?.s ?? '');
+
+  // listen for 'search-results-updated' event
+  // and update the search-results-num element
+  window.addEventListener('search-results-updated', async (e) => {
+    const { detail } = e as unknown as { detail: { numResults: number } };
+    const { numResults } = detail;
+    const searchResultsNum = document.querySelector('#search-results-num');
+    if (searchResultsNum) searchResultsNum!.textContent = `${numResults}`;
+  });
 </script>
 
 <Base head={{ title, description }}>
@@ -41,7 +50,7 @@ const { description } = AppConfig;
     </div>
     <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar>
-        <div slot="left">results</div>
+        <div slot="left"><span id="search-results-num">0</span> Results</div>
       </ContentTopBar>
       <div class="my-4 w-full p-8">
         <div class="flex w-full flex-wrap justify-center">
