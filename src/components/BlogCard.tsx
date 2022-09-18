@@ -1,13 +1,12 @@
+/*
+For static applications use the astro component instead
+*/
 import '../css/blogcard.scss';
 
 import type { MarkdownInstance } from 'astro-boilerplate-components';
 
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import formatDate from '@/utils/formatDate';
-
-// interface IFrontmatterTags extends IFrontmatter {
-//   tags: string[];
-// }
 
 const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
   const { post } = props;

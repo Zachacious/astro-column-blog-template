@@ -3,17 +3,12 @@ import BigSubCTA from '@/components/BigSubCTA.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import ContentTopBar from '@/components/ContentTopBar.astro';
 import { Footer } from '@/components/Footer';
-// import { PageHero } from '../../../components/PageHero';
 import Hero from '@/components/Hero.astro';
 import Paginator from '@/components/Paginator.astro';
 import Base from '@/templates/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import type { PostPage } from '@/types/PostPage';
 import { AppConfig } from '@/utils/AppConfig';
-
-// interface ITagFrontmatter extends IFrontmatter {
-//   tags: string[];
-// }
 
 type GetStaticPaths = {
   paginate: any;
@@ -67,12 +62,10 @@ const description =
           {page.data.map((post) => <BlogCard post={post} />)}
         </div>
       </div>
-      <!-- <Section> -->
       <div>
         <Paginator page={page} />
       </div>
-      <!-- <NewerOlderPagination page={page} /> -->
-      <!-- </Section> -->
+
       <Footer />
     </div>
   </div>

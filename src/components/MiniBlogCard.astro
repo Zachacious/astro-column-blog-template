@@ -5,9 +5,6 @@ import { Picture } from 'astro-imagetools/components';
 
 const { post } = Astro.props;
 
-// const style = post.frontmatter?.imgSrc
-//   ? `background: url(${post.frontmatter.imgSrc}) center center / cover no-repeat;`
-//   : '';
 const bkImg = post.frontmatter.imgSrc;
 ---
 
@@ -18,6 +15,8 @@ const bkImg = post.frontmatter.imgSrc;
   {
     bkImg && (
       <div class="bloghero-bkimg absolute top-0 left-0 z-0 h-full w-full">
+        <!-- use image tools to auto optimize
+         can't do this on the react component -->
         <Picture src={bkImg} alt="test" />
       </div>
     )

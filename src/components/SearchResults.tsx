@@ -7,9 +7,6 @@ import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
 import BlogCard from './BlogCard';
 import { Footer } from './Footer';
-// interface IFrontmatterTags extends IFrontmatter {
-//   tags: string[];
-// }
 
 const filterPosts = (
   posts: MarkdownInstance<PostFrontmatter>[],
@@ -84,7 +81,6 @@ const SearchResults = (props: {
 
   return (
     <div className=" flex w-full flex-wrap justify-center ">
-      {/* <form action={`/search?s=${inputValue}`} method="post" className=""> */}
       <form
         action={`/search?s=${inputValue}`}
         method="post"
@@ -100,7 +96,6 @@ const SearchResults = (props: {
         />
         <IconSearch className="icon-md " />
       </form>
-      {/* </form> */}
       <div
         className="my-8 flex w-full flex-wrap justify-center overflow-hidden"
         ref={resultsArea}

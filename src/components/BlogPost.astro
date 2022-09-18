@@ -3,10 +3,6 @@ import 'src/css/blogpost.scss';
 
 import type { MarkdownInstance } from 'astro-boilerplate-components';
 import type { ReactNode } from 'react';
-// interface IBlogFrontmatter extends IFrontmatter {
-//   astro: any;
-//   tags: string[];
-// }
 import type { PostFrontmatter } from 'src/types/PostFrontmatter';
 
 import SocialShareBar from '@/components/SocialShareBar.astro';
@@ -15,6 +11,7 @@ import IconClock from '@/icons/clock';
 import IconUpArrow from '@/icons/upArrow.tsx';
 import formatDate from '@/utils/formatDate';
 import getReadingTime from '@/utils/getReadingTime';
+import getReadNextPosts from '@/utils/getReadNextPosts';
 
 import BlogCard from './BlogCard.astro';
 import ContentTopBar from './ContentTopBar.astro';
@@ -30,34 +27,7 @@ type IBlogPostProps = {
 };
 
 const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
-
 const props = Astro.props as IBlogPostProps;
-
-const getUpNext = (count: number) => {
-  const filteredPosts = allPosts.filter(
-    (post) => post.frontmatter.title !== props.frontmatter.title
-  );
-
-  const taggedPosts = filteredPosts.filter((post) => {
-    return post.frontmatter.tags.some((tag: any) =>
-      props.frontmatter.tags.includes(tag)
-    );
-  });
-
-  if (!taggedPosts.length) {
-    const idxs = [];
-    for (let i = 0; i <= count; ++i) {
-      idxs.push(Math.floor(Math.random() * filteredPosts.length));
-    }
-    return [...new Set(idxs.map((idx) => filteredPosts[idx]))];
-  }
-
-  const idxs = [];
-  for (let i = 0; i <= count; ++i) {
-    idxs.push(Math.floor(Math.random() * taggedPosts.length));
-  }
-  return [...new Set(idxs.map((idx) => taggedPosts[idx]))];
-};
 
 const allTags = allPosts.reduce((acc: any, post) => {
   post.frontmatter.tags.forEach((tag: any) => {
@@ -187,7 +157,7 @@ const rawText = props.raw ? props.raw() : '';
         </div>
         <div class="mt-8 flex w-full flex-wrap justify-center">
           {
-            getUpNext(4).map((post) => (
+            getReadNextPosts(4, props.frontmatter, allPosts).map((post) => (
               <BlogCard post={post as MarkdownInstance<PostFrontmatter>} />
             ))
           }
@@ -203,7 +173,11 @@ const rawText = props.raw ? props.raw() : '';
         <div class="text-exo w-full px-2 pt-4 text-right text-2xl font-bold">
           Read Next
         </div>
-        {getUpNext(1).map((post) => <MiniBlogCard post={post} />)}
+        {
+          getReadNextPosts(1, props.frontmatter, allPosts).map((post) => (
+            <MiniBlogCard post={post} />
+          ))
+        }
         <SubscribeWidget />
 
         <div class="flex flex-wrap items-center justify-end py-4">

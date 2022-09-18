@@ -1,4 +1,11 @@
 ---
+/*
+This Blog card is used by astro components on static pages
+the react version is used for dynamic applications
+
+I'd rather have one component instead of two but
+this will have to work for now.
+*/
 import '../css/blogcard.scss';
 
 import type { MarkdownInstance } from 'astro-boilerplate-components';
@@ -16,10 +23,6 @@ const props = Astro.props as Props;
 const { post } = props;
 
 const bkImg = post.frontmatter.imgSrc;
-
-// const style = post.frontmatter.imgSrc
-//   ? `background: url(${post.frontmatter.imgSrc}) center center / cover no-repeat;`
-//   : '';
 ---
 
 <div
@@ -29,6 +32,8 @@ const bkImg = post.frontmatter.imgSrc;
   {
     bkImg && (
       <div class="bloghero-bkimg absolute top-0 left-0 z-0 h-full w-full">
+        <!-- use image tools to auto optimize
+         can't do this on the react component -->
         <Picture src={bkImg} alt="test" />
       </div>
     )

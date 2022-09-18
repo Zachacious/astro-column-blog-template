@@ -1,5 +1,4 @@
 ---
-// import "src/css/bloghero.scss";
 import 'src/css/icon.scss';
 import 'src/css/hero.scss';
 
@@ -11,10 +10,6 @@ import SearchOverlay from '@/components/SearchOverlay';
 import IconGithub from '@/icons/github';
 import IconLinkedin from '@/icons/linkedin';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
-
-// interface IBlogFrontmatter extends IFrontmatter {
-//   tags?: string[];
-// }
 
 type Props = {
   mode?: string;
@@ -62,6 +57,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
 >
   <div class="hero flex justify-center p-8 md:h-full">
     <div class="hero-bk-img-wrapper absolute top-0 left-0 h-full w-full">
+      <!-- Use image tools to optimize bk image -->
       {bkimg && <Picture src={bkimg} alt="ZachMoore.dev" />}
     </div>
     {

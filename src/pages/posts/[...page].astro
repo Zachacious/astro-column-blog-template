@@ -9,7 +9,7 @@ import Base from '@/templates/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import type { PostPage } from '@/types/PostPage';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortByDate } from '@/utils/Posts';
+import sortByDate from '@/utils/sortByDate';
 
 type GetStaticPaths = {
   paginate: any;
