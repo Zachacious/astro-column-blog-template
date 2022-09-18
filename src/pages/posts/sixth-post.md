@@ -7,6 +7,7 @@ imgSrc: '/assets/images/image-post.jpg'
 imgAlt: 'Image post'
 category: 'Typography'
 tags: ['typography', 'example']
+author: 'Zach Moore'
 ---
 
 This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi, inventore atque cupiditate. Sed voluptatem quas omnis culpa, et odit.

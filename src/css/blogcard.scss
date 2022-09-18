@@ -8,7 +8,13 @@
 
 }
 
+.bloghero-bkimg {
+  *img, picture {
+    width: 100% !important;
+  height: 100% !important;
+  }
 
+}
 
 
 .blog-card__header {

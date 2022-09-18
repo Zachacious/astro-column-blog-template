@@ -18,7 +18,7 @@ const MiniBlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
 
   return (
     <div
-      className="relative my-4 flex cursor-pointer flex-col rounded-md bg-secondarydark bg-cover bg-center  p-2 px-4  drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] "
+      className="relative my-4 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center  p-2 px-4  drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] "
       style={style}
       onClick={onClick}
     >

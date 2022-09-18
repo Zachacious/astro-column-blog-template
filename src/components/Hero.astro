@@ -36,8 +36,8 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
     const page = window.location.pathname.split('/').pop();
 
     if (page?.includes('search')) {
-      const search = document.getElementById('search');
-      const searchWrapper = document.getElementById('search-wrapper');
+      // const search = document.getElementById('search');
+      // const searchWrapper = document.getElementById('search-wrapper');
 
       sessionStorage.setItem('searchActive', 'false');
 

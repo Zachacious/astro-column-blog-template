@@ -24,7 +24,7 @@ const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
 
   return (
     <div
-      className="blog-card relative mx-4 mb-8 flex cursor-pointer flex-col rounded-md bg-secondarydark bg-cover bg-center p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
+      className="blog-card relative mx-4 mb-8 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
       style={style}
       onClick={onClick}
     >

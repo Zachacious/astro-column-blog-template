@@ -1,18 +1,27 @@
 ---
 import '../css/blogcard.scss';
 
+import { Picture } from 'astro-imagetools/components';
+
 const { post } = Astro.props;
 
-const style = post.frontmatter?.imgSrc
-  ? `background: url(${post.frontmatter.imgSrc}) center center / cover no-repeat;`
-  : '';
+// const style = post.frontmatter?.imgSrc
+//   ? `background: url(${post.frontmatter.imgSrc}) center center / cover no-repeat;`
+//   : '';
+const bkImg = post.frontmatter.imgSrc;
 ---
 
 <div
-  class="relative my-4 flex cursor-pointer flex-col rounded-md bg-secondarydark bg-cover bg-center p-2 px-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
-  style={style}
+  class="relative my-4 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-2 px-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
   onclick={`window.location.href='${post.url}'`}
 >
+  {
+    bkImg && (
+      <div class="bloghero-bkimg absolute top-0 left-0 z-0 h-full w-full">
+        <Picture src={bkImg} alt="test" />
+      </div>
+    )
+  }
   <div class="blog-card__overlay absolute bg-textdark dark:bg-primarydark">
   </div>
   <div class="z-0 rounded-t-md px-3">

@@ -6,6 +6,7 @@ type PostFrontmatter = {
   imgSrc?: string;
   imgAlt?: string;
   tags: string[];
+  author?: string;
 };
 
 export type { PostFrontmatter };
