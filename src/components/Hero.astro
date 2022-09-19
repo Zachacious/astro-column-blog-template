@@ -9,13 +9,14 @@ import SearchBtn from 'src/components/SearchBtn';
 import SearchOverlay from '@/components/SearchOverlay';
 import IconGithub from '@/icons/github';
 import IconLinkedin from '@/icons/linkedin';
+import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 
 type Props = {
   mode?: string;
   title?: string;
   subtitle?: string;
-  frontmatter?: PostFrontmatter;
+  frontmatter?: PostFrontmatter | AuthorFrontmatter;
   children?: ReactNode;
 };
 
@@ -115,19 +116,21 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
           <h1
             class="post-title text-right text-5xl font-bold capitalize text-primarydark dark:text-textdark md:text-7xl"
           >
-            {
-              props.mode === 'search' ? (
-                <div id="search-title" class="">
-                  Search
-                </div>
-              ) : props.mode === 'post' ? (
-                props?.frontmatter?.title
-              ) : props?.title ? (
-                props?.title
-              ) : (
-                'Blog'
-              )
-            }
+            <slot name="title">
+              {
+                props.mode === 'search' ? (
+                  <div id="search-title" class="">
+                    Search
+                  </div>
+                ) : props.mode === 'post' ? (
+                  props?.frontmatter?.title
+                ) : props?.title ? (
+                  props?.title
+                ) : (
+                  'Blog'
+                )
+              }
+            </slot>
           </h1>
           {
             props.mode === 'post' && (

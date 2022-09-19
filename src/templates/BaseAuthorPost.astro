@@ -1,0 +1,119 @@
+---
+import '../css/global.scss';
+import '@/css/authorcard.scss';
+import '@/css/icon.scss';
+
+import { Picture } from 'astro-imagetools/components';
+
+import AuthorPost from '@/components/AuthorPost.astro';
+// import  BlogHero  from '@/components/BlogHero.astro';
+import Hero from '@/components/Hero.astro';
+import IconGithub from '@/icons/github';
+import IconLink from '@/icons/link';
+import IconLinkedin from '@/icons/linkedin';
+import IconTwitter from '@/icons/twitter';
+import Base from '@/templates/Base.astro';
+import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
+import getAuthorData from '@/utils/getAuthorData';
+
+interface Props {
+  content: AuthorFrontmatter;
+}
+
+const { content } = Astro.props as Props;
+const html = Astro.props.compiledContent;
+const rawText = Astro.props.rawContent;
+
+const authorData = getAuthorData(content.name);
+---
+
+<Base head={{ title: '', description: '' }}>
+  <div class="flex w-full flex-wrap">
+    <div class="md:2/5 w-full lg:w-2/5">
+      <!-- <BlogHero frontmatter={content} /> -->
+      <Hero frontmatter={content} mode="post">
+        <div slot="title">
+          <h1
+            class="md:text-7x text-right text-5xl font-bold capitalize text-primarydark dark:text-textdark"
+          >
+            <div class="flex w-full flex-wrap items-center justify-end">
+              <div class="">
+                <div class="text-2xl">Author</div>
+                <div class="w-full">{content.name}</div>
+                <div class="text-lg">{authorData?.title}</div>
+                <div
+                  class="flex flex-wrap items-center justify-end text-accent"
+                >
+                  {
+                    authorData?.links?.github && (
+                      <div class="flex">
+                        <a href={authorData.links?.github} class="icon-sm mr-1">
+                          <IconGithub />
+                        </a>
+                      </div>
+                    )
+                  }
+
+                  {
+                    authorData?.links?.linkedin && (
+                      <div class="flex">
+                        <a
+                          href={authorData.links?.linkedin}
+                          class="icon-sm mr-1"
+                        >
+                          <IconLinkedin />
+                        </a>
+                      </div>
+                    )
+                  }
+
+                  {
+                    authorData?.links?.twitter && (
+                      <div class="flex">
+                        <a
+                          href={authorData.links?.twitter}
+                          class="icon-sm mr-1"
+                        >
+                          <IconTwitter />
+                        </a>
+                      </div>
+                    )
+                  }
+
+                  {
+                    authorData?.links?.website && (
+                      <div class="flex">
+                        <a
+                          href={authorData.links?.website}
+                          class="icon-sm mr-1"
+                        >
+                          <IconLink />
+                        </a>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+
+              <div class="">
+                <div
+                  class="author-avatar m-2 h-full w-full overflow-hidden rounded-full border-boom"
+                >
+                  <Picture src={authorData?.avatar} alt="" />
+                </div>
+              </div>
+            </div>
+          </h1>
+        </div>
+      </Hero>
+    </div>
+    <div
+      id="post-column"
+      class="md:2/5 h-screen w-full lg:w-3/5 lg:overflow-y-auto"
+    >
+      <AuthorPost frontmatter={content} html={html} raw={rawText}>
+        <slot />
+      </AuthorPost>
+    </div>
+  </div>
+</Base>

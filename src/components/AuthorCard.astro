@@ -1,0 +1,84 @@
+---
+import '@/css/authorcard.scss';
+import '@/css/icon.scss';
+
+import type { MarkdownInstance } from 'astro';
+import { Picture } from 'astro-imagetools/components';
+
+import IconGithub from '@/icons/github';
+import IconLink from '@/icons/link';
+import IconLinkedin from '@/icons/linkedin';
+import IconTwitter from '@/icons/twitter';
+import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
+import getAuthorData from '@/utils/getAuthorData';
+
+type Props = {
+  author: MarkdownInstance<AuthorFrontmatter>;
+  numPosts: number;
+};
+
+const props = Astro.props as Props;
+const { author } = props;
+
+const authorData = getAuthorData(author.frontmatter.name);
+---
+
+<div
+  class="author-card relative mr-8 mb-8 flex w-full cursor-pointer flex-col overflow-hidden rounded-md"
+  onclick={`window.location.href='${author.url}'`}
+>
+  {
+    authorData && (
+      <div class="flex flex-wrap items-center justify-center">
+        <div class="author-avatar m-2 h-full w-full overflow-hidden rounded-full  border-boom">
+          <Picture src={authorData?.avatar} alt="" />
+        </div>
+        <div class="ml-2">
+          <h2 class="text-primary text-3xl font-bold">{authorData.name}</h2>
+          <p class="text-primary text-sm">{authorData.title}</p>
+
+          <div class="flex w-full flex-wrap items-center justify-between">
+            <div class="flex flex-wrap text-accent">
+              {authorData.links?.github && (
+                <div class="flex">
+                  <a href={authorData.links?.github} class="icon-sm mr-1">
+                    <IconGithub />
+                  </a>
+                </div>
+              )}
+
+              {authorData.links?.linkedin && (
+                <div class="flex">
+                  <a href={authorData.links?.linkedin} class="icon-sm mr-1">
+                    <IconLinkedin />
+                  </a>
+                </div>
+              )}
+
+              {authorData.links?.twitter && (
+                <div class="flex">
+                  <a href={authorData.links?.twitter} class="icon-sm mr-1">
+                    <IconTwitter />
+                  </a>
+                </div>
+              )}
+
+              {authorData.links?.website && (
+                <div class="flex">
+                  <a href={authorData.links?.website} class="icon-sm mr-1">
+                    <IconLink />
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <div class="my-1 flex flex-wrap items-center text-lg">
+              <span class="mr-2">{props.numPosts}</span>
+              <span> Posts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>

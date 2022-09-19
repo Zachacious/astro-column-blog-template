@@ -1,0 +1,83 @@
+---
+// import '../../css/pagehero.scss';
+
+import type { MarkdownInstance } from 'astro-boilerplate-components';
+
+import AuthorCard from '@/components/AuthorCard.astro';
+import ContentTopBar from '@/components/ContentTopBar.astro';
+import Hero from '@/components/Hero.astro';
+// import Paginator from '@/components/Paginator.astro';
+import Base from '@/templates/Base.astro';
+import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
+import type { AuthorPage } from '@/types/AuthorPage';
+import type { PostFrontmatter } from '@/types/PostFrontmatter';
+import { AppConfig } from '@/utils/AppConfig';
+
+type GetStaticPaths = {
+  paginate: any;
+}; // Overrides `GetStaticPathsOptions` types from Astro
+
+const allPosts = await Astro.glob<PostFrontmatter>('./*.md');
+
+export async function getStaticPaths({ paginate }: GetStaticPaths) {
+  const allAuthorPosts = await Astro.glob<AuthorFrontmatter>('./*.md');
+  // const sortedPosts = sortByDate(allPosts);
+
+  // Return a paginated collection of paths for all posts
+  return paginate(allAuthorPosts, { pageSize: 16 });
+}
+
+interface Props {
+  // page: FrontmatterPage;
+  page: AuthorPage;
+}
+
+const getNumPostsByAuthor = (
+  author: string,
+  posts: MarkdownInstance<PostFrontmatter>[]
+) => {
+  return posts.filter(
+    (post) =>
+      post.frontmatter?.name?.trim().toLowerCase() ===
+      author.trim().toLowerCase()
+  ).length;
+};
+
+const { page } = Astro.props as Props;
+
+const titleSuffix = ` - ${AppConfig.site_name}`;
+const titleBase = `Blog page ${page.currentPage}`;
+const title = titleBase + titleSuffix;
+const description =
+  'Pagination example built with Astro styled with Tailwind CSS.';
+---
+
+<Base head={{ title, description }}>
+  <div class="flex w-full flex-wrap">
+    <div class="md:2/5 w-full lg:w-2/5">
+      <Hero title="Authors" subtitle="Published" mode="page" />
+    </div>
+    <div class="md:2/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
+      <ContentTopBar />
+      <div class="my-10 flex w-full justify-center">
+        <div class="flex max-w-7xl flex-wrap justify-center">
+          {
+            page.data.map((author) => (
+              <AuthorCard
+                author={author}
+                numPosts={getNumPostsByAuthor(
+                  author.frontmatter.name,
+                  allPosts
+                )}
+              />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- <div>
+        <Paginator page={page} />
+      </div> -->
+    </div>
+  </div>
+</Base>
