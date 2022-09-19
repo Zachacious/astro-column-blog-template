@@ -4,7 +4,9 @@ import type { ReactNode } from 'react';
 
 import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
+import getPostsByAuthor from '@/utils/getPostsByAuthor';
 
+import BlogCard from './BlogCard.astro';
 // import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import ContentTopBar from './ContentTopBar.astro';
 import { Footer } from './Footer';
@@ -23,39 +25,43 @@ const props = Astro.props as IBlogPostProps;
 const mdHtml = props.html ? props.html() : '';
 // const rawText = props.raw ? props.raw() : '';
 
-const getPostsByAuthor = (
-  author: string,
-  posts: MarkdownInstance<PostFrontmatter>[]
-) => {
-  return posts.filter(
-    (post) =>
-      post.frontmatter?.author?.trim().toLowerCase() ===
-      author.trim().toLowerCase()
-  );
-};
+const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
+const authorPosts = getPostsByAuthor(props.frontmatter.name, allPosts);
+const numPosts = authorPosts.length;
 ---
 
 <div class="p-8">
   <ContentTopBar />
 
-  <div class="blogpost flex justify-center md:justify-between">
+  <div class="blogpost flex justify-center md:justify-center">
     <div class="relative w-full max-w-7xl p-4 lg:max-w-2xl lg:self-start">
       <div id="post-content" class="post-content relative">
         <Fragment set:html={mdHtml} />
       </div>
 
-      <div class="2xl:hidden">
-        <div class="text-exo w-full px-2 pt-4 text-4xl font-bold">
-          Read Next
-        </div>
-        <div class="mt-8 flex w-full flex-wrap justify-center">
-          <!-- {
-            getReadNextPosts(4, props.frontmatter, allPosts).map((post) => (
-              <BlogCard post={post as MarkdownInstance<PostFrontmatter>} />
-            ))
-          } -->
-        </div>
-      </div>
+      {
+        numPosts > 0 && (
+          <div class="my-10 flex w-full justify-center">
+            <div class="flex max-w-7xl flex-wrap justify-center">
+              {authorPosts.map((post) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      {
+        numPosts > 6 && (
+          <div class="flex justify-center">
+            <a href="/blog" class="text-center text-lg">
+              See all {numPosts} of {props.frontmatter.name.split(' ')[0]}'s
+              posts
+            </a>
+          </div>
+        )
+      }
+
       <div class="mt-8 flex w-full justify-center p-4 text-sm opacity-50">
         <Footer />
       </div>
