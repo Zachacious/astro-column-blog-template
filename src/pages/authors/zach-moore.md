@@ -1,5 +1,5 @@
 ---
-layout: '@/templates/BaseAuthorPost.astro'
+layout: '@/layouts/BaseAuthorPost.astro'
 name: Zach Moore
 heroImgSrc: '/assets/images/programmer.jpg'
 ---
