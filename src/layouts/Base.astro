@@ -3,56 +3,9 @@
 import "src/css/global.scss";
 import "@fontsource/exo"
 import "@fontsource/poppins"
-import {ImageSupportDetection}  from 'astro-imagetools/components';
 import TransitionOverlay from '@julian_cataldo/astro-transition/Transition.astro';
-import Prefetch from '@julian_cataldo/astro-prefetch/Prefetch.astro';
 
-import { AppConfig } from '@/utils/AppConfig';
-
-export interface Props {
-  head: {
-    title: string;
-    description: string;
-    author?: string;
-    canonical: string;
-    noindex?: boolean;
-    nofollow?: boolean;
-    openGraph?: {
-      basic: {
-        title: string;
-        description: string;
-        url: string;
-        type: string;
-        locale: string;
-        siteName: string;
-        image?: {
-          url: string;
-          width?: number;
-          height?: number;
-          alt: string;
-        };
-        article?: {
-          publishedTime: string;
-          modifiedTime: string;
-          expirationTime: string;
-          author: string;
-          section: string;
-          tags: string[];
-        };
-        };
-      };
-      twitter?: {
-        card: string;
-        site: string;
-        creator: string;    
-      };
-    }
-  };
-
-
-const {
-  head: { title, description, author, canonical, noindex, nofollow, openGraph, twitter },
-} = Astro.props as Props;
+import PageHead from "@/components/PageHead.astro";
 ---
 
 <script is:inline>
@@ -77,68 +30,8 @@ const {
 </script>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="author" content={author} />
-    <meta name="copyright" content={AppConfig.author} />
-    <meta name="robots" content={`${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`} />
-    
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-    
-    {openGraph &&
-    <meta property="og:title" content={openGraph.basic.title} />
-    <meta property="og:description" content={openGraph.basic.description} />
-    <meta property="og:url" content={openGraph.basic.url} />
-    <meta property="og:type" content={openGraph.basic.type} />
-    <meta property="og:locale" content={openGraph.basic.locale} />
-    <meta property="og:site_name" content={openGraph.basic.siteName} />
-    }
-
-    { openGraph?.basic && (
-      <>
-        <meta property="og:image" content={openGraph.basic?.image?.url ?? ''} />
-        {openGraph.basic?.image?.width && <meta property="og:image:width" content={openGraph.basic.image.width.toString()} />}
-        {openGraph.basic?.image?.height && <meta property="og:image:height" content={openGraph.basic.image.height.toString()} />}
-        <meta property="og:image:alt" content={openGraph.basic?.image?.alt} />
-      </>
-    )
-    }
-
-    { openGraph?.basic?.article && (
-      <>
-        <meta property="article:published_time" content={openGraph.basic.article.publishedTime} />
-        <meta property="article:modified_time" content={openGraph.basic.article.modifiedTime} />
-        <meta property="article:expiration_time" content={openGraph.basic.article.expirationTime} />
-        <meta property="article:author" content={openGraph.basic.article.author} />
-        <meta property="article:section" content={openGraph.basic.article.section} />
-        {openGraph.basic.article.tags.map((tag) => <meta property="article:tag" content={tag} />)}
-      </>
-    )
-    }
-
-    {twitter &&
-    <meta name="twitter:card" content={twitter.card} />
-    <meta name="twitter:site" content={twitter.site} />
-    <meta name="twitter:creator" content={twitter.creator} />
-    }
-
-    <ImageSupportDetection />
-    <Prefetch max={8} />
-
-    <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  </head>
+  <PageHead head={Astro.props.head} />
+  
   <body class="bg-textdark text-primarydark dark:bg-primarydark dark:text-textdark ">
     <TransitionOverlay speed={500} background='#1a2125' zIndex={9999} />
 
