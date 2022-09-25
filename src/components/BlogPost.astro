@@ -8,11 +8,14 @@ import type { PostFrontmatter } from 'src/types/PostFrontmatter';
 import SocialShareBar from '@/components/SocialShareBar.astro';
 import SubscribeWidget from '@/components/SubscribeWidget';
 import IconClock from '@/icons/clock';
-import IconUpArrow from '@/icons/upArrow.tsx';
+import IconUpArrow from '@/icons/upArrow';
+import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
 import formatDate from '@/utils/formatDate';
+import getPostsByAuthor from '@/utils/getPostsByAuthor';
 import getReadingTime from '@/utils/getReadingTime';
 import getReadNextPosts from '@/utils/getReadNextPosts';
 
+import AuthorCard from './AuthorCard.astro';
 import BlogCard from './BlogCard.astro';
 import ContentTopBar from './ContentTopBar.astro';
 import { Footer } from './Footer';
@@ -27,6 +30,9 @@ type IBlogPostProps = {
 };
 
 const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
+const allAuthorPosts = await Astro.glob<AuthorFrontmatter>(
+  '../pages/authors/*.md'
+);
 const props = Astro.props as IBlogPostProps;
 
 const allTags = allPosts.reduce((acc: any, post) => {
@@ -40,6 +46,15 @@ const allTags = allPosts.reduce((acc: any, post) => {
 
 const mdHtml = props.html ? props.html() : '';
 const rawText = props.raw ? props.raw() : '';
+
+const authorData = allAuthorPosts.find(
+  (author) => author.frontmatter.name === props.frontmatter.author
+);
+
+const numAuthorPosts = getPostsByAuthor(
+  props.frontmatter.author ?? '',
+  allPosts
+).length;
 ---
 
 <script>
@@ -139,7 +154,7 @@ const rawText = props.raw ? props.raw() : '';
         <div class="fixed bottom-7 right-20 flex">
           <div
             id="back-to-top-btn"
-            class="back-to-top-btn cursor-pointer rounded-full bg-accent p-2 text-textdark drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
+            class="back-to-top-btn cursor-pointer rounded-full bg-primarydark p-2 text-textdark drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
             style="transition: opacity .2s; opacity: 0;"
           >
             <div style="width: 24px;">
@@ -150,6 +165,14 @@ const rawText = props.raw ? props.raw() : '';
       </div>
 
       <SocialShareBar />
+
+      <div class="flex w-full justify-center">
+        {
+          authorData && (
+            <AuthorCard author={authorData} numPosts={numAuthorPosts} />
+          )
+        }
+      </div>
 
       <div class="2xl:hidden">
         <div class="text-exo w-full px-2 pt-4 text-4xl font-bold">
