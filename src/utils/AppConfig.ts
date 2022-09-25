@@ -5,4 +5,5 @@ export const AppConfig = {
   author: 'Zachacious',
   locale_region: 'en-us',
   locale: 'en',
+  copyright: 'Zach Moore',
 };
