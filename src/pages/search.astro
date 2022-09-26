@@ -10,7 +10,6 @@ import Hero from '@/components/Hero.astro';
 import SearchResults from '@/components/SearchResults';
 import Base from '@/layouts/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
-import { AppConfig } from '@/utils/AppConfig';
 import sortByDate from '@/utils/sortByDate';
 
 // interface IFrontmatterTags extends IFrontmatter {
@@ -21,8 +20,10 @@ const allPosts = await Astro.glob<PostFrontmatter>('./posts/*.md');
 const sortedPosts =
   (sortByDate(allPosts) as MarkdownInstance<PostFrontmatter>[]) || [];
 
-const { title } = AppConfig;
-const { description } = AppConfig;
+const title = 'Search';
+const description = 'Search For Posts';
+const nofollow = true;
+const noindex = true;
 ---
 
 <script>
@@ -41,7 +42,7 @@ const { description } = AppConfig;
   });
 </script>
 
-<Base head={{ title, description }}>
+<Base head={{ title, description, nofollow, noindex }}>
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
       <Hero mode="search">

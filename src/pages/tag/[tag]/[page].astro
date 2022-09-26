@@ -39,11 +39,11 @@ interface Props {
 
 const { page } = Astro.props as Props;
 const { tag } = Astro.params;
-const titleSuffix = ` - ${AppConfig.site_name}`;
-const titleBase = `Blog page ${page.currentPage}`;
-const title = titleBase + titleSuffix;
+
+const title = `Tag: ${tag}`;
 const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+  `Posts tagged with ${tag}. ` +
+  `A collection of posts about ${tag} on ${AppConfig.title}.`;
 ---
 
 <Base head={{ title, description }}>

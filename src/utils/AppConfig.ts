@@ -1,7 +1,7 @@
 export const AppConfig = {
   site_name: 'Zach Moore Blog',
   title: 'ZachMoore.dev',
-  description: 'Boilerplate built with Astro using React and Tailwind CSS',
+  description: 'Musings of an unhinged creative programmer',
   author: 'Zach Moore',
   locale_region: 'en-us',
   locale: 'en',
