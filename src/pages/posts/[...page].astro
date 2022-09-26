@@ -8,7 +8,6 @@ import Paginator from '@/components/Paginator.astro';
 import Base from '@/layouts/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import type { PostPage } from '@/types/PostPage';
-import { AppConfig } from '@/utils/AppConfig';
 import sortByDate from '@/utils/sortByDate';
 
 type GetStaticPaths = {
@@ -29,11 +28,8 @@ interface Props {
 }
 
 const { page } = Astro.props as Props;
-const titleSuffix = ` - ${AppConfig.site_name}`;
-const titleBase = `Blog page ${page.currentPage}`;
-const title = titleBase + titleSuffix;
-const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+const title = 'Authors';
+const description = 'Authors and their articles';
 ---
 
 <Base head={{ title, description }}>

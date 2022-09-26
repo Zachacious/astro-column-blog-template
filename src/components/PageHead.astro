@@ -7,7 +7,6 @@ export interface Props {
   head: {
     title: string;
     description: string;
-    author?: string;
     canonical: string;
     noindex?: boolean;
     nofollow?: boolean;
@@ -44,16 +43,15 @@ export interface Props {
   };
 
   const {
-  head: { title, description, author, canonical, noindex, nofollow, openGraph, twitter },
+  head: { title, description, canonical, noindex, nofollow, openGraph, twitter },
 } = Astro.props as Props;
 ---
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
+  <title>{title + ` | ${AppConfig.title}`}</title>
   <meta name="description" content={description} />
-  {author && <meta name="author" content={author} />}
   <meta name="robots" content={`${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`} />
   
   <link rel="canonical" href={canonical || Astro.url} />
@@ -64,10 +62,6 @@ export interface Props {
 
   <meta name="msapplication-TileColor" content={AppConfig.meta.msTileColor} />
   <meta name="theme-color" content={AppConfig.meta.themeColor} />
-  <meta name="coverage" content="Worldwide">
-  <meta name="distribution" content="Global">
-  <meta name="rating" content={AppConfig.meta.rating}>
-  <meta name="directory" content="submission">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta content="yes" name="apple-touch-fullscreen" />

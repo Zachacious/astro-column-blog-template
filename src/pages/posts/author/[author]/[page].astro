@@ -15,7 +15,6 @@ import IconTwitter from '@/icons/twitter';
 import Base from '@/layouts/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import type { PostPage } from '@/types/PostPage';
-import { AppConfig } from '@/utils/AppConfig';
 import getAuthorData from '@/utils/getAuthorData';
 
 type GetStaticPaths = {
@@ -53,11 +52,8 @@ interface Props {
 const { page } = Astro.props as Props;
 const { author } = Astro.params;
 const authorData = getAuthorData(author as string);
-const titleSuffix = ` - ${AppConfig.site_name}`;
-const titleBase = `Blog page ${page.currentPage}`;
-const title = titleBase + titleSuffix;
-const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+const title = authorData?.name ?? '';
+const description = authorData?.summary ?? '';
 ---
 
 <Base head={{ title, description }}>
