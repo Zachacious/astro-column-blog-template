@@ -26,6 +26,8 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
 ---
 
 <script>
+  import { gsap } from 'gsap';
+
   (() => {
     const page = window.location.pathname.split('/').pop();
 
@@ -48,11 +50,93 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
       const searchText = document.getElementById('search-title');
       if (searchText) searchText.innerText = params?.s || 'Search';
     }
+
+    // const logo = document.getElementById('logo');
+    // const githubBtn = document.getElementById('github-btn');
+    // const linkedinBtn = document.getElementById('linkedin-btn');
+    // const leftToolbar = document.getElementById('left-toolbar');
+    // const postTitle = document.getElementById('post-title');
+    const hero = document.getElementById('hero');
+
+    const timeline = gsap.timeline({
+      defaults: { ease: 'elastic.out(1, 0.3)' },
+    });
+
+    const setDefaults = () => {
+      return (
+        gsap
+          .timeline()
+          // .set([githubBtn, linkedinBtn, logo], { scale: 0 })
+          // .set(leftToolbar, { left: '-100px' })
+          .set(hero, { left: '-800px' })
+      );
+      // .set('.post-title', { opacity: 0 });
+    };
+
+    const logoAnimation = () => {
+      return gsap.timeline().from('.hero-logo', {
+        duration: 0.8,
+        scale: 0,
+        ease: 'elastic.out(1, 0.2)',
+      });
+    };
+
+    const socialBtnAnimation = () => {
+      return gsap.timeline().from('.hero-social-btn', {
+        duration: 0.5,
+        scale: 0,
+        stagger: 0.2,
+        ease: 'elastic.out(1, 0.2)',
+      });
+    };
+
+    const leftToolbarAnimation = () => {
+      return gsap.timeline().from('.left-button', {
+        duration: 0.5,
+        left: '-100px',
+        // scale: 1.25,
+        ease: 'bounce.out',
+      });
+    };
+
+    // const postTitleAnimation = () => {
+    //   return gsap.timeline().to('.post-title', {
+    //     duration: 0.5,
+    //     opacity: 1,
+    //     // ease: 'back.out',
+    //   });
+    // };
+
+    const heroTagAnimation = () => {
+      return gsap.timeline().from('.hero-tag', {
+        duration: 0.5,
+        scale: 0,
+        stagger: 0.2,
+        ease: 'elastic.out(1, 0.2)',
+      });
+    };
+
+    const heroAnimation = () => {
+      return gsap.timeline().to(hero, {
+        duration: 0.5,
+        left: '0px',
+        ease: 'expo.inOut',
+      });
+    };
+
+    timeline.add(setDefaults());
+    timeline.add(heroAnimation());
+    // timeline.add(postTitleAnimation());
+    timeline.add(logoAnimation());
+    timeline.add(leftToolbarAnimation(), '-=0.5');
+    timeline.add(socialBtnAnimation(), '-=0.25');
+    timeline.add(heroTagAnimation());
   })();
 </script>
 
 <section
-  class="border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
+  id="hero"
+  class="relative border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
 >
   <div class="hero flex justify-center p-8 md:h-full">
     <div class="hero-bk-img-wrapper absolute top-0 left-0 h-full w-full">
@@ -76,18 +160,22 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
         <div class="navbar my-5 flex w-full items-center justify-between px-2">
           <div></div>
           <h1 class="block">
-            <div class="text-4xl font-normal">
+            <div id="logo" class="hero-logo text-4xl font-normal">
               <a href="/">ZACH<span class="font-bold">MOORE</span></a>
             </div>
             <div class="flex justify-end text-sm uppercase opacity-70">
-              <div style="width: 18px"><IconGithub /></div>
-              <div class="">
-                <a href="https://github.com/Zachacious">Github</a>
+              <div id="github-btn" class="hero-social-btn flex">
+                <div style="width: 18px"><IconGithub /></div>
+                <div class="">
+                  <a href="https://github.com/Zachacious">Github</a>
+                </div>
               </div>
               <div class="mx-1"></div>
-              <div style="width: 18px"><IconLinkedin /></div>
-              <div class="">
-                <a href="https://linkedin.com/in/zachmoore1">LinkedIn</a>
+              <div id="linkedin-btn" class="hero-social-btn flex">
+                <div style="width: 18px"><IconLinkedin /></div>
+                <div class="">
+                  <a href="https://linkedin.com/in/zachmoore1">LinkedIn</a>
+                </div>
               </div>
             </div>
           </h1>
@@ -112,22 +200,24 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
           </div>
 
           <h1
-            class="post-title text-right text-5xl font-bold capitalize text-primarydark dark:text-textdark md:text-7xl"
+            class="post-title text-right text-5xl font-bold text-primarydark dark:text-textdark md:text-7xl"
           >
             <slot name="title">
-              {
-                props.mode === 'search' ? (
-                  <div id="search-title" class="">
-                    Search
-                  </div>
-                ) : props.mode === 'post' ? (
-                  props?.frontmatter?.title
-                ) : props?.title ? (
-                  props?.title
-                ) : (
-                  'Blog'
-                )
-              }
+              <div id="post-title">
+                {
+                  props.mode === 'search' ? (
+                    <div id="search-title" class="">
+                      Search
+                    </div>
+                  ) : props.mode === 'post' ? (
+                    props?.frontmatter?.title
+                  ) : props?.title ? (
+                    props?.title
+                  ) : (
+                    'Blog'
+                  )
+                }
+              </div>
             </slot>
           </h1>
           {
@@ -136,7 +226,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
                 {props?.frontmatter?.tags?.map((tag) => (
                   <a
                     href={`/tag/${tag}/1`}
-                    class="inline-block px-2 py-1 text-lg font-bold capitalize opacity-60"
+                    class="hero-tag inline-block px-2 py-1 text-lg font-bold capitalize opacity-60"
                   >
                     #{tag}
                   </a>
@@ -149,11 +239,13 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
     </div>
   </div>
 
-  <div class="left-toolbar-wrapper">
-    <div class="left-toolbar my-8 flex flex-col flex-wrap items-center">
+  <div id="left-toolbar" class="left-toolbar-wrapper">
+    <div
+      class="left-toolbar relative my-8 flex flex-col flex-wrap items-center"
+    >
       {
         props.mode !== 'search' && (
-          <div class="left-button my-2 rounded-r-md bg-accent p-4 drop-shadow-md">
+          <div class="left-button relative my-2 rounded-r-md bg-accent p-4 drop-shadow-md">
             <SearchBtn client:load />
           </div>
         )
