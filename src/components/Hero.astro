@@ -26,7 +26,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
 ---
 
 <script>
-  import { gsap } from 'gsap';
+  import heroAnimation from '@/animations/hero';
 
   (() => {
     const page = window.location.pathname.split('/').pop();
@@ -51,86 +51,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
       if (searchText) searchText.innerText = params?.s || 'Search';
     }
 
-    // const logo = document.getElementById('logo');
-    // const githubBtn = document.getElementById('github-btn');
-    // const linkedinBtn = document.getElementById('linkedin-btn');
-    // const leftToolbar = document.getElementById('left-toolbar');
-    // const postTitle = document.getElementById('post-title');
-    const hero = document.getElementById('hero');
-
-    const timeline = gsap.timeline({
-      defaults: { ease: 'elastic.out(1, 0.3)' },
-    });
-
-    const setDefaults = () => {
-      return (
-        gsap
-          .timeline()
-          // .set([githubBtn, linkedinBtn, logo], { scale: 0 })
-          // .set(leftToolbar, { left: '-100px' })
-          .set(hero, { left: '-800px' })
-      );
-      // .set('.post-title', { opacity: 0 });
-    };
-
-    const logoAnimation = () => {
-      return gsap.timeline().from('.hero-logo', {
-        duration: 0.8,
-        scale: 0,
-        ease: 'elastic.out(1, 0.2)',
-      });
-    };
-
-    const socialBtnAnimation = () => {
-      return gsap.timeline().from('.hero-social-btn', {
-        duration: 0.5,
-        scale: 0,
-        stagger: 0.2,
-        ease: 'elastic.out(1, 0.2)',
-      });
-    };
-
-    const leftToolbarAnimation = () => {
-      return gsap.timeline().from('.left-button', {
-        duration: 0.5,
-        left: '-100px',
-        // scale: 1.25,
-        ease: 'bounce.out',
-      });
-    };
-
-    // const postTitleAnimation = () => {
-    //   return gsap.timeline().to('.post-title', {
-    //     duration: 0.5,
-    //     opacity: 1,
-    //     // ease: 'back.out',
-    //   });
-    // };
-
-    const heroTagAnimation = () => {
-      return gsap.timeline().from('.hero-tag', {
-        duration: 0.5,
-        scale: 0,
-        stagger: 0.2,
-        ease: 'elastic.out(1, 0.2)',
-      });
-    };
-
-    const heroAnimation = () => {
-      return gsap.timeline().to(hero, {
-        duration: 0.5,
-        left: '0px',
-        ease: 'expo.inOut',
-      });
-    };
-
-    timeline.add(setDefaults());
-    timeline.add(heroAnimation());
-    // timeline.add(postTitleAnimation());
-    timeline.add(logoAnimation());
-    timeline.add(leftToolbarAnimation(), '-=0.5');
-    timeline.add(socialBtnAnimation(), '-=0.25');
-    timeline.add(heroTagAnimation());
+    heroAnimation();
   })();
 </script>
 
