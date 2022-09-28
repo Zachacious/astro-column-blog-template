@@ -62,6 +62,10 @@ const SearchBtn = (props: { className?: string | undefined }) => {
   }, []);
 
   const onClick = () => {
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      window.location.href = `/search?s=`;
+      return;
+    }
     onClickSearch();
     setModel(!model);
   };

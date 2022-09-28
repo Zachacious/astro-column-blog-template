@@ -58,7 +58,23 @@ const numAuthorPosts = getPostsByAuthor(
 ---
 
 <script>
+  import gsap from 'gsap';
+
   (() => {
+    const timeline = gsap.timeline({ defaults: { ease: 'power1.out' } });
+
+    const rightCol = document.getElementById('right-column-large');
+    console.log(rightCol);
+
+    const rightColAnimation = () =>
+      gsap.timeline().from(rightCol, {
+        right: '-400px',
+        duration: 1,
+        ease: 'bounce.out',
+      });
+
+    timeline.add(rightColAnimation());
+
     // credate dropcap for first paragraph of content
     // const firstParagraph = document.querySelector('.post-content p');
     // if (firstParagraph) {
@@ -132,7 +148,7 @@ const numAuthorPosts = getPostsByAuthor(
   })();
 </script>
 
-<div class="p-8">
+<div class="overflow-x-hidden p-8">
   <ContentTopBar>
     <div slot="left">
       <span class="text-sm md:text-base lg:text-lg"
@@ -164,16 +180,6 @@ const numAuthorPosts = getPostsByAuthor(
         </div>
       </div>
 
-      <SocialShareBar />
-
-      <div class="flex w-full justify-center">
-        {
-          authorData && (
-            <AuthorCard author={authorData} numPosts={numAuthorPosts} />
-          )
-        }
-      </div>
-
       <div class="2xl:hidden">
         <div class="text-exo w-full px-2 pt-4 text-4xl font-bold">
           Read Next
@@ -186,12 +192,26 @@ const numAuthorPosts = getPostsByAuthor(
           }
         </div>
       </div>
+
+      <SocialShareBar />
+
+      <div class="flex w-full justify-center">
+        {
+          authorData && (
+            <AuthorCard author={authorData} numPosts={numAuthorPosts} />
+          )
+        }
+      </div>
+
       <div class="mt-8 flex w-full justify-center p-4 text-sm opacity-50">
         <Footer />
       </div>
     </div>
 
-    <div class="hidden p-4 2xl:block">
+    <div
+      id="right-column-large"
+      class=".right-column-large relative hidden p-4 2xl:block"
+    >
       <div class="right-column sticky top-0 flex flex-wrap justify-start">
         <div class="text-exo w-full px-2 pt-4 text-right text-2xl font-bold">
           Read Next
