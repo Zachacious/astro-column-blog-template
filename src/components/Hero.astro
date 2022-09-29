@@ -81,18 +81,27 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
         <div class="navbar my-5 flex w-full items-center justify-between px-2">
           <div></div>
           <h1 class="block">
-            <div id="logo" class="hero-logo text-4xl font-normal">
+            <div
+              id="logo"
+              class="hero-logo text-4xl font-normal hover:brightness-125"
+            >
               <a href="/">ZACH<span class="font-bold">MOORE</span></a>
             </div>
             <div class="flex justify-end text-sm uppercase opacity-70">
-              <div id="github-btn" class="hero-social-btn flex">
+              <div
+                id="github-btn"
+                class="hero-social-btn flex hover:brightness-75"
+              >
                 <div style="width: 18px"><IconGithub /></div>
                 <div class="">
                   <a href="https://github.com/Zachacious">Github</a>
                 </div>
               </div>
               <div class="mx-1"></div>
-              <div id="linkedin-btn" class="hero-social-btn flex">
+              <div
+                id="linkedin-btn"
+                class="hero-social-btn flex hover:brightness-75"
+              >
                 <div style="width: 18px"><IconLinkedin /></div>
                 <div class="">
                   <a href="https://linkedin.com/in/zachmoore1">LinkedIn</a>
@@ -147,7 +156,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
                 {props?.frontmatter?.tags?.map((tag) => (
                   <a
                     href={`/tag/${tag}/1`}
-                    class="hero-tag inline-block px-2 py-1 text-lg font-bold capitalize opacity-60"
+                    class="hero-tag inline-block px-2 py-1 text-lg font-bold capitalize opacity-60 hover:brightness-75"
                   >
                     #{tag}
                   </a>
@@ -166,7 +175,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
     >
       {
         props.mode !== 'search' && (
-          <div class="left-button relative my-2 rounded-r-md bg-accent p-4 drop-shadow-md">
+          <div class="left-button relative my-2 cursor-pointer rounded-r-md bg-accent p-4 drop-shadow-md hover:brightness-125">
             <SearchBtn client:load />
           </div>
         )

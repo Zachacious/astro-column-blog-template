@@ -1,0 +1,19 @@
+---
+const id = `spring-btn-${
+  Math.random().toString(36).substring(2, 15) +
+  Math.random().toString(36).substring(2, 15)
+}`;
+---
+
+<script>
+  import springButtonAnimation from '@/animations/springButton';
+
+  (() => {
+    const element = document.getElementById(id);
+    if (element) springButtonAnimation(element);
+  })();
+</script>
+
+<div id={id}>
+  <slot />
+</div>

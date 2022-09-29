@@ -58,22 +58,10 @@ const numAuthorPosts = getPostsByAuthor(
 ---
 
 <script>
-  import gsap from 'gsap';
+  import blogPostAnimations from '@/animations/blogPost';
 
   (() => {
-    const timeline = gsap.timeline({ defaults: { ease: 'power1.out' } });
-
-    const rightCol = document.getElementById('right-column-large');
-    console.log(rightCol);
-
-    const rightColAnimation = () =>
-      gsap.timeline().from(rightCol, {
-        right: '-400px',
-        duration: 1,
-        ease: 'bounce.out',
-      });
-
-    timeline.add(rightColAnimation());
+    blogPostAnimations();
 
     // credate dropcap for first paragraph of content
     // const firstParagraph = document.querySelector('.post-content p');
@@ -228,7 +216,7 @@ const numAuthorPosts = getPostsByAuthor(
             allTags.map((tag: string) => (
               <a
                 href={`/tag/${tag}/1`}
-                class={`blogpost-tags mr-2 mb-2 rounded-lg px-2 py-1   text-sm capitalize text-primarydark opacity-80 dark:text-textdark ${
+                class={`blogpost-tags mr-2 mb-2 rounded-lg px-2 py-1   text-sm capitalize text-primarydark opacity-80 hover:brightness-75 dark:text-textdark ${
                   props.frontmatter.tags.includes(tag) && 'text-lg font-bold'
                 }`}
               >

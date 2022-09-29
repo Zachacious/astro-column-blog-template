@@ -22,7 +22,7 @@ const SubscribeWidget = () => {
         onChange={handleInputChange}
         placeholder="email@domain.com"
       />
-      <div className="my-2 cursor-pointer rounded-md bg-boom p-2 text-lg font-bold text-primarydark  dark:bg-boomdark">
+      <div className="my-2 cursor-pointer rounded-md bg-boom p-2 text-lg font-bold text-primarydark  hover:brightness-75 dark:bg-boomdark">
         Subscribe
       </div>
     </div>
