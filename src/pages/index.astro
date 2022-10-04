@@ -11,13 +11,13 @@ import BlogCard from '../components/BlogCard.astro';
 const allPosts = await Astro.glob<PostFrontmatter>('./posts/*.md');
 const sortedPosts = sortByDate(allPosts);
 const totalPosts = sortedPosts.length;
-const recentPosts = sortedPosts.slice(0, 12);
+const recentPosts = sortedPosts.slice(0, 6);
 
 const title = 'Techno Philosopher';
 const { description } = AppConfig;
 
 const seeMoreButton =
-  totalPosts > 12
+  totalPosts > 6
     ? `<div class="mt-4 flex w-full justify-center">
         <a href="/posts">...See More Posts</a>
       </div>`
@@ -32,6 +32,11 @@ const seeMoreButton =
     <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
       <div class="my-4 w-full p-8">
+        <div class="w-full">
+          <h2 class="text-2xl p-8">
+            Latest Posts
+          </h2>
+        </div>
         <div class="flex w-full flex-wrap justify-center">
           {recentPosts.map((post) => <BlogCard post={post} />)}
         </div>
