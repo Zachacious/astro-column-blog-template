@@ -15,7 +15,9 @@ type GetStaticPaths = {
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<PostFrontmatter>('../../posts/*.md');
+  const allPosts = (await Astro.glob<PostFrontmatter>('../../posts/*.md')).filter(
+    (post) => !post.frontmatter.draft
+  );;
   const allTags = allPosts
     .map((post) => post.frontmatter?.tags)
     .flat()

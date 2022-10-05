@@ -6,6 +6,7 @@ pubDate: 2020-02-02T00:00:00Z
 imgSrc: '/assets/images/image-post5.jpg'
 imgAlt: 'Image post 5'
 tags: ['typography', 'example']
+pinned: true
 ---
 
 Full typography example at [this page](./sixth-post).

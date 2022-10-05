@@ -16,7 +16,9 @@ import sortByDate from '@/utils/sortByDate';
 //   tags: string[];
 // }
 
-const allPosts = await Astro.glob<PostFrontmatter>('./posts/*.md');
+const allPosts = (await Astro.glob<PostFrontmatter>('./posts/*.md')).filter(
+    (post) => !post.frontmatter.draft
+  );;
 const sortedPosts =
   (sortByDate(allPosts) as MarkdownInstance<PostFrontmatter>[]) || [];
 

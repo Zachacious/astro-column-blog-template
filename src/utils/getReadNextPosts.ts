@@ -8,7 +8,8 @@ const getReadNextPosts = (
   posts: MarkdownInstance<PostFrontmatter>[]
 ) => {
   const filteredPosts = posts.filter(
-    (post) => post.frontmatter.title !== currentPost.title
+    (post) =>
+      post.frontmatter.title !== currentPost.title && !post.frontmatter.draft
   );
 
   const taggedPosts = filteredPosts.filter((post) => {

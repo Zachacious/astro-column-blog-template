@@ -9,7 +9,7 @@ const getPostsByAuthor = (
   return posts.filter(
     (post) =>
       post.frontmatter?.author?.trim().toLowerCase() ===
-      author.trim().toLowerCase()
+        author.trim().toLowerCase() && !post.frontmatter?.draft
   );
 };
 

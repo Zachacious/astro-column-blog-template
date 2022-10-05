@@ -65,7 +65,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
       {bkimg && <Picture src={bkimg} alt="ZachMoore.dev" />}
     </div>
     {
-      (props.mode === 'post' || props.mode === 'page') && (
+      (
         <div class="bloghero__overlay absolute bg-textdark  dark:bg-primarydark" />
       )
     }

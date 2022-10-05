@@ -38,7 +38,7 @@ const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
       </div>
       <div className="z-0 grow overflow-hidden p-3 text-lg">
         <div className="blog-card__desc h-full">
-          {post.frontmatter.description}
+          {/* {post.frontmatter.description} */}
         </div>
       </div>
       <div className="z-0 flex w-full justify-start p-2">
