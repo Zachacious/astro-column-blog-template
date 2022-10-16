@@ -21,9 +21,9 @@ const heroAnimations = () => {
 
   const socialBtnAnimation = () => {
     return gsap.timeline().from('.hero-social-btn', {
-      duration: 0.5,
+      duration: 0.3,
       scale: 0,
-      stagger: 0.2,
+      stagger: 0.1,
       ease: 'elastic.out(1, 0.2)',
     });
   };

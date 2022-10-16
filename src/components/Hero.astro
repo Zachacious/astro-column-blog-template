@@ -1,16 +1,17 @@
 ---
-import 'src/css/icon.scss';
-import 'src/css/hero.scss';
+import "src/css/icon.scss";
+import "src/css/hero.scss";
 
-import { Picture } from 'astro-imagetools/components';
-import type { ReactNode } from 'react';
-import SearchBtn from 'src/components/SearchBtn';
+import { Picture } from "astro-imagetools/components";
+import type { ReactNode } from "react";
+// import SearchBtn from "src/components/SearchBtn";
 
-import SearchOverlay from '@/components/SearchOverlay';
-import IconGithub from '@/icons/github';
-import IconLinkedin from '@/icons/linkedin';
-import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
-import type { PostFrontmatter } from '@/types/PostFrontmatter';
+import SearchOverlay from "@/components/SearchOverlay";
+import IconGithub from "@/icons/github";
+import IconLinkedin from "@/icons/linkedin";
+import IconMenu from "@/icons/menu";
+import type { AuthorFrontmatter } from "@/types/AuthorFrontmatter";
+import type { PostFrontmatter } from "@/types/PostFrontmatter";
 
 type Props = {
   mode?: string;
@@ -21,34 +22,34 @@ type Props = {
 };
 
 const props = Astro.props as Props;
-const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
-const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
+const bkimg = props.mode === "post" ? props?.frontmatter?.imgSrc : "";
+const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
 ---
 
 <script>
-  import heroAnimation from '@/animations/hero';
+  import heroAnimation from "@/animations/hero";
 
   (() => {
-    const page = window.location.pathname.split('/').pop();
+    const page = window.location.pathname.split("/").pop();
 
-    if (page?.includes('search')) {
+    if (page?.includes("search")) {
       // const search = document.getElementById('search');
       // const searchWrapper = document.getElementById('search-wrapper');
 
-      sessionStorage.setItem('searchActive', 'false');
+      sessionStorage.setItem("searchActive", "false");
 
       const urlSearchParams = new URLSearchParams(window.location.search);
       const params = Object.fromEntries(urlSearchParams.entries());
 
-      sessionStorage.setItem('searchActive', 'true');
-      sessionStorage.setItem('searchTerm', params?.s ?? '');
+      sessionStorage.setItem("searchActive", "true");
+      sessionStorage.setItem("searchTerm", params?.s ?? "");
 
       // search?.classList.remove('opacity-0');
       // search?.classList.add('fade-in');
       // searchWrapper?.classList.remove('hidden');
 
-      const searchText = document.getElementById('search-title');
-      if (searchText) searchText.innerText = params?.s || 'Search';
+      const searchText = document.getElementById("search-title");
+      if (searchText) searchText.innerText = params?.s || "Search";
     }
 
     heroAnimation();
@@ -72,14 +73,30 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
     <div
       id="main-overlay"
       class={`bloghero__overlay absolute bg-textdark dark:bg-primarydark ${
-        props.mode !== 'search' && 'opacity-0'
+        props.mode !== "search" && "opacity-0"
       }`}
     >
     </div>
     <div class="z-0 mx-4 flex w-full max-w-7xl flex-col">
       <div class="w-full">
         <div class="navbar my-5 flex w-full items-center justify-between px-2">
-          <div></div>
+          <div class="flex">
+            <div
+              id="menu-btn"
+              class="p-2 mx-1 cursor-pointer hover:brightness-125"
+              
+            >
+              <IconMenu className="icon-lg" />
+            </div>
+            <div
+              id="menu-btn"
+              class="p-2 mx-1 cursor-pointer hover:brightness-125"
+            >
+              <a href="https://github.com/Zachacious" target="_blank">
+                <IconGithub className="icon-lg" />
+              </a>
+            </div>
+          </div>
           <h1 class="block">
             <div
               id="logo"
@@ -87,7 +104,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
             >
               <a href="/">ZACH<span class="font-bold">MOORE</span></a>
             </div>
-            <div class="flex justify-end text-sm uppercase opacity-70">
+            <!-- <div class="flex justify-end text-sm uppercase opacity-70">
               <div
                 id="github-btn"
                 class="hero-social-btn flex hover:brightness-75"
@@ -107,7 +124,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
                   <a href="https://linkedin.com/in/zachmoore1">LinkedIn</a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </h1>
           <!-- <div class="hidden lg:block">
             <ThemeToggle client:only="react" />
@@ -125,7 +142,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
       <div id="title" class="flex w-full justify-end py-10">
         <div class="flex flex-wrap justify-end">
           <div class="w-full text-right">
-            {props.mode === 'search' && <div>Results For</div>}
+            {props.mode === "search" && <div>Results For</div>}
             {props?.subtitle && <div>{props?.subtitle}</div>}
           </div>
 
@@ -135,23 +152,23 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
             <slot name="title">
               <div id="post-title">
                 {
-                  props.mode === 'search' ? (
+                  props.mode === "search" ? (
                     <div id="search-title" class="">
                       Search
                     </div>
-                  ) : props.mode === 'post' ? (
+                  ) : props.mode === "post" ? (
                     props?.frontmatter?.title
                   ) : props?.title ? (
                     props?.title
                   ) : (
-                    'Blog'
+                    "Blog"
                   )
                 }
               </div>
             </slot>
           </h1>
           {
-            props.mode === 'post' && (
+            props.mode === "post" && (
               <div class="mt-2 flex w-full flex-wrap justify-end text-right">
                 {props?.frontmatter?.tags?.map((tag) => (
                   <a
@@ -169,7 +186,7 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
     </div>
   </div>
 
-  <div id="left-toolbar" class="left-toolbar-wrapper">
+  <!-- <div id="left-toolbar" class="left-toolbar-wrapper">
     <div
       class="left-toolbar relative my-8 flex flex-col flex-wrap items-center"
     >
@@ -181,5 +198,5 @@ const allPosts = await Astro.glob<PostFrontmatter>('../pages/posts/*.md');
         )
       }
     </div>
-  </div>
+  </div> -->
 </section>
