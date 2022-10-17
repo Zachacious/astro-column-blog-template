@@ -5,11 +5,13 @@ import "src/css/hero.scss";
 import { Picture } from "astro-imagetools/components";
 import type { ReactNode } from "react";
 // import SearchBtn from "src/components/SearchBtn";
+import MenuBtn from "src/components/MenuBtn";
 
-import SearchOverlay from "@/components/SearchOverlay";
+// import SearchOverlay from "@/components/SearchOverlay";
+import MenuOverlay from "@/components/MenuOverlay";
 import IconGithub from "@/icons/github";
-import IconLinkedin from "@/icons/linkedin";
-import IconMenu from "@/icons/menu";
+// import IconLinkedin from "@/icons/linkedin";
+// import IconMenu from "@/icons/menu";
 import type { AuthorFrontmatter } from "@/types/AuthorFrontmatter";
 import type { PostFrontmatter } from "@/types/PostFrontmatter";
 
@@ -23,7 +25,7 @@ type Props = {
 
 const props = Astro.props as Props;
 const bkimg = props.mode === "post" ? props?.frontmatter?.imgSrc : "";
-const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
+// const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
 ---
 
 <script>
@@ -60,7 +62,7 @@ const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
   id="hero"
   class="relative border-accent drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] md:h-screen"
 >
-  <div class="hero flex justify-center p-8 md:h-full">
+  <div class="hero flex justify-center px-8 py-5 md:h-full">
     <div class="hero-bk-img-wrapper absolute top-0 left-0 h-full w-full">
       <!-- Use image tools to optimize bk image -->
       {bkimg && <Picture src={bkimg} alt="ZachMoore.dev" />}
@@ -77,19 +79,20 @@ const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
       }`}
     >
     </div>
-    <div class="z-0 mx-4 flex w-full max-w-7xl flex-col">
+    <div class="z-0  flex w-full max-w-7xl flex-col">
       <div class="w-full">
-        <div class="navbar my-5 flex w-full items-center justify-between px-2">
+        <div class="navbar  flex w-full items-center justify-between px-2">
           <div class="flex">
             <div
               id="menu-btn"
               class="p-2 mx-1 cursor-pointer hover:brightness-125"
               
             >
-              <IconMenu className="icon-lg" />
+            <MenuBtn client:load />
+              <!-- <IconMenu className="icon-lg" /> -->
             </div>
             <div
-              id="menu-btn"
+              id="github-btn"
               class="p-2 mx-1 cursor-pointer hover:brightness-125"
             >
               <a href="https://github.com/Zachacious" target="_blank">
@@ -135,9 +138,12 @@ const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
         class="hero-footer break-word z-0 mb-12 flex w-full grow items-start"
       >
         <slot />
-        <div id="search-wrapper" class="mt-8 hidden w-full">
-          <SearchOverlay id="search" posts={allPosts} client:load />
+        <div id="menu-wrapper" class="mt-8 hidden w-full">
+          <MenuOverlay id="menu" client:load />
         </div>
+        <!-- <div id="search-wrapper" class="mt-8 hidden w-full">
+          <SearchOverlay id="search" posts={allPosts} client:load />
+        </div> -->
       </div>
       <div id="title" class="flex w-full justify-end py-10">
         <div class="flex flex-wrap justify-end">

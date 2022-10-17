@@ -69,3 +69,14 @@ height: 100%;
   padding-left: 0.08em;
 }
 
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 1em !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #github-btn {
+    display: none;
+  }
+}
