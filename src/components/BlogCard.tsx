@@ -8,12 +8,17 @@ import type { MarkdownInstance } from 'astro-boilerplate-components';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
 import formatDate from '@/utils/formatDate';
 
+const postIsPinned = (p: MarkdownInstance<PostFrontmatter>) => {
+  return p.frontmatter.pinned;
+};
+
 const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
   const { post } = props;
   const style = post.frontmatter?.imgSrc
     ? {
         background: `url(${post.frontmatter.imgSrc}) no-repeat center center`,
         backgroundSize: 'cover',
+        border: postIsPinned(post) ? '1px solid #186b4e' : '',
       }
     : {};
 

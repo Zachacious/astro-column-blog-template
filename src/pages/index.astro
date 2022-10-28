@@ -14,8 +14,18 @@ const allPosts = (await Astro.glob<PostFrontmatter>('./posts/*.md')).filter(
 );
 const sortedPosts = sortByDate(allPosts);
 const totalPosts = sortedPosts.length;
-const recentPosts = sortedPosts.slice(0, 12);
+
 const featuredPosts = sortedPosts.filter((post) => post.frontmatter.featured);
+// const tags = [
+//   ...new Set(sortedPosts.map((post) => post.frontmatter.tags).flat()),
+// ];
+
+// bring pinned posts to top of sortedPosts
+const pinnedPosts = sortedPosts.filter((post) => post.frontmatter.pinned);
+const unpinnedPosts = sortedPosts.filter((post) => !post.frontmatter.pinned);
+const sortedPostsPinned = [...pinnedPosts, ...unpinnedPosts];
+
+const recentPosts = sortedPostsPinned.slice(0, 12);
 
 const title = 'Techno Philosopher';
 const { description } = AppConfig;
@@ -34,7 +44,22 @@ const seeMoreButton =
       <Hero title="Software Development & Techno Philosophy" />
     </div>
     <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
-      <ContentTopBar />
+      <ContentTopBar>
+        <!-- <div slot="left">
+          <div class="flex flex-wrap items-center w-full">
+            {
+              tags.map((tag) => (
+                <a
+                  href={`/tag/${tag}/1`}
+                  class="z-0 m-1 text-xs capitalize opacity-80"
+                >
+                  #{tag}
+                </a>
+              ))
+            }
+          </div>
+        </div> -->
+      </ContentTopBar>
       <div class="my-4 w-full px-8 pb-8">
         <!-- <div class="w-full">
           <h2 class="text-3xl font-bold p-8">
@@ -44,7 +69,7 @@ const seeMoreButton =
         <div class="flex w-full flex-wrap justify-center">
           {featuredPosts.map((post) => <FeaturedCard post={post} />)}
         </div>
-        <div class="flex w-full flex-wrap justify-around">
+        <div class="flex flex-row flex-wrap justify-around">
           {recentPosts.map((post) => <BlogCard post={post} />)}
         </div>
         <Fragment set:html={seeMoreButton} />

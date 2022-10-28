@@ -1,6 +1,8 @@
 .blog-card {
-  width: 280px;
+  min-width: 280px;
+  max-width: 400px;
   height: 330px;
+  flex-grow: 1;
 
   a {
     color: #222255 !important;
@@ -11,7 +13,7 @@
 .featured-card {
   width: 100%;
   min-width: 280px;
-  height: 330px;
+  height: 280px;
 
   a {
     color: #222255 !important;
@@ -63,6 +65,5 @@ html.theme-dark *{
 
 
   }
-
 
 
