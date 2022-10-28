@@ -8,6 +8,17 @@
 
 }
 
+.featured-card {
+  width: 100%;
+  min-width: 280px;
+  height: 330px;
+
+  a {
+    color: #222255 !important;
+  }
+
+}
+
 .bloghero-bkimg {
   *img, picture {
     width: 100% !important;
@@ -17,9 +28,9 @@
 }
 
 
-.blog-card__header {
-  min-height: 140px;
-}
+// .blog-card__header {
+//   // min-height: 140px;
+// }
 
 .blog-card__overlay {
   width: 100%;
@@ -44,9 +55,14 @@ html.theme-dark *{
     mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
   }
 
-  .blog-card  {
+  .blog-card, .featured-card {
     a {
       color: #2CDA9D !important;
     }
   }
-}
+
+
+  }
+
+
+

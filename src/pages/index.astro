@@ -1,5 +1,6 @@
 ---
 import ContentTopBar from '@/components/ContentTopBar.astro';
+import FeaturedCard from '@/components/FeaturedCard.astro';
 import Hero from '@/components/Hero.astro';
 import Base from '@/layouts/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
@@ -9,11 +10,12 @@ import sortByDate from '@/utils/sortByDate';
 import BlogCard from '../components/BlogCard.astro';
 
 const allPosts = (await Astro.glob<PostFrontmatter>('./posts/*.md')).filter(
-    (post) => !post.frontmatter.draft
-  );;
+  (post) => !post.frontmatter.draft
+);
 const sortedPosts = sortByDate(allPosts);
 const totalPosts = sortedPosts.length;
-const recentPosts = sortedPosts.slice(0, 6);
+const recentPosts = sortedPosts.slice(0, 12);
+const featuredPosts = sortedPosts.filter((post) => post.frontmatter.featured);
 
 const title = 'Techno Philosopher';
 const { description } = AppConfig;
@@ -33,13 +35,16 @@ const seeMoreButton =
     </div>
     <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto">
       <ContentTopBar />
-      <div class="my-4 w-full p-8">
-        <div class="w-full">
+      <div class="my-4 w-full px-8 pb-8">
+        <!-- <div class="w-full">
           <h2 class="text-3xl font-bold p-8">
             Latest Posts
           </h2>
-        </div>
+        </div> -->
         <div class="flex w-full flex-wrap justify-center">
+          {featuredPosts.map((post) => <FeaturedCard post={post} />)}
+        </div>
+        <div class="flex w-full flex-wrap justify-around">
           {recentPosts.map((post) => <BlogCard post={post} />)}
         </div>
         <Fragment set:html={seeMoreButton} />
