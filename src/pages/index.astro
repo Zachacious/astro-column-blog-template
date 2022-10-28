@@ -25,7 +25,9 @@ const pinnedPosts = sortedPosts.filter((post) => post.frontmatter.pinned);
 const unpinnedPosts = sortedPosts.filter((post) => !post.frontmatter.pinned);
 const sortedPostsPinned = [...pinnedPosts, ...unpinnedPosts];
 
-const recentPosts = sortedPostsPinned.slice(0, 12);
+const recentPosts = sortedPostsPinned
+  .slice(0, 12)
+  .filter((post) => !post.frontmatter.featured);
 
 const title = 'Techno Philosopher';
 const { description } = AppConfig;

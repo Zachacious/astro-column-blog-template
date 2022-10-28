@@ -30,7 +30,7 @@ const postIsPinned = (p: MarkdownInstance<PostFrontmatter>) => {
 ---
 
 <div
-  class="blog-card  basis-full sm:basis-1/3 lg:basis-1/4 relative mr-8 mb-8 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
+  class="blog-card basis-full sm:basis-1/3 lg:basis-1/4 relative mr-8 mb-8 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-2 pt-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
   style={postIsPinned(post) ? 'border: 1px solid #186b4e' : ''}
   onclick={`window.location.href='${post.url}'`}
 >
