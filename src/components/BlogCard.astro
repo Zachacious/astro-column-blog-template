@@ -28,6 +28,8 @@ const postIsPinned = (p: MarkdownInstance<PostFrontmatter>) => {
   return p.frontmatter.pinned;
 };
 ---
+<div class="relative basis-full sm:basis-1/3 lg:basis-1/4">
+
 
 <div
   class="blog-card basis-full sm:basis-1/3 lg:basis-1/4 relative mr-8 mb-8 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-2 pt-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
@@ -48,9 +50,9 @@ const postIsPinned = (p: MarkdownInstance<PostFrontmatter>) => {
   <div
     class="blog-card__header z-0 mb-1 flex flex-wrap items-center rounded-t-md px-3"
   >
-    <h2 class="text-exo mb-0 w-full text-2xl font-bold">
+    <!-- <h2 class="text-exo mb-0 w-full text-2xl font-bold">
       {post.frontmatter.title}
-    </h2>
+    </h2> -->
     <div class="w-full text-sm opacity-70">
       <small>{formatDate(post.frontmatter.pubDate)}</small>
     </div>
@@ -60,8 +62,11 @@ const postIsPinned = (p: MarkdownInstance<PostFrontmatter>) => {
       <!-- {post.frontmatter.description} -->
     </div>
   </div>
-  <div class="z-0 flex w-full justify-start p-2">
-    <span>
+  <div class="z-0 flex w-full justify-end p-2">
+    <h2 class="text-exo mb-0 text-2xl text-right font-bold w-5/6">
+      {post.frontmatter.title}
+    </h2>
+    <!-- <span>
       {
         post?.frontmatter?.tags?.map((tag) => (
           <a
@@ -72,6 +77,16 @@ const postIsPinned = (p: MarkdownInstance<PostFrontmatter>) => {
           </a>
         ))
       }
-    </span>
+    </span> -->
   </div>
+
+  
+</div>
+{
+  postIsPinned(post) && 
+    <div class="pinned-badge text-bold px-2 py-1 rounded-md">
+    <span class=" text-textdark">Pinned</span>
+  </div>
+  
+}
 </div>

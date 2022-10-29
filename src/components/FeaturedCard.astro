@@ -18,8 +18,11 @@ const { post } = props;
 const bkImg = post.frontmatter.imgSrc;
 ---
 
+<div class="relative w-full">
+
 <div
   class="featured-card relative mr-8 mb-8 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
+  style='border: 1px solid #2c5f14'
   onclick={`window.location.href='${post.url}'`}
 >
   {
@@ -36,20 +39,20 @@ const bkImg = post.frontmatter.imgSrc;
   <div
     class="blog-card__header z-0 mb-1 flex flex-wrap items-center rounded-t-md px-3"
   >
-    <h2 class="text-exo mb-0 w-full text-4xl font-bold">
+    <!-- <h2 class="text-exo mb-0 w-full text-4xl font-bold">
       {post.frontmatter.title}
-    </h2>
+    </h2> -->
     <div class="w-full text-sm opacity-70">
       <small>{formatDate(post.frontmatter.pubDate)}</small>
     </div>
   </div>
   <div class="z-0 grow overflow-hidden px-3 py-4 text-lg">
-    <div class="blog-card__desc h-full">
+    <!-- <div class="blog-card__desc h-full">
       {post.frontmatter.description}
-    </div>
+    </div> -->
   </div>
-  <div class="z-0 flex w-full justify-start p-2">
-    <span>
+  <div class="z-0 flex w-full justify-end p-2">
+    <!-- <span>
       {
         post?.frontmatter?.tags?.map((tag) => (
           <a
@@ -60,6 +63,13 @@ const bkImg = post.frontmatter.imgSrc;
           </a>
         ))
       }
-    </span>
+    </span> -->
+    <h2 class="text-exo mb-0 w-5/6 text-4xl text-right font-bold">
+      {post.frontmatter.title}
+    </h2>
+  </div>
+</div>
+<div class="featured-badge text-bold px-2 py-1 rounded-md">
+    <span class=" text-textdark">Featured</span>
   </div>
 </div>
