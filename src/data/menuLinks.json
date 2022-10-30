@@ -1,4 +1,10 @@
-{
-  "Articles": "/posts",
-  "Authors": "/authors"
-}
+[
+  {
+    "name": "Articles",
+    "url": "/posts"
+  },
+  {
+    "name": "Authors",
+    "url": "/authors"
+  }
+]

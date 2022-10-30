@@ -6,6 +6,7 @@ import '@/css/menu.scss';
 
 import { useState } from 'react';
 
+import menuLinks from '@/data/menuLinks';
 // import menuAnimations from '@/animations/menu';
 import IconSearch from '@/icons/search';
 
@@ -20,9 +21,9 @@ const MenuOverlay = (props: { id: string | undefined }) => {
     setSearchValue(event.target.value);
   };
 
-  // useEffect(() => {
-  //   menuAnimations();
-  // }, []);
+  const onMenuBtnClick = (url: string) => {
+    window.location.href = url;
+  };
 
   return (
     <div
@@ -33,7 +34,7 @@ const MenuOverlay = (props: { id: string | undefined }) => {
         <form
           action={`/search?s=${searchValue}`}
           method="post"
-          className="menu-item rrelative mb-4 flex w-1/2"
+          className="menu-item relative mb-4 flex w-1/2"
         >
           <input
             id="searchbox"
@@ -51,18 +52,14 @@ const MenuOverlay = (props: { id: string | undefined }) => {
           </button>
         </form>
 
-        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
-          Articles
-        </div>
-        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
-          Tags
-        </div>
-        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
-          Authors
-        </div>
-        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
-          Bio
-        </div>
+        {menuLinks.map((link: { name: string; url: string }) => (
+          <div
+            className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125"
+            onClick={() => onMenuBtnClick(link.url)}
+          >
+            {link.name}
+          </div>
+        ))}
 
         {/* <div className="mt-8">
           <SubscribeWidget />

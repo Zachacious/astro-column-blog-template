@@ -8,7 +8,7 @@ const menuAnimations = (reverse: bool = false) => {
   const animButtonsIn = () => {
     return gsap.timeline().from('.menu-item', {
       duration: 0.4,
-      left: '-300px',
+      left: '-400px',
       stagger: 0.1,
       ease: 'expo.inOut',
     });

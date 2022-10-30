@@ -1,6 +1,7 @@
 ---
 import ContentTopBar from '@/components/ContentTopBar.astro';
 import FeaturedCard from '@/components/FeaturedCard.astro';
+import { Footer } from '@/components/Footer';
 import Hero from '@/components/Hero.astro';
 import Base from '@/layouts/Base.astro';
 import type { PostFrontmatter } from '@/types/PostFrontmatter';
@@ -33,12 +34,20 @@ const title = 'Techno Philosopher';
 const { description } = AppConfig;
 
 const seeMoreButton =
-  totalPosts > 6
+  totalPosts > 12
     ? `<div class="mt-4 flex w-full justify-center">
         <a href="/posts">...See More Posts</a>
       </div>`
     : ``;
 ---
+
+<script>
+  import blogCardAnimations from '@/animations/blogcard';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    blogCardAnimations();
+  });
+</script>
 
 <Base head={{ title, description }}>
   <div class="flex w-full flex-wrap">
@@ -76,6 +85,8 @@ const seeMoreButton =
         </div>
         <Fragment set:html={seeMoreButton} />
       </div>
+
+      <Footer />
     </div>
   </div>
 </Base>
