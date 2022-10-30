@@ -16,13 +16,15 @@ const props = Astro.props as Props;
 const { post } = props;
 
 const bkImg = post.frontmatter.imgSrc;
+
+// style='border: 1px solid #2c5f14'
 ---
 
-<div class="relative w-full">
+<div class="relative w-full m-4">
 
 <div
-  class="featured-card relative mr-8 mb-8 flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
-  style='border: 1px solid #2c5f14'
+  class="featured-card relative flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
+  
   onclick={`window.location.href='${post.url}'`}
 >
   {

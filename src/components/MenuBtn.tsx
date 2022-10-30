@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import menuAnimations from '@/animations/menu';
 import IconClose from '@/icons/close';
 import IconMenu from '@/icons/menu';
 import debounce from '@/utils/debounce';
@@ -12,24 +13,32 @@ const onClickMenu = () => {
   const heroMidSection = document.getElementById('hero-mid-section');
 
   if (overlay?.classList.contains('active')) {
-    overlay?.classList.remove('active');
-    overlay?.classList.remove('fade-in');
-    overlay?.classList.add('fade-out');
+    menuAnimations(true).eventCallback('onComplete', () => {
+      overlay?.classList.remove('active');
+      overlay?.classList.remove('fade-in');
+      overlay?.classList.add('fade-out');
 
-    menu?.classList.remove('active');
-    menu?.classList.remove('fade-in');
-    menu?.classList.add('fade-out');
+      menu?.classList.remove('active');
+      menu?.classList.remove('fade-in');
+      menu?.classList.add('fade-out');
 
-    title?.classList.remove('fade-out');
-    title?.classList.add('fade-in-full');
-    title?.classList.remove('hidden');
+      title?.classList.remove('fade-out');
+      title?.classList.add('fade-in-full');
+      title?.classList.remove('hidden');
 
-    heroMidSection?.classList.remove('fade-out');
-    heroMidSection?.classList.add('fade-in-full');
-    heroMidSection?.classList.remove('hidden');
+      heroMidSection?.classList.remove('fade-out');
+      heroMidSection?.classList.add('fade-in-full');
+      heroMidSection?.classList.remove('hidden');
 
-    menu?.classList.add('pointer-events-none');
-    menuWrapper?.classList.add('hidden');
+      menu?.classList.add('pointer-events-none');
+      menuWrapper?.classList.add('hidden');
+
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach((item) => {
+        const itm = item as HTMLElement;
+        itm.style.left = '0';
+      });
+    });
   } else {
     overlay?.classList.add('active');
     overlay?.classList.add('fade-in');
@@ -51,6 +60,8 @@ const onClickMenu = () => {
     heroMidSection?.classList.add('hidden');
 
     menu?.classList.remove('pointer-events-none');
+
+    menuAnimations();
   }
 };
 

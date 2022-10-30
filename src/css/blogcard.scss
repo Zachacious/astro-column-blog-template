@@ -1,9 +1,9 @@
 .blog-card {
   position: relative;
-  min-width: 280px;
-  max-width: 400px;
+  min-width: 250px;
+  max-width: 700px;
   height: 330px;
-  flex-grow: 1;
+  // flex-grow: 1;
 
   a {
     color: #222255 !important;
@@ -65,12 +65,12 @@ html.theme-dark *{
   }
 
 
-  }
+  }  
 
 .pinned-badge {
   position: absolute;
   top: -7px;
-  right: 50px;
+  right: 10px;
   background-color: #186b4e;
   line-height: 1;
   font-size: 11px;
@@ -79,7 +79,7 @@ html.theme-dark *{
 .featured-badge {
   position: absolute;
   top: -7px;
-  right: 50px;
+  right: 10px;
   background-color: #2c5f14;
   line-height: 1;
   font-size: 11px;

@@ -2,9 +2,12 @@
 // import type { MarkdownInstance } from "astro";
 // import React, { useEffect, useRef, useState } from "react";
 
+import '@/css/menu.scss';
+
 import { useState } from 'react';
 
-import SubscribeWidget from './SubscribeWidget';
+// import menuAnimations from '@/animations/menu';
+import IconSearch from '@/icons/search';
 
 // import MiniBlogCard from "@/components/MiniBlogCard";
 // import type { PostFrontmatter } from "@/types/PostFrontmatter";
@@ -14,9 +17,12 @@ const MenuOverlay = (props: { id: string | undefined }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setSearchValue(event.target.value);
   };
+
+  // useEffect(() => {
+  //   menuAnimations();
+  // }, []);
 
   return (
     <div
@@ -27,11 +33,11 @@ const MenuOverlay = (props: { id: string | undefined }) => {
         <form
           action={`/search?s=${searchValue}`}
           method="post"
-          className="mb-4 flex w-full "
+          className="menu-item rrelative mb-4 flex w-1/2"
         >
           <input
             id="searchbox"
-            className="w-full rounded-l-md border-2 border-accent bg-transparent p-3 text-xl font-bold placeholder:text-accent focus:border-textdark focus:outline-none"
+            className="menu-searchbox w-full rounded-l-md border-2 border-accent bg-transparent p-3 text-xl font-bold placeholder:text-accent focus:border-textdark focus:outline-none"
             type="text"
             value={searchValue}
             onChange={handleSearchChange}
@@ -41,13 +47,26 @@ const MenuOverlay = (props: { id: string | undefined }) => {
             type="submit"
             className="rounded-r-md border-2 border-accent bg-accent p-3 text-textdark"
           >
-            Submit
+            <IconSearch className="icon-md" />
           </button>
         </form>
 
-        <div className="mt-8">
-          <SubscribeWidget />
+        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
+          Articles
         </div>
+        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
+          Tags
+        </div>
+        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
+          Authors
+        </div>
+        <div className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125">
+          Bio
+        </div>
+
+        {/* <div className="mt-8">
+          <SubscribeWidget />
+        </div> */}
       </div>
     </div>
   );
