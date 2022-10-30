@@ -24,7 +24,12 @@ type Props = {
 };
 
 const props = Astro.props as Props;
-const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
+let bkimg =
+  props.mode === 'post'
+    ? props?.frontmatter?.imgSrc
+    : '/assets/images/facetheday.jpg';
+bkimg = props.mode === 'tag' ? '/assets/images/valleyofbooks.jpg' : bkimg;
+bkimg = props.mode === 'search' ? '/assets/images/library.jpg' : bkimg;
 // const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
 ---
 
@@ -74,9 +79,7 @@ const bkimg = props.mode === 'post' ? props?.frontmatter?.imgSrc : '';
     }
     <div
       id="main-overlay"
-      class={`bloghero__overlay absolute bg-textdark dark:bg-primarydark ${
-        props.mode !== 'search' && 'opacity-0'
-      }`}
+      class={`bloghero__overlay absolute bg-textdark dark:bg-primarydark opacity-0 `}
     >
     </div>
     <div class="z-0 flex w-full max-w-7xl flex-col">

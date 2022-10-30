@@ -84,7 +84,7 @@ const SearchResults = (props: {
       <form
         action={`/search?s=${inputValue}`}
         method="post"
-        className="mb-10 flex w-full items-center  rounded-md  bg-textdark p-2 px-4 text-xl font-bold drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] dark:bg-primarydark lg:w-1/2"
+        className=" flex w-full items-center  rounded-md  bg-textdark p-2 px-4 text-xl font-bold drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] dark:bg-primarydark lg:w-1/2"
       >
         <input
           id="searchInput"

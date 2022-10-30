@@ -17,9 +17,6 @@ const sortedPosts = sortByDate(allPosts);
 const totalPosts = sortedPosts.length;
 
 const featuredPosts = sortedPosts.filter((post) => post.frontmatter.featured);
-// const tags = [
-//   ...new Set(sortedPosts.map((post) => post.frontmatter.tags).flat()),
-// ];
 
 // bring pinned posts to top of sortedPosts
 const pinnedPosts = sortedPosts.filter((post) => post.frontmatter.pinned);
