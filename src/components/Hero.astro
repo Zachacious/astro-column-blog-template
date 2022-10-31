@@ -27,9 +27,15 @@ const props = Astro.props as Props;
 let bkimg =
   props.mode === 'post'
     ? props?.frontmatter?.imgSrc
-    : '/assets/images/facetheday.jpg';
+    : '/assets/images/face-the-day.jpg';
 bkimg = props.mode === 'tag' ? '/assets/images/valleyofbooks.jpg' : bkimg;
 bkimg = props.mode === 'search' ? '/assets/images/library.jpg' : bkimg;
+bkimg =
+  props.mode === 'author-posts'
+    ? (props?.frontmatter as AuthorFrontmatter)?.heroImgSrc
+    : bkimg;
+bkimg = props.mode === 'authors' ? '/assets/images/pilgramage.jpg' : bkimg;
+
 // const allPosts = await Astro.glob<PostFrontmatter>("../pages/posts/*.md");
 ---
 

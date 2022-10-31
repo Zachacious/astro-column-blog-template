@@ -54,6 +54,7 @@ const MenuOverlay = (props: { id: string | undefined }) => {
 
         {menuLinks.map((link: { name: string; url: string }) => (
           <div
+            key={link.name}
             className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125"
             onClick={() => onMenuBtnClick(link.url)}
           >
