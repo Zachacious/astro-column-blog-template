@@ -28,9 +28,10 @@ const authorData = getAuthorData(content.name);
 
 const title = authorData?.name ?? '';
 const description = authorData?.summary ?? '';
+const image = authorData?.avatar ?? '';
 ---
 
-<Base head={{ title, description }}>
+<Base head={{ title, description, image }}>
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
       <!-- <BlogHero frontmatter={content} /> -->

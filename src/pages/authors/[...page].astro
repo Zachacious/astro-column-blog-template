@@ -48,9 +48,10 @@ const { page } = Astro.props as Props;
 
 const title = 'Authors';
 const description = `All authors on ${AppConfig.title}`;
+const image = page?.data?.[0]?.frontmatter?.heroImgSrc ?? '';
 ---
 
-<Base head={{ title, description }}>
+<Base head={{ title, description, image }}>
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
       <Hero title="Authors" subtitle="Published" mode="authors" />

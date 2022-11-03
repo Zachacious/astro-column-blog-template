@@ -19,9 +19,11 @@ const { content } = Astro.props as Props;
 const html = Astro.props.compiledContent;
 const rawText = Astro.props.rawContent;
 const title = `${content.title}`;
+const { description, imgSrc } = content;
+const image = imgSrc;
 ---
 
-<Base head={{ title, description: content.description }}>
+<Base head={{ title, description, image }}>
   <div class="flex w-full flex-wrap">
     <div class="md:2/5 w-full lg:w-2/5">
       <!-- <BlogHero frontmatter={content} /> -->

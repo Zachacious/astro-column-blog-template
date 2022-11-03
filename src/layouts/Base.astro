@@ -1,41 +1,43 @@
 ---
 // import '@/css/global.scss';
-import "src/css/global.scss";
-import "@fontsource/exo"
-import "@fontsource/poppins"
+import 'src/css/global.scss';
+import '@fontsource/exo';
+import '@fontsource/poppins';
+
 import TransitionOverlay from '@julian_cataldo/astro-transition/Transition.astro';
 
-import PageHead from "@/components/PageHead.astro";
+import PageHead from '@/components/PageHead.astro';
 ---
-
-<script is:inline>
-  let theme = localStorage.getItem('theme');
-
-  if (!theme) {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme = 'dark'
-    } else {
-      theme = 'light'
-    }
-  }
-
-  const root = document.documentElement;
-    if (theme === 'light') {
-      root.classList.remove('theme-dark');
-      document.documentElement.classList.remove('dark');
-    } else {
-      root.classList.add('theme-dark');
-      document.documentElement.classList.add('dark');
-    }
-</script>
 
 <html lang="en">
   <PageHead head={Astro.props.head} />
-  
-  <body class="bg-textdark text-primarydark dark:bg-primarydark dark:text-textdark ">
-    <TransitionOverlay speed={500} background='#1a2125' zIndex={9999} />
+
+  <body
+    class="bg-textdark text-primarydark dark:bg-primarydark dark:text-textdark"
+  >
+    <TransitionOverlay speed={500} background="#1a2125" zIndex={9999} />
 
     <slot />
 
+    <script is:inline>
+      let theme = localStorage.getItem('theme');
+
+      if (!theme) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        } else {
+          theme = 'light';
+        }
+      }
+
+      const root = document.documentElement;
+      if (theme === 'light') {
+        root.classList.remove('theme-dark');
+        document.documentElement.classList.remove('dark');
+      } else {
+        root.classList.add('theme-dark');
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </body>
 </html>

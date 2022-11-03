@@ -38,7 +38,7 @@ const MenuOverlay = (props: { id: string | undefined }) => {
         >
           <input
             id="searchbox"
-            className="menu-searchbox w-full rounded-l-md border-2 border-accent bg-transparent p-3 text-xl font-bold placeholder:text-accent focus:border-textdark focus:outline-none"
+            className="menu-searchbox w-full rounded-l-md border-l-2 border-y-2 border-accent bg-transparent p-3 text-xl font-bold placeholder:text-accent  focus:outline-none"
             type="text"
             value={searchValue}
             onChange={handleSearchChange}
@@ -46,21 +46,23 @@ const MenuOverlay = (props: { id: string | undefined }) => {
           />
           <button
             type="submit"
-            className="rounded-r-md border-2 border-accent bg-accent p-3 text-textdark"
+            className="border-r-2 border-y-2 rounded-r-md border-accent p-3 text-textdark"
           >
             <IconSearch className="icon-md" />
           </button>
         </form>
 
-        {menuLinks.map((link: { name: string; url: string }) => (
-          <div
-            key={link.name}
-            className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125"
-            onClick={() => onMenuBtnClick(link.url)}
-          >
-            {link.name}
-          </div>
-        ))}
+        <nav>
+          {menuLinks.map((link: { name: string; url: string }) => (
+            <div
+              key={link.name}
+              className="menu-item text-exo relative text-3xl py-2 px-1 cursor-pointer hover:brightness-125"
+              onClick={() => onMenuBtnClick(link.url)}
+            >
+              {link.name}
+            </div>
+          ))}
+        </nav>
 
         {/* <div className="mt-8">
           <SubscribeWidget />

@@ -4,7 +4,15 @@
     "url": "/posts"
   },
   {
-    "name": "Authors",
-    "url": "/authors"
+    "name": "About",
+    "url": "/about"
+  },
+  {
+    "name": "Contact",
+    "url": "/contact"
+  },
+  {
+    "name": "RSS",
+    "url": "/rss.xml"
   }
 ]

@@ -1,4 +1,6 @@
 ---
+title: 'Zach Moore'
+pubDate: '2019-01-01'
 layout: '@/layouts/BaseAuthorPost.astro'
 name: Zach Moore
 heroImgSrc: '/assets/images/face-the-day.jpg'
