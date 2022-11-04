@@ -7,6 +7,7 @@ import '@/css/menu.scss';
 import { useState } from 'react';
 
 import menuLinks from '@/data/menuLinks';
+import IconGithub from '@/icons/github';
 // import menuAnimations from '@/animations/menu';
 import IconSearch from '@/icons/search';
 
@@ -63,6 +64,18 @@ const MenuOverlay = (props: { id: string | undefined }) => {
             </div>
           ))}
         </nav>
+
+        <div>
+          <div className="menu-item relative cursor-pointer hover:brightness-125">
+            <a
+              href="https://github.com/Zachacious"
+              target="_blank"
+              title="Github"
+            >
+              <IconGithub className="icon-lg" />
+            </a>
+          </div>
+        </div>
 
         {/* <div className="mt-8">
           <SubscribeWidget />
