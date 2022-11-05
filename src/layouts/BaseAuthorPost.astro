@@ -40,12 +40,12 @@ const image = authorData?.avatar ?? '';
           <h1
             class="md:text-7x text-right text-5xl font-bold capitalize text-primarydark dark:text-textdark"
           >
-            <div class="flex w-full flex-wrap items-center justify-end">
+            <div class="flex w-full flex-wrap items-center justify-end flex-re">
               <div class="">
                 <div class="text-2xl">Author</div>
                 <div class="w-full">{content.name}</div>
                 <div class="text-lg">{authorData?.title}</div>
-                <div
+                <!-- <div
                   class="flex flex-wrap items-center justify-end text-accent"
                 >
                   {
@@ -96,16 +96,16 @@ const image = authorData?.avatar ?? '';
                       </div>
                     )
                   }
-                </div>
+                </div> -->
               </div>
 
-              <div class="">
+              <!-- <div class="">
                 <div
                   class="author-avatar m-2 h-full w-full overflow-hidden rounded-full border-boom"
                 >
                   <Picture src={authorData?.avatar} alt="" />
                 </div>
-              </div>
+              </div> -->
             </div>
           </h1>
         </div>

@@ -66,13 +66,22 @@ const sortedPostsPinned = [...pinnedPosts, ...unpinnedPosts];
       <div class="my-10 flex w-full justify-center">
         <div class="flex max-w-7xl flex-wrap justify-center">
           {sortedPostsPinned.map((post) => <BlogCard post={post} />)}
+          <Paginator page={page} />
+          <Footer />
         </div>
       </div>
       <div>
-        <Paginator page={page} />
+        
+
+        
       </div>
 
-      <Footer />
+      <div class="mb-8">
+
+        
+      </div>
+
+      
     </div>
   </div>
 </Base>

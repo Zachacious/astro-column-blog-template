@@ -6,7 +6,6 @@ import type { ReactNode } from 'react';
 import type { PostFrontmatter } from 'src/types/PostFrontmatter';
 
 import SocialShareBar from '@/components/SocialShareBar.astro';
-import SubscribeWidget from '@/components/SubscribeWidget';
 import IconClock from '@/icons/clock';
 import IconUpArrow from '@/icons/upArrow';
 import type { AuthorFrontmatter } from '@/types/AuthorFrontmatter';
@@ -136,7 +135,7 @@ const numAuthorPosts = getPostsByAuthor(
   })();
 </script>
 
-<main class="blog-post overflow-x-hidden p-8">
+<main class="blog-post overflow-x-clip p-8">
   <ContentTopBar>
     <div slot="left">
       <span class="text-sm md:text-base lg:text-lg"
@@ -191,17 +190,17 @@ const numAuthorPosts = getPostsByAuthor(
         }
       </div>
 
-      <div class="mt-8 flex w-full justify-center p-4 text-sm opacity-50">
+      <div class="flex w-full justify-center p-4 text-sm opacity-50">
         <Footer />
       </div>
     </div>
 
     <div
       id="right-column-large"
-      class=".right-column-large relative hidden p-4 2xl:block"
+      class=".right-column-large relative hidden p-4 2xl:block "
     >
       <div class="right-column sticky top-0 flex flex-wrap justify-start">
-        <div class="text-exo w-full px-2 pt-4 text-right text-2xl font-bold">
+        <div class="text-exo w-full pt-4 text-right text-2xl font-bold">
           Read Next
         </div>
         {
@@ -209,14 +208,14 @@ const numAuthorPosts = getPostsByAuthor(
             <MiniBlogCard post={post} />
           ))
         }
-        <SubscribeWidget />
+        <!-- <SubscribeWidget /> -->
 
         <div class="flex flex-wrap items-center justify-end py-4">
           {
             allTags.map((tag: string) => (
               <a
                 href={`/tag/${tag}/1`}
-                class={`blogpost-tags mr-2 mb-2 rounded-lg px-2 py-1   text-sm capitalize text-primarydark opacity-80 hover:brightness-75 dark:text-textdark ${
+                class={`blogpost-tags mr-2 mb-2 rounded-lg px-2 py-1 text-sm capitalize text-primarydark opacity-80 hover:brightness-75 dark:text-textdark ${
                   props.frontmatter.tags.includes(tag) && 'text-lg font-bold'
                 }`}
               >

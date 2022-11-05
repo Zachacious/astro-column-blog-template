@@ -10,7 +10,7 @@ import compress from 'astro-compress';
 // https://astro.build/config
 export default defineConfig({
   // base: '.', // Set a path prefix.
-  site: 'https://example.com/',
+  site: 'https://zachmoore.dev/',
   // Use to generate your sitemap and canonical URLs in your final build.
   // Important!
   // Only official '@astrojs/*' integrations are currently supported by Astro.
