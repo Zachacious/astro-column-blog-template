@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import IconSend from '@/icons/send';
+
 const ContactForm = () => {
   const [replyto, setReplyto] = useState('');
   const [subject, setSubject] = useState('');
@@ -35,7 +37,7 @@ const ContactForm = () => {
         <h2 className="text-4xl">Send A Raven</h2>
       </div>
       <form onSubmit={handleSubmit} className="w-full ">
-        <div className="f flex w-full  items-center  rounded-md bg-textdark p-2 px-4 text-xl dark:bg-primarydark drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] my-3">
+        <div className="flex w-full  items-center  rounded-md bg-textdark p-2 px-4 text-xl dark:bg-primarydark drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] my-3">
           <input
             type="email"
             id="replyto"
@@ -69,12 +71,12 @@ const ContactForm = () => {
           />
         </div>
         <div className="w-full flex justify-end my-3 ">
-          <button
-            className="flex items-center  rounded-md p-2 px-4 text-xl dark:bg-accent drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]"
-            type="submit"
-          >
-            Send
-          </button>
+          <div className="flex items-center justify-center rounded-md p-2 px-4 text-xl dark:bg-accent drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)]">
+            <IconSend className="icon-sm mr-2" />
+            <button className="" type="submit">
+              Send
+            </button>
+          </div>
         </div>
       </form>
     </div>
