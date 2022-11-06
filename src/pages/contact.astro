@@ -1,0 +1,30 @@
+---
+import ContactForm from '@/components/ContactForm';
+import ContentTopBar from '@/components/ContentTopBar.astro';
+import { Footer } from '@/components/Footer';
+import Hero from '@/components/Hero.astro';
+import Base from '@/layouts/Base.astro';
+import { AppConfig } from '@/utils/AppConfig';
+
+const title = 'Contact';
+const { description } = AppConfig;
+---
+
+<Base head={{ title, description }}>
+  <div class="flex w-full flex-wrap">
+    <div class="md:2/5 w-full lg:w-2/5">
+      <Hero title="Contact" mode="contact" />
+    </div>
+    <div class="md:3/5 h-screen w-full p-8 lg:w-3/5 lg:overflow-y-auto flex flex-col justify-center">
+      <ContentTopBar>
+
+      </ContentTopBar>
+      <div class="my-4 w-full px-8 pb-8">
+
+        <ContactForm />
+
+        <Footer />
+      </div>
+    </div>
+  </div>
+</Base>

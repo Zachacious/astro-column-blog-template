@@ -30,6 +30,7 @@ let bkimg =
     : '/assets/images/face-the-day.jpg';
 bkimg = props.mode === 'tag' ? '/assets/images/valleyofbooks.jpg' : bkimg;
 bkimg = props.mode === 'search' ? '/assets/images/library.jpg' : bkimg;
+bkimg = props.mode === 'contact' ? '/assets/images/raven.jpg' : bkimg;
 bkimg =
   props.mode === 'author-posts'
     ? (props?.frontmatter as AuthorFrontmatter)?.heroImgSrc
