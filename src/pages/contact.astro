@@ -3,6 +3,9 @@ import ContactForm from '@/components/ContactForm';
 import ContentTopBar from '@/components/ContentTopBar.astro';
 import { Footer } from '@/components/Footer';
 import Hero from '@/components/Hero.astro';
+import IconEmail from '@/icons/email';
+import IconLinkedin from '@/icons/linkedin';
+import IconTwitter from '@/icons/twitter';
 import Base from '@/layouts/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -21,7 +24,24 @@ const { description } = AppConfig;
       </ContentTopBar>
       <div class="my-4 w-full px-8 pb-8">
 
-        <ContactForm />
+        <!-- <ContactForm /> -->
+
+        <div class="w-full flex justify-center flex-wrap">
+          <div class="text-4xl text-exo text-bold my-8">Send A Raven</div>
+          <div class="w-full flex justify-center">
+            <a href="https://twitter.com/zachacious" target="_blank" rel="noopener noreferrer">
+              <IconTwitter className="w-12 h-12 mx-4 text-gray-500 hover:text-gray-700" />
+            </a>
+
+            <a href="mailto:sauron@moordor.com" target="_blank" rel="noopener noreferrer">
+              <IconEmail className="w-12 h-12 mx-4 text-gray-500 hover:text-gray-700" />
+            </a>
+
+            <a href="https://linkedin.com/in/zachmoore1" target="_blank" rel="noopener noreferrer">
+              <IconLinkedin className="w-12 h-12 mx-4 text-gray-500 hover:text-gray-700" />
+            </a>
+          </div>
+        </div>
 
         <Footer />
       </div>
