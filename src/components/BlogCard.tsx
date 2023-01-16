@@ -27,9 +27,9 @@ const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
   };
 
   return (
-    <div className=" relative m-4 basis-full sm:basis-1/3 lg:basis-1/4 grow">
+    <div className=" relative m-4 grow basis-full sm:basis-1/3 lg:basis-1/4">
       <div
-        className="blog-card w-full relative flex cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
+        className="blog-card relative flex w-full cursor-pointer flex-col overflow-hidden rounded-md bg-secondarydark bg-cover bg-center p-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.3)] hover:brightness-125"
         style={style}
         onClick={onClick}
       >
@@ -48,7 +48,7 @@ const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
           </div>
         </div>
         <div className="z-0 flex w-full justify-end p-2">
-          <h2 className="text-exo mb-0 text-2xl text-right font-bold w-5/6">
+          <h2 className="text-exo mb-0 w-5/6 text-right text-2xl font-bold">
             {post.frontmatter.title}
           </h2>
           {/* <span>
@@ -65,7 +65,7 @@ const BlogCard = (props: { post: MarkdownInstance<PostFrontmatter> }) => {
         </div>
       </div>
       {postIsPinned(post) && (
-        <div className="pinned-badge text-bold px-2 py-1 rounded-md">
+        <div className="pinned-badge text-bold rounded-md px-2 py-1">
           <span className=" text-textdark">Pinned</span>
         </div>
       )}
